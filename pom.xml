@@ -22,11 +22,11 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
-    <modules>
-        <module>torder_api</module>
-        <module>torder_service</module>
-        <module>torder_web</module>
-    </modules>
+<!--    <modules>-->
+<!--        <module>torder_api</module>-->
+<!--        <module>torder_service</module>-->
+<!--        <module>torder_web</module>-->
+<!--    </modules>-->
 
     <build>
         <plugins>

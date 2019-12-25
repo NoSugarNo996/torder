@@ -1,7 +1,7 @@
 # Server settings
 server:
-    port: 12031
-    address: 172.16.20.111
+    port: 12035
+    address: localhost
 
 # SPRING PROFILES
 spring: 
@@ -110,7 +110,7 @@ eureka:
         #    zone: zone-china-fujian
     client:
         serviceUrl:
-            defaultZone: http://hostname:12031/eureka/
+            defaultZone: http://hostname:12035/eureka/
 #            defaultZone: http://localhost:7011/eureka/
         #preferSameZoneEureka: true
         #healthcheck: 
