@@ -1,11 +1,13 @@
 package com.example.torder.mapper;
 
 import com.example.torder.domain.RoleRight;
+import com.example.torder.vo.AdvertisingVo;
 import com.example.torder.vo.RoleRightVo;
 
 import java.util.List;
 
 public interface RoleRightMapper {
+    List findList(AdvertisingVo obj);
     /**
      * 获取列表
      * @param roleRightVo
