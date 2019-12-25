@@ -41,6 +41,6 @@ public class AdvertisingServiceImpl implements AdvertisingService{
 
     @Override
     public AdvertisingVo getById(Integer id) {
-        return null;
+        return advertisingMapper.selectByPrimaryKey(id);
     }
 }
