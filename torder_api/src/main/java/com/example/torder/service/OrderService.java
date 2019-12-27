@@ -45,4 +45,6 @@ public interface OrderService {
      * @return
      */
     OrderVo getById(Integer id);
+
+    long getCount();
 }

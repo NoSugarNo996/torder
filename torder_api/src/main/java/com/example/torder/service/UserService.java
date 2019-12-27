@@ -45,4 +45,6 @@ public interface UserService {
      * @return
      */
     UserVo getById(Integer id);
+
+    long getCount();
 }

@@ -43,4 +43,9 @@ public class UserServiceImpl implements UserService{
     public UserVo getById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public long getCount() {
+        return userMapper.getCount();
+    }
 }

@@ -53,4 +53,7 @@ public interface OrderApi {
      */
     @RequestMapping("/getInfo")
     OrderVo getById(@RequestParam("id") Integer id);
+
+    @RequestMapping("/getCount")
+    long getCount();
 }

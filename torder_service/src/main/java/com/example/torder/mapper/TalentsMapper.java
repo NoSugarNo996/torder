@@ -55,4 +55,6 @@ public interface TalentsMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Talents record);
+
+    long getCount();
 }

@@ -44,4 +44,9 @@ public class TalentsServiceImpl implements TalentsService{
     public TalentsVo getById(Integer id) {
         return talentsMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public long getCount() {
+        return talentsMapper.getCount();
+    }
 }

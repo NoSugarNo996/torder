@@ -42,4 +42,9 @@ public class TalentsController extends BaseController implements TalentsApi {
     public TalentsVo getById(Integer id) {
         return talentsService.getById(id);
     }
+
+    @Override
+    public long getCount() {
+        return talentsService.getCount();
+    }
 }

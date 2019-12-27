@@ -42,4 +42,9 @@ public class UserController extends BaseController implements UserApi {
     public UserVo getById(Integer id) {
         return userService.getById(id);
     }
+
+    @Override
+    public long getCount() {
+        return userService.getCount();
+    }
 }

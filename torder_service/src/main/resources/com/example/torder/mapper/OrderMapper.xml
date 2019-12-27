@@ -29,6 +29,9 @@
     order_id, order_partyA, order_partyB, order_status, order_money, task_id, order_start, 
     order_end, opr, opr_time, other1, other2, other3, other4
   </sql>
+  <select id="getCount" resultType="java.lang.Long">
+     select count(*) from order_info
+  </select>
   <select id="findList" parameterType="com.example.torder.vo.OrderVo" resultType="com.example.torder.vo.OrderVo">
     select * from order_info
   </select>

@@ -43,4 +43,9 @@ public class OrderServiceImpl implements OrderService{
     public OrderVo getById(Integer id) {
         return orderMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public long getCount() {
+        return 0;
+    }
 }

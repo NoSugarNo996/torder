@@ -55,4 +55,6 @@ public interface OrderMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Order record);
+
+    long getCount();
 }

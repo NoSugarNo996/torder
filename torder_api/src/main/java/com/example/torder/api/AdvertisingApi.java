@@ -51,7 +51,7 @@ public interface AdvertisingApi {
      * @param id
      * @return
      */
-    @RequestMapping("/getAdvertisingInfo")
+    @RequestMapping("/getInfo")
     AdvertisingVo getById(@RequestParam("id") Integer id);
 
 

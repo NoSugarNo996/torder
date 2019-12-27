@@ -53,4 +53,7 @@ public interface TalentsApi {
      */
     @RequestMapping("/getInfo")
     TalentsVo getById(@RequestParam("id") Integer id);
+
+    @RequestMapping("/getCount")
+    long getCount();
 }
