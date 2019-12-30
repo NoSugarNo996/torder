@@ -45,7 +45,7 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public long getCount() {
-        return 0;
+    public long getCount(OrderVo obj) {
+        return orderMapper.getCount(obj);
     }
 }

@@ -39,8 +39,12 @@
     talents_phone, talents_email, talents_resume, talents_info, talents_statue, talents_identity, 
     talents_alipay, opr, opr_time, other, others
   </sql>
-  <select id="getCount" resultType="java.lang.Long">
+  <select id="getCount" resultType="java.lang.Long" parameterType="com.example.torder.vo.TalentsVo">
      select count(*) from talents_info
+    where 1=1
+    <if test="talentsStatue !=null">
+      and talents_statue=#{talentsStatue}
+    </if>
   </select>
   <select id="findList" parameterType="com.example.torder.vo.TalentsVo" resultType="com.example.torder.vo.TalentsVo">
     select * from talents_info

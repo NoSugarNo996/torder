@@ -46,5 +46,5 @@ public interface OrderService {
      */
     OrderVo getById(Integer id);
 
-    long getCount();
+    long getCount(OrderVo obj);
 }

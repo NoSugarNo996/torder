@@ -46,7 +46,7 @@ public class TalentsServiceImpl implements TalentsService{
     }
 
     @Override
-    public long getCount() {
-        return talentsMapper.getCount();
+    public long getCount(TalentsVo obj) {
+        return talentsMapper.getCount(obj);
     }
 }

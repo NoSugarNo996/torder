@@ -42,4 +42,9 @@ public class AdvertisingController extends BaseController implements Advertising
     public AdvertisingVo getById(Integer id) {
         return advertisingService.getById(id);
     }
+
+    @Override
+    public long getCount(AdvertisingVo obj) {
+        return advertisingService.getCount(obj);
+    }
 }

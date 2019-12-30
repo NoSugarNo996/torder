@@ -29,6 +29,13 @@
     ad_id, ad_title, ad_url, ad_start, ad_end, ad_sort, ad_click, ad_type, ad_state, 
     ad_add_time, opr, opr_time, otherother, otherothers
   </sql>
+  <select id="getCount" resultType="java.lang.Long" parameterType="com.example.torder.vo.AdvertisingVo">
+     select count(*) from advertising_info
+     where 1=1
+     <if test="adState !=null">
+       and ad_state=#{adState}
+     </if>
+  </select>
   <select id="findList" parameterType="com.example.torder.vo.AdvertisingVo" resultType="com.example.torder.vo.AdvertisingVo">
     select * from advertising_info
   </select>

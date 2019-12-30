@@ -44,7 +44,7 @@ public class UserController extends BaseController implements UserApi {
     }
 
     @Override
-    public long getCount() {
+    public long getCount(UserVo obj) {
         return userService.getCount();
     }
 }

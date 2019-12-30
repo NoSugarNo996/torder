@@ -43,4 +43,9 @@ public class CompanyController extends BaseController implements CompanyApi {
     public CompanyVo getById(Integer id) {
         return companyService.getById(id);
     }
+
+    @Override
+    public long getCount(CompanyVo obj) {
+        return companyService.getCount(obj);
+    }
 }

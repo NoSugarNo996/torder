@@ -45,4 +45,6 @@ public interface CompanyService {
      * @return
      */
     CompanyVo getById(Integer id);
+
+    long getCount(CompanyVo obj);
 }

@@ -43,4 +43,9 @@ public class AdvertisingServiceImpl implements AdvertisingService{
     public AdvertisingVo getById(Integer id) {
         return advertisingMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public long getCount(AdvertisingVo obj) {
+        return advertisingMapper.getCount(obj);
+    }
 }

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Map;
+
 /**
  * @program: torder
  * @description: 广告
@@ -53,6 +55,9 @@ public interface AdvertisingApi {
      */
     @RequestMapping("/getInfo")
     AdvertisingVo getById(@RequestParam("id") Integer id);
+
+    @RequestMapping("/getCount")
+    long getCount(@RequestBody AdvertisingVo obj);
 
 
 }

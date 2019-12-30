@@ -46,5 +46,5 @@ public interface TalentsService {
      */
     TalentsVo getById(Integer id);
 
-    long getCount();
+    long getCount(TalentsVo obj);
 }

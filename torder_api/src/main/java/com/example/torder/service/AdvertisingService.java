@@ -45,4 +45,6 @@ public interface AdvertisingService {
      * @return
      */
     AdvertisingVo getById(Integer id);
+
+    long getCount(AdvertisingVo obj);
 }

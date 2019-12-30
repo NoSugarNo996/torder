@@ -56,5 +56,5 @@ public interface OrderMapper {
      */
     int updateByPrimaryKey(Order record);
 
-    long getCount();
+    long getCount(OrderVo obj);
 }

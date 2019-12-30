@@ -55,5 +55,5 @@ public interface UserApi {
     UserVo getById(@RequestParam("id") Integer id);
 
     @RequestMapping("/getCount")
-    long getCount();
+    long getCount(@RequestBody UserVo obj);
 }

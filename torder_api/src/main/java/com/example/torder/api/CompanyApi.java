@@ -53,4 +53,7 @@ public interface CompanyApi {
      */
     @RequestMapping("/getInfo")
     CompanyVo getById(@RequestParam("id") Integer id);
+
+    @RequestMapping("getCount")
+    long getCount(@RequestBody CompanyVo obj);
 }

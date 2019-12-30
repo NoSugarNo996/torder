@@ -44,7 +44,7 @@ public class TalentsController extends BaseController implements TalentsApi {
     }
 
     @Override
-    public long getCount() {
-        return talentsService.getCount();
+    public long getCount(TalentsVo obj) {
+        return talentsService.getCount(obj);
     }
 }

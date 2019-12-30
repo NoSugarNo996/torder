@@ -42,4 +42,9 @@ public class OrderController extends BaseController implements OrderApi {
     public OrderVo getById(Integer id) {
         return orderService.getById(id);
     }
+
+    @Override
+    public long getCount(OrderVo obj) {
+        return orderService.getCount(obj);
+    }
 }

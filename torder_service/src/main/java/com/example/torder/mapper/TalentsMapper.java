@@ -56,5 +56,5 @@ public interface TalentsMapper {
      */
     int updateByPrimaryKey(Talents record);
 
-    long getCount();
+    long getCount(TalentsVo obj);
 }

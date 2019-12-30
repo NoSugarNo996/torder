@@ -45,4 +45,9 @@ public class CompanyServiceImpl implements CompanyService{
     public CompanyVo getById(Integer id) {
         return companyMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public long getCount(CompanyVo obj) {
+        return companyMapper.getCount(obj);
+    }
 }
