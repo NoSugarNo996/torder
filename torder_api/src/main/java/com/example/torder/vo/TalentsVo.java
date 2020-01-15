@@ -12,6 +12,7 @@ import java.util.Date;
  * @create: 2019-12-25 14:16
  **/
 public class TalentsVo extends BaseVo implements Serializable {
+    private String code;
     /**
      * Database Column Remarks:
      *   人才ID
@@ -827,5 +828,13 @@ public class TalentsVo extends BaseVo implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

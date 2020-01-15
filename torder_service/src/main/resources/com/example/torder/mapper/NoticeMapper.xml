@@ -16,6 +16,8 @@
     <result column="opr_time" jdbcType="TIMESTAMP" property="oprTime" />
     <result column="other" jdbcType="VARCHAR" property="other" />
     <result column="others" jdbcType="VARCHAR" property="others" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+
   </resultMap>
   <sql id="Base_Column_List">
     <!--
@@ -54,11 +56,11 @@
     insert into notice_info (notice_id, notice_title, notice_start, 
       notice_end, notice_des, notice_sendto, 
       opr, opr_time, other, 
-      others)
+      others,code)
     values (#{noticeId,jdbcType=INTEGER}, #{noticeTitle,jdbcType=VARCHAR}, #{noticeStart,jdbcType=TIMESTAMP}, 
       #{noticeEnd,jdbcType=TIMESTAMP}, #{noticeDes,jdbcType=VARCHAR}, #{noticeSendto,jdbcType=VARCHAR}, 
       #{opr,jdbcType=INTEGER}, #{oprTime,jdbcType=TIMESTAMP}, #{other,jdbcType=VARCHAR}, 
-      #{others,jdbcType=VARCHAR})
+      #{others,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.torder.domain.Notice">
     <!--
@@ -97,6 +99,9 @@
       <if test="others != null">
         others,
       </if>
+      <if test="code !=null">
+        code,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="noticeId != null">
@@ -129,6 +134,10 @@
       <if test="others != null">
         #{others,jdbcType=VARCHAR},
       </if>
+      <if test="code !=null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.torder.domain.Notice">
@@ -165,6 +174,9 @@
       <if test="others != null">
         others = #{others,jdbcType=VARCHAR},
       </if>
+      <if test="code !=null">
+        code=#{code,jdbcType=VARCHAR},
+      </if>
     </set>
     where notice_id = #{noticeId,jdbcType=INTEGER}
   </update>
@@ -182,7 +194,8 @@
       opr = #{opr,jdbcType=INTEGER},
       opr_time = #{oprTime,jdbcType=TIMESTAMP},
       other = #{other,jdbcType=VARCHAR},
-      others = #{others,jdbcType=VARCHAR}
+      others = #{others,jdbcType=VARCHAR},
+    code=#{code,jdbcType=VARCHAR}
     where notice_id = #{noticeId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -12,6 +12,7 @@ import java.util.Date;
  * @create: 2019-12-25 14:12
  **/
 public class NoticeVo extends BaseVo implements Serializable {
+    private String code;
     /**
      * Database Column Remarks:
      *   公告ID
@@ -391,5 +392,13 @@ public class NoticeVo extends BaseVo implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

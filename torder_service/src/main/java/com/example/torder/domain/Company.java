@@ -15,6 +15,7 @@ import java.util.Date;
  * @date 2019/12/25 1:38 下午
  */
 public class Company extends BasePo implements Serializable {
+    private String code;
     /**
      * Database Column Remarks:
      *   公司ID
@@ -362,5 +363,13 @@ public class Company extends BasePo implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

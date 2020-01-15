@@ -1,0 +1,75 @@
+# Server settings
+server:
+  port: 12030
+  address: localhost
+
+# SPRING PROFILES
+spring:
+  # APP (for Eureka)
+  application:
+    name: torderWeb # 注册到eureka.instance.*
+  # HTTP ENCODING
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  jackson:
+    #date-format: yyyy-MM-dd'T'HH:mm:ss+0800
+    date-format: yyyy-MM-dd HH:mm:ss
+    #date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+    serialization:
+      write-dates-as-timestamps: false
+      #servlet:
+      #multipart:
+      #max-file-size: 50MB
+      #max-request-size: 50MB
+      #devtools:
+      #restart:
+      #additional-paths: src\\main\\java\\com\\cetccity\\common\\system\\mgr\\mapper
+  thymeleaf:
+    cache: false
+
+# Management
+management:
+  security:
+    enabled: false
+
+# LOGGING
+logging:
+  level:
+    ROOT: info
+    org.springframework.web: ERROR
+    com.ibatis: debug
+    com.cetccity: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  #file: ./logs/${spring.application.name}-%d{yyyy-MM-dd}.log
+
+# Eureka
+eureka:
+  instance:
+    preferIpAddress: true
+    #前缀：http://${server.address}/${server.port}
+    statusPageUrlPath: /application/info
+    healthCheckUrlPath: /application/health
+    #statusPageUrlPath: ${management.context-path}/info
+    #healthCheckUrlPath: ${management.context-path}/health
+    #nonSecurePortEnabled: false
+    #securePortEnabled: true
+    hostname: ${server.address} #hostName: ${server.address}:${server.port}
+    #statusPageUrl: https://${eureka.hostname}/info
+    #healthCheckUrl: https://${eureka.hostname}/health
+    #homePageUrl: https://${eureka.hostname}/
+    #lease-renewal-interval-in-seconds: 10  # 续约更新时间间隔（默认30秒）
+    #lease-expiration-duration-in-seconds: 30 # 续约到期时间（默认90秒）
+    #metadataMap:
+    #    zone: zone-china-fujian
+  client:
+    serviceUrl:
+      defaultZone: http://hostname:12035/eureka/
+      #            defaultZone: http://localhost:7011/eureka/
+      #preferSameZoneEureka: true
+      #healthcheck:
+      #enabled: true # 开启健康检查（需要spring-boot-starter-actuator依赖）

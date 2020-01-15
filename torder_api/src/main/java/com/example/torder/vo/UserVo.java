@@ -22,6 +22,7 @@ public class UserVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private Integer userId;
+    private String code;
 
     /**
      * Database Column Remarks:
@@ -539,5 +540,13 @@ public class UserVo extends BaseVo implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

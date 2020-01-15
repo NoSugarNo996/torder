@@ -22,7 +22,7 @@ public class CompanyVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private Integer companyId;
-
+    private String code;
     /**
      * Database Column Remarks:
      *   公司名称
@@ -359,5 +359,13 @@ public class CompanyVo extends BaseVo implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

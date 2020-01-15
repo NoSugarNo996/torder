@@ -1,0 +1,173 @@
+input {
+    border: none;
+}
+
+button {
+    background: rgb(28,114,247);
+    border-radius: 3px !important;
+}
+.addEvent{
+    float: right;
+}
+
+.layui-table {
+    margin-top: 20px;
+}
+
+#pagetion {
+    width: 100%;
+    position: relative;
+}
+
+#pagetion .layui-laypage {
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+tbody, .layui-table th {
+    text-align: center;
+}
+/*
+.checkDetail, .submitEvent {
+  margin-right: 10px;
+}
+
+.checkDetail {
+  cursor: pointer;
+  color: #00bcd4;
+}
+
+.submitEvent {
+  cursor: pointer;
+  color: #2196f3;
+}
+
+.deleteEvent {
+  cursor: pointer;
+  color: #ff5722;
+}
+
+.checkDetail:hover, .submitEvent:hover, .deleteEvent:hover {
+  filter: brightness(1.5);
+} */
+
+.marker>p:after {
+    background: url('../images/up.png') !important;
+}
+
+.searchBox {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.searchBox .searchName {
+    width: 205px;
+    height: 38px;
+    line-height: 38px;
+    text-indent: 14px;
+    position: relative;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+}
+
+.searchBox .searchName img {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 6px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.f-push {
+    width: 205px;
+    height: 38px;
+    line-height: 38px;
+    text-indent: 14px;
+    position: relative;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+}
+
+.f-push>p {
+    display: block;
+    text-align: left;
+    color: #747474;
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 38px;
+    min-width: 120px;
+    overflow: hidden;
+    border-radius: 3px;
+    height: 38px;
+    padding-right: 30px;
+}
+
+.f-push>p:after {
+    content: '';
+    background: url('../images/down.png');
+    background-size: 21px 21px;
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    text-indent: 0;
+    width: 21px;
+    height: 16px;
+}
+
+.f-push>div {
+    width: 205px;
+    position: absolute;
+    z-index: 66666666;
+    background: #1c71f7;
+    color: #fff;
+    opacity: 0.9;
+    display: none;
+}
+
+.f-push>div>div {
+    height: 38px;
+    padding-right: 10px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.f-push>div>div:hover {
+    background: #3a83f7;
+    transition: .25s;
+}
+
+#date{
+    width:200px;
+    height: 40px;
+}
+
+
+.layui-laydate-content td.laydate-selected{
+    background-color: rgba(28, 201, 247, 0.33) !important;
+}
+
+
+/* 上报弹出框 */
+
+#submitDiv .container{
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+}
+#submitDiv .container p {
+    font-size: 15px;
+}
+#contactsTree {
+    height: 350px;
+    margin: 10px auto;
+    overflow: auto;
+}
+.layui-layer-page .layui-layer-content{
+    overflow:visible !important;
+}

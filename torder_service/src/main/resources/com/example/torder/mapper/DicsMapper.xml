@@ -21,6 +21,13 @@
     -->
     dics_id, dics_code, dics_name, key_name, key_value, remark, opr_date
   </sql>
+  <select id="findDicsList" parameterType="java.lang.String" resultType="com.example.torder.vo.DicsVo">
+    select * from dics_info
+    where 1=1
+    <if test="_parameter!=null">
+      and dics_code=#{_parameter}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--
       WARNING - @mbg.generated
@@ -46,10 +53,10 @@
     -->
     insert into dics_info (dics_id, dics_code, dics_name, 
       key_name, key_value, remark, 
-      opr_date)
+      opr_date.code)
     values (#{dicsId,jdbcType=INTEGER}, #{dicsCode,jdbcType=VARCHAR}, #{dicsName,jdbcType=VARCHAR}, 
       #{keyName,jdbcType=VARCHAR}, #{keyValue,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{oprDate,jdbcType=TIMESTAMP})
+      #{oprDate,jdbcType=TIMESTAMP},#{code,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.torder.domain.Dics">
     <!--

@@ -11,6 +11,7 @@ import java.util.Date;
  * This class corresponds to the database table task_waitting_info
  */
 public class TaskWaitting extends BasePo implements Serializable {
+    private String code;
     /**
      * Database Column Remarks:
      *   候选ID
@@ -318,5 +319,13 @@ public class TaskWaitting extends BasePo implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
