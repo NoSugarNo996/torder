@@ -12,6 +12,15 @@ import java.util.Date;
  * @create: 2019-12-25 14:18
  **/
 public class TaskVo extends BaseVo implements Serializable {
+    private Integer aud;
+
+    public Integer getAud() {
+        return aud;
+    }
+
+    public void setAud(Integer aud) {
+        this.aud = aud;
+    }
     private String code;
     /**
      * Database Column Remarks:

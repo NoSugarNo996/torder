@@ -3,26 +3,21 @@ let tableLength; // 分页长度
 let editId;
 let status;
 let eventObj = {
-    "orderName":'',
+    "noticeName":'',
     "pageSize": 10,
     "pageNum": numEvent
 }
-getSelectOption("select[name='orderNation']", 'NATION');
-getSelectOption("select[name='orderStatus']", 'STATE');
-getSelectOption("select[name='orderEducation']", 'EDUCATION');
-getSelectOption("select[name='orderExperience']", 'EXPERIENCE');
-getSelectOption("select[name='orderPoliticeStatus']", 'POLITICE');
+getSelectOption("select[name='noticeState']", 'STATE');
 //表单初始化
 layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     var form = layui.form,
         layer = layui.layer,laydate = layui.laydate;
-
-    // 渲染多个日期组件
+    form.render();
     $(".input-date").each(function () {
         //日期时间选择
         laydate.render({
             elem: this, //指定元素  表示当前的元素
-            type: 'date'
+            type: 'datetime'
             , value: new Date()
             , format: 'yyyy-MM-dd HH:mm:ss'
             , theme: '#009688'  //主题  颜色改变
@@ -40,7 +35,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
 
         $.ajax({
             type: "post",
-            url: queryUrl + queryMethodOrder + queryListMethod,
+            url: queryUrl + queryMethodNotice + queryListMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify(eventObj),
@@ -56,21 +51,18 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                         '<div>' + ((index + 1) + (eventObj.pageNum - 1) * 10) + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].orderPartyAName + '</div>\n' +
+                        '<div>' + res.data[index].noticeTitle + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].orderPartyBName + '</div>\n' +
+                        '<div>' + res.data[index].noticeDes + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].orderMoney + '</div>\n' +
-                        '</td>\n' +
-                        '<td>\n' +
-                        '<div>' + res.data[index].orderStatusName + '</div>\n' +
+                        '<div>' + res.data[index].noticeSendto + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
-                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].orderId + '">编辑</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].orderId + '">禁用</button>\n' +
+                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].noticeId + '">编辑</button>\n' +
+                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].noticeId + '">禁用</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -105,19 +97,51 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
 
 // 搜索框实时响应
     $('.searchName :input').on('input propertychange', function () {
-        eventObj.orderName = $('.searchName input').val();
+        eventObj.noticeTitle = $('.searchName input').val();
         getEventData();
     });
 
+//点击添加提示框
+    $('#add').on("click",function(){
+        layer.open({
+            type: 1
+            , content: $('#addForm')
+            , btnAlign: 'c' //按钮居中
+            , shnoticee: 0 //不显示遮罩
+        });
+    })
 
+    //监听提交
+    form.on('submit(verify)', function (data) {
+        let eventObj = data.field;
+        // eventObj.noticeSex = $('#noticeSex').attr('value');
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodNotice + addMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify(eventObj),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('添加成功');
+                    getEventData();
+                }
+                else {
+                    layer.msg("添加失败");
+                }
+            }
+        });
+        setTimeout(() => {
+            //$('#addForm').css("display","none");
+        }, 1000);
+        return false;
+    });
     //监听更新
     form.on('submit(verify1)', function (data) {
         let eventObj = data.field;
-        eventObj.orderSex = $('#orderSex').attr('value');
-        console.log(eventObj);
         $.ajax({
             type: "post",
-            url: queryUrl + queryMethodOrder + updateMethod,
+            url: queryUrl + queryMethodNotice + updateMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify(eventObj),
@@ -139,11 +163,16 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
 
 
 
+    // $('#layerDemo .layui-btn').on('click', function () {
+    //   var othis = $(this), method = othis.data('method');
+    //   active[method] ? active[method].call(this, othis) : '';
+    // });
+
 //更新弹窗初始化
     $('body').on('click', '.checkDetail', function () {
         $.ajax({
             type: "get",
-            url: queryUrl + queryMethodOrder + getInfoMethod,
+            url: queryUrl + queryMethodNotice + getInfoMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
             data: {
@@ -151,15 +180,12 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             },
             success: function (res) {
                 form.val('update', {
-                    "orderId":res.orderId,
-                    "orderPartyA": res.orderPartyA,
-                    "orderPartyB": res.orderPartyB,
-                    "orderStatus": res.orderStatus,
-                    "orderMoney": res.orderMoney,
-                    "taskId": res.taskId,
-                    "orderStart": res.orderStart,
-                    "orderEnd": res.orderEnd
-
+                    "noticeId":res.noticeId,
+                    "noticeTitle": res.noticeTitle,
+                    "noticeDes": res.noticeDes,
+                    "noticeStart": res.noticeStart,
+                    "noticeEnd": res.noticeEnd,
+                    "noticeSendto":res.noticeSendto
                 });
             }
         });
@@ -167,9 +193,6 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             type: 1
             , content: $('#updateForm')
             , btnAlign: 'c' //按钮居中
-            ,area: 'auto'
-            ,anim: 0
-            ,maxWidth:800
             , shade: 0 //不显示遮罩
         });
     });
@@ -178,7 +201,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     $('body').on('click', '.endorseEvent', function () {
         $.ajax({
             type: "get",
-            url: queryUrl + queryMethodOrder + deleteMethod,
+            url: queryUrl + queryMethodNotice + deleteMethod,
             data: {
                 "id": $(this).attr('value')
             },
@@ -189,15 +212,9 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                 });
                 setTimeout(() => {
                     getEventData();
-                }, 1000);
+            }, 1000);
             }
         });
     });
 
 });
-
-// 获取下拉框内容
-
-// getSelectOption("select[name='eventType']", 'EVENT_TYPE');
-// getSelectOption("select[name='eventLevel']", 'EVENT_LEVEL');
-// getSelectOption("select[name='eventArea']", 'AREA');

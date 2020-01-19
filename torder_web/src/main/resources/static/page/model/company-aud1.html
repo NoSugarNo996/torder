@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>订单管理</title>
+    <title>公司管理</title>
     <link rel="stylesheet" href="../../lib/layui-v2.5.4/css/layui.css" media="all">
-    <link rel="stylesheet" href="../../css/model/order.css">
+    <link rel="stylesheet" href="../../css/model/company.css">
 </head>
 <body>
 <div id="eventContainer">
     <div class="layui-form">
+        <!--      <button type="button" class="layui-btn layui-btn-normal addEvent">新增</button>-->
         <div class="searchBox">
             <div class="searchName">
-                <input type="text" placeholder="请输入">
+                <input type="text" placeholder="请输入公司名">
                 <img src="../../images/search.png" alt="">
             </div>
         </div>
@@ -21,12 +22,11 @@
             <thead>
             <tr>
                 <th style="width:80px">序号</th>
-                <th style="width:325px">交易甲方</th>
-                <th style="width:325px">交易乙方</th>
-                <th style="width:330px">交易金额</th>
-                <th style="width:130px">状态</th>
+                <th style="width:130px">公司名</th>
+                <th style="width:230px">公司类型</th>
+                <th style="width:130px">公司状态</th>
+                <th style="width:130px">公司规模</th>
                 <th style="width:330px">操作</th>
-
             </tr>
             </thead>
             <tbody id="eventTable">
@@ -42,75 +42,64 @@
 
 <!--最外层-->
 
-<!--修改-->
-<div id="updateForm" style="display:none;width: 700px" >
+<div id="updateForm" style="display:none">
     <form class="layui-form" lay-filter="update">
         <div class="formBody">
             <div class="left-form">
                 <fieldset class="layui-elem-field">
                     <legend>
-                        <div class="title">人才信息</div>
+                        <div class="title">公司信息</div>
                     </legend>
                     <div class="layui-field-box">
                         <div class="sendInfo">
                             <!-- 部门信息 -->
                             <div class=" layui-form-item">
                                 <div class="layui-inline">
-                                    <label class="layui-form-label required">交易甲方</label>
+                                    <label class="layui-form-label required">公司名</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="orderPartyA" lay-verify="required" lay-reqtext="用户名称不能为空"
-                                               class="layui-input">
+                                        <input type="text" name="companyName" lay-verify="required" lay-reqtext="公司名称不能为空"
+                                               class="layui-input" readonly="readonly">
                                     </div>
                                 </div>
                                 <div class="layui-inline">
-                                    <label class="layui-form-label">交易乙方</label>
-                                    <div class="layui-input-inline">
-                                        <input name="orderPartyB" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-inline">
-                                    <label class="layui-form-label">交易状态</label>
-                                    <div class="layui-input-inline">
-                                        <select name="orderStatus">
-                                        </select>
-                                    </div>
+                                    <label class="layui-form-label">公司类型</label>
 
-                                </div>
+                                    <div class="layui-input-inline">
+                                     <input type="text" name="companyType" lay-verify="required" lay-reqtext="公司名称不能为空"
+                                                                                   class="layui-input" readonly="readonly">
 
-                                <div class="layui-inline">
-                                    <label class="layui-form-label">交易金额</label>
-                                    <div class="layui-input-inline">
-                                        <input type="text" name="orderMoney" class="layui-input">
                                     </div>
                                 </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">公司状态</label>
+                                    <div class="layui-input-inline">
+                                    <input type="text" name="companyStatus" lay-verify="required" lay-reqtext="公司名称不能为空"
+                                         class="layui-input" readonly="readonly">
 
-                                <div class="layui-inline">
-                                    <label class="layui-form-label">交易开始时间</label>
-                                    <div class="layui-input-inline">
-                                        <input type="text" name="orderStart" class="layui-input input-date"
-                                               placeholder="yyyy-MM-dd HH:mm:ss">
                                     </div>
                                 </div>
                                 <div class="layui-inline">
-                                    <label class="layui-form-label">交易结束时间</label>
+                                    <label class="layui-form-label">规模</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="orderEnd" class="layui-input input-date"
-                                               placeholder="yyyy-MM-dd HH:mm:ss">
+                                    <input type="text" name="companySize" lay-verify="required" lay-reqtext="公司名称不能为空"
+                                             class="layui-input" readonly="readonly">
+
                                     </div>
                                 </div>
-                                <div>
-                                    <input type="text" name="orderId" class="layui-input" style="display: none">
-                                </div>
+                            <div>
+                                <input type="text" name="companyId" class="layui-input" style="display: none">
                             </div>
                         </div>
+                    </div>
                 </fieldset>
             </div>
         </div>
         <div class="layui-form-item formButton">
             <div class="layui-input-block">
-                <button type="submit" class="layui-btn" lay-submit id="updateMsg"
-                        lay-filter="verify1">更新</button>
-                <button type="reset" class="layui-btn layui-btn-primary" id="close">重置</button>
+               <button type="submit" class="layui-btn" lay-submit id="submitMsg"
+                                      lay-filter="verify1">审核通过</button>
+                              <button type="submit" class="layui-btn" lay-submit id="submitMsg2"
+                                                       lay-filter="verify2">审核未通过</button>
             </div>
         </div>
     </form>
@@ -120,6 +109,6 @@
 <script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 <script src="../../js/api.js"></script>
 <script src="../../js/config.js"></script>
-<script src="../../js/module/order.js?ver=1"></script>
+<script src="../../js/module/company-aud.js?ver=1"></script>
 </body>
 </html>

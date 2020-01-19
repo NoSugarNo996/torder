@@ -37,7 +37,12 @@
     <if test="userName !=null and userName!=''">
       and user_name like concat('%', #{userName}, '%')
     </if>
-
+    <if test="userStatus !=null">
+      and a.user_status=#{userStatus}
+    </if>
+    <if test="aud !=null">
+      and a.user_status!=#{aud}
+    </if>
   </select>
   <select id="getCount" resultType="java.lang.Long">
      select count(*) from user_info

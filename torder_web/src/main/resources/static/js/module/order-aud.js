@@ -5,7 +5,8 @@ let status;
 let eventObj = {
     "orderName":'',
     "pageSize": 10,
-    "pageNum": numEvent
+    "pageNum": numEvent,
+    "aud":1
 }
 getSelectOption("select[name='orderNation']", 'NATION');
 getSelectOption("select[name='orderStatus']", 'STATE');
@@ -69,8 +70,9 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
-                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].orderId + '">编辑</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].orderId + '">禁用</button>\n' +
+                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].orderId + '">查看详情</button>\n' +
+                        '<button type="button" class="audEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].orderId + '">审核通过</button>\n' +
+                        '<button type="button" class="unAudEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].orderId + '">审核未通过</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -110,24 +112,54 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     });
 
 
-    //监听更新
+    //监听审核通过
     form.on('submit(verify1)', function (data) {
         let eventObj = data.field;
-        eventObj.orderSex = $('#orderSex').attr('value');
-        console.log(eventObj);
         $.ajax({
             type: "post",
             url: queryUrl + queryMethodOrder + updateMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify(eventObj),
+            data: JSON.stringify({
+                "orderId":eventObj.orderId,
+                "orderStatus":1
+            }),
             success: function (res) {
                 if (res==1){
-                    layer.msg('更新成功');
+                    layer.msg('审核成功');
                     getEventData();
                 }
                 else
-                    layer.msg("更新失败");
+                    layer.msg("审核失败");
+
+            }
+        });
+        setTimeout(() => {
+            // $('#updateForm').css("display","none");
+        }, 1000);
+        return false;
+    });
+
+
+    //监听审核未通过
+    form.on('submit(verify2)', function (data) {
+        let eventObj = data.field;
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodOrder + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "orderId":eventObj.orderId,
+                "orderStatus":2
+            }),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('审核成功');
+                    getEventData();
+                }
+                else
+                    layer.msg("审核失败");
 
             }
         });
@@ -152,9 +184,9 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             success: function (res) {
                 form.val('update', {
                     "orderId":res.orderId,
-                    "orderPartyA": res.orderPartyA,
-                    "orderPartyB": res.orderPartyB,
-                    "orderStatus": res.orderStatus,
+                    "orderPartyA": res.orderPartyAName,
+                    "orderPartyB": res.orderPartyBName,
+                    "orderStatus": res.orderStatusName,
                     "orderMoney": res.orderMoney,
                     "taskId": res.taskId,
                     "orderStart": res.orderStart,
@@ -174,22 +206,47 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
         });
     });
 
-//删除
-    $('body').on('click', '.endorseEvent', function () {
+//审核未通过
+    $('body').on('click', '.unAudEvent', function () {
         $.ajax({
-            type: "get",
-            url: queryUrl + queryMethodOrder + deleteMethod,
-            data: {
-                "id": $(this).attr('value')
-            },
+            type: "post",
+            url: queryUrl + queryMethodOrder + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "orderId": $(this).attr('value'),
+                "orderStatus":2
+            }),
             success: function (res) {
-                layui.use('layer', function () {
-                    var layer = layui.layer;
-                    layer.msg('禁用成功');
-                });
-                setTimeout(() => {
+                if (res==1){
+                    layer.msg('审核成功');
                     getEventData();
-                }, 1000);
+                }
+                else
+                    layer.msg("审核失败");
+
+            }
+        });
+    });
+    //审核通过
+    $('body').on('click', '.audEvent', function () {
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodOrder + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "orderId": $(this).attr('value'),
+                "orderStatus":1
+            }),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('审核成功');
+                    getEventData();
+                }
+                else
+                    layer.msg("审核失败");
+
             }
         });
     });

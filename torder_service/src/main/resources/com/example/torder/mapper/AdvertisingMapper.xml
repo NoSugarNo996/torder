@@ -14,7 +14,7 @@
     <result column="ad_sort" jdbcType="VARCHAR" property="adSort" />
     <result column="ad_click" jdbcType="VARCHAR" property="adClick" />
     <result column="ad_type" jdbcType="VARCHAR" property="adType" />
-    <result column="ad_state" jdbcType="VARCHAR" property="adState" />
+    <result column="ad_state" jdbcType="INTEGER" property="adState" />
     <result column="ad_add_time" jdbcType="TIMESTAMP" property="adAddTime" />
     <result column="opr" jdbcType="VARCHAR" property="opr" />
     <result column="opr_time" jdbcType="TIMESTAMP" property="oprTime" />
@@ -36,18 +36,23 @@
      <if test="adState !=null">
        and ad_state=#{adState}
      </if>
+
   </select>
   <select id="findList" parameterType="com.example.torder.vo.AdvertisingVo" resultType="com.example.torder.vo.AdvertisingVo">
     select a.* ,
     b.key_name as adStateName
     from advertising_info a
-    left join dics_info b on a.ad_state=e.key_value and b.dics_code='STATE'
-
-    <where>
+    left join dics_info b on a.ad_state=b.key_value and b.dics_code='STATE'
+    where 1=1
       <if test="adTitle !=null">
-        ad_title like concat ('%',#{adTitle},'%')
+       and  a.ad_title like concat ('%',#{adTitle},'%')
       </if>
-    </where>
+      <if test="adState !=null">
+        and a.ad_state=#{adState}
+      </if>
+      <if test="aud !=null">
+        and a.ad_state!=#{aud}
+      </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.AdvertisingVo">
     <!--
@@ -57,7 +62,7 @@
     select a.* ,
     b.key_name as adStateName
     from advertising_info a
-    left join dics_info b on a.ad_state=e.key_value and b.dics_code='STATE'
+    left join dics_info b on a.ad_state=b.key_value and b.dics_code='STATE'
     where a.ad_id = #{adId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -80,7 +85,7 @@
       otherother, otherothers,code)
     values (#{adId,jdbcType=INTEGER}, #{adTitle,jdbcType=VARCHAR}, #{adUrl,jdbcType=VARCHAR}, 
       #{adStart,jdbcType=TIMESTAMP}, #{adEnd,jdbcType=TIMESTAMP}, #{adSort,jdbcType=VARCHAR},
-      #{adClick,jdbcType=VARCHAR}, #{adType,jdbcType=VARCHAR}, #{adState,jdbcType=VARCHAR}, 
+      #{adClick,jdbcType=VARCHAR}, #{adType,jdbcType=VARCHAR}, #{adState,jdbcType=INTEGER},
       #{adAddTime,jdbcType=TIMESTAMP}, #{opr,jdbcType=VARCHAR}, #{oprTime,jdbcType=TIMESTAMP}, 
       #{otherother,jdbcType=VARCHAR}, #{otherothers,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR})
   </insert>
@@ -163,7 +168,7 @@
         #{adType,jdbcType=VARCHAR},
       </if>
       <if test="adState != null">
-        #{adState,jdbcType=VARCHAR},
+        #{adState,jdbcType=INTEGER},
       </if>
       <if test="adAddTime != null">
         #{adAddTime,jdbcType=TIMESTAMP},
@@ -214,7 +219,7 @@
         ad_type = #{adType,jdbcType=VARCHAR},
       </if>
       <if test="adState != null">
-        ad_state = #{adState,jdbcType=VARCHAR},
+        ad_state = #{adState,jdbcType=INTEGER},
       </if>
       <if test="adAddTime != null">
         ad_add_time = #{adAddTime,jdbcType=TIMESTAMP},
@@ -250,7 +255,7 @@
       ad_sort = #{adSort,jdbcType=VARCHAR},
       ad_click = #{adClick,jdbcType=VARCHAR},
       ad_type = #{adType,jdbcType=VARCHAR},
-      ad_state = #{adState,jdbcType=VARCHAR},
+      ad_state = #{adState,jdbcType=INTEGER},
       ad_add_time = #{adAddTime,jdbcType=TIMESTAMP},
       opr = #{opr,jdbcType=VARCHAR},
       opr_time = #{oprTime,jdbcType=TIMESTAMP},

@@ -21,6 +21,16 @@ public class AdvertisingVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
+    private Integer aud;
+
+    public Integer getAud() {
+        return aud;
+    }
+
+    public void setAud(Integer aud) {
+        this.aud = aud;
+    }
+
     private String code;
     private Integer adId;
 
@@ -55,7 +65,8 @@ public class AdvertisingVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    private String adStart;
+    private Date  adStart;
+    private String adStateName;
 
     /**
      * Database Column Remarks:
@@ -110,7 +121,7 @@ public class AdvertisingVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    private String adState;
+    private Integer adState;
 
     /**
      * Database Column Remarks:
@@ -255,7 +266,7 @@ public class AdvertisingVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    public String getAdStart() {
+    public Date getAdStart() {
         return adStart;
     }
 
@@ -267,8 +278,8 @@ public class AdvertisingVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setAdStart(String adStart) {
-        this.adStart = adStart == null ? null : adStart.trim();
+    public void setAdStart(Date adStart) {
+        this.adStart = adStart;
     }
 
     /**
@@ -375,7 +386,7 @@ public class AdvertisingVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    public String getAdState() {
+    public Integer getAdState() {
         return adState;
     }
 
@@ -387,8 +398,8 @@ public class AdvertisingVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setAdState(String adState) {
-        this.adState = adState == null ? null : adState.trim();
+    public void setAdState(Integer adState) {
+        this.adState = adState ;
     }
 
     /**
@@ -548,5 +559,13 @@ public class AdvertisingVo extends BaseVo implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getAdStateName() {
+        return adStateName;
+    }
+
+    public void setAdStateName(String adStateName) {
+        this.adStateName = adStateName;
     }
 }

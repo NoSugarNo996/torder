@@ -1,6 +1,7 @@
 package com.example.torder.domain;
 
 import com.cetccity.common.base.domain.BasePo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -76,7 +77,7 @@ public class Talents extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    private String talentsPoliticeStatus;
+    private Integer talentsPoliticeStatus;
 
     /**
      * Database Column Remarks:
@@ -390,7 +391,7 @@ public class Talents extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public String getTalentsPoliticeStatus() {
+    public Integer getTalentsPoliticeStatus() {
         return talentsPoliticeStatus;
     }
 
@@ -402,8 +403,8 @@ public class Talents extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setTalentsPoliticeStatus(String talentsPoliticeStatus) {
-        this.talentsPoliticeStatus = talentsPoliticeStatus == null ? null : talentsPoliticeStatus.trim();
+    public void setTalentsPoliticeStatus(Integer talentsPoliticeStatus) {
+        this.talentsPoliticeStatus = talentsPoliticeStatus ;
     }
 
     /**
@@ -414,6 +415,7 @@ public class Talents extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     public Date getTalentsDate() {
         return talentsDate;
     }

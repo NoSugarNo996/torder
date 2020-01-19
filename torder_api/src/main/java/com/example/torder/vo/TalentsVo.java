@@ -1,6 +1,7 @@
 package com.example.torder.vo;
 
 import com.cetccity.common.base.vo.BaseVo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +13,15 @@ import java.util.Date;
  * @create: 2019-12-25 14:16
  **/
 public class TalentsVo extends BaseVo implements Serializable {
+    private Integer aud;
+
+    public Integer getAud() {
+        return aud;
+    }
+
+    public void setAud(Integer aud) {
+        this.aud = aud;
+    }
     private String code;
     /**
      * Database Column Remarks:
@@ -56,6 +66,7 @@ public class TalentsVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private Integer talentsSex;
+    private String talentsSexName;
 
     /**
      * Database Column Remarks:
@@ -67,6 +78,7 @@ public class TalentsVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private Integer talentsNation;
+    private String talentsNationName;
 
     /**
      * Database Column Remarks:
@@ -77,7 +89,8 @@ public class TalentsVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    private String talentsPoliticeStatus;
+    private Integer talentsPoliticeStatus;
+    private String talentsPoliticeStatusName;
 
     /**
      * Database Column Remarks:
@@ -100,6 +113,7 @@ public class TalentsVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private Integer talentsEducation;
+    private String talentsEducationName;
 
     /**
      * Database Column Remarks:
@@ -133,6 +147,7 @@ public class TalentsVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private Integer talentsExperience;
+    private  String talentsExperienceName;
 
     /**
      * Database Column Remarks:
@@ -188,6 +203,7 @@ public class TalentsVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private Integer talentsStatue;
+    private String talentsStatueName;
 
     /**
      * Database Column Remarks:
@@ -391,7 +407,7 @@ public class TalentsVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    public String getTalentsPoliticeStatus() {
+    public Integer getTalentsPoliticeStatus() {
         return talentsPoliticeStatus;
     }
 
@@ -403,8 +419,8 @@ public class TalentsVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setTalentsPoliticeStatus(String talentsPoliticeStatus) {
-        this.talentsPoliticeStatus = talentsPoliticeStatus == null ? null : talentsPoliticeStatus.trim();
+    public void setTalentsPoliticeStatus(Integer talentsPoliticeStatus) {
+        this.talentsPoliticeStatus = talentsPoliticeStatus ;
     }
 
     /**
@@ -415,6 +431,7 @@ public class TalentsVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     public Date getTalentsDate() {
         return talentsDate;
     }
@@ -836,5 +853,53 @@ public class TalentsVo extends BaseVo implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getTalentsSexName() {
+        return talentsSexName;
+    }
+
+    public void setTalentsSexName(String talentsSexName) {
+        this.talentsSexName = talentsSexName;
+    }
+
+    public String getTalentsPoliticeStatusName() {
+        return talentsPoliticeStatusName;
+    }
+
+    public void setTalentsPoliticeStatusName(String talentsPoliticeStatusName) {
+        this.talentsPoliticeStatusName = talentsPoliticeStatusName;
+    }
+
+    public String getTalentsEducationName() {
+        return talentsEducationName;
+    }
+
+    public void setTalentsEducationName(String talentsEducationName) {
+        this.talentsEducationName = talentsEducationName;
+    }
+
+    public String getTalentsStatueName() {
+        return talentsStatueName;
+    }
+
+    public void setTalentsStatueName(String talentsStatueName) {
+        this.talentsStatueName = talentsStatueName;
+    }
+
+    public String getTalentsNationName() {
+        return talentsNationName;
+    }
+
+    public void setTalentsNationName(String talentsNationName) {
+        this.talentsNationName = talentsNationName;
+    }
+
+    public String getTalentsExperienceName() {
+        return talentsExperienceName;
+    }
+
+    public void setTalentsExperienceName(String talentsExperienceName) {
+        this.talentsExperienceName = talentsExperienceName;
     }
 }

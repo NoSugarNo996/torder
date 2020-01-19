@@ -5,7 +5,8 @@ let status;
 let eventObj = {
     "companyName":'',
     "pageSize": 10,
-    "pageNum": numEvent
+    "pageNum": numEvent,
+    "aud":1
 }
 getSelectOption("select[name='companyStatus']", 'STATE');
 getSelectOption("select[name='companyType']", 'CTYPE');
@@ -63,8 +64,9 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
-                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].companyId + '">编辑</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].companyId + '">禁用</button>\n' +
+                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].companyId + '">查看详情</button>\n' +
+                        '<button type="button" class="audEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].companyId + '">审核通过</button>\n' +
+                        '<button type="button" class="unAudEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].companyId + '">审核未通过</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -113,31 +115,8 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
         });
     })
 
-    //监听提交
-    form.on('submit(verify)', function (data) {
-        let eventObj = data.field;
-        $.ajax({
-            type: "post",
-            url: queryUrl + queryMethodCompany + addMethod,
-            dataType: "json",
-            contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify(eventObj),
-            success: function (res) {
-                if (res==1){
-                    layer.msg('添加成功');
-                    getEventData();
-                }
-                else {
-                    layer.msg("添加失败");
-                }
-            }
-        });
-        setTimeout(() => {
-            //$('#addForm').css("display","none");
-        }, 1000);
-        return false;
-    });
-    //监听更新
+
+    //监听审核通过
     form.on('submit(verify1)', function (data) {
         let eventObj = data.field;
         eventObj.companySex = $('#companySex').attr('value');
@@ -146,7 +125,10 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             url: queryUrl + queryMethodCompany + updateMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify(eventObj),
+            data: JSON.stringify({
+                "companyId":eventObj.companyId,
+                "companyStatus":1
+            }),
             success: function (res) {
                 if (res==1){
                     layer.msg('更新成功');
@@ -163,7 +145,33 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
         return false;
     });
 
+//监听审核未通过
+    form.on('submit(verify2)', function (data) {
+        let eventObj = data.field;
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodCompany + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "companyId":eventObj.companyId,
+                "companyStatus":2
+            }),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('审核成功');
+                    getEventData();
+                }
+                else
+                    layer.msg("审核失败");
 
+            }
+        });
+        setTimeout(() => {
+            // $('#updateForm').css("display","none");
+        }, 1000);
+        return false;
+    });
 
     // $('#layerDemo .layui-btn').on('click', function () {
     //   var othis = $(this), method = othis.data('method');
@@ -184,9 +192,9 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                 form.val('update', {
                     "companyId":res.companyId,
                     "companyName": res.companyName,
-                    "companyType": res.companyType,
-                    "companySize": res.companySize,
-                    "companyStatus": res.companyStatus
+                    "companyType": res.companyTypeName,
+                    "companySize": res.companySizeName,
+                    "companyStatus": res.companyStatusName
                 });
             }
         });
@@ -198,22 +206,47 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
         });
     });
 
-//删除
-    $('body').on('click', '.endorseEvent', function () {
+    //审核未通过
+    $('body').on('click', '.unAudEvent', function () {
         $.ajax({
-            type: "get",
-            url: queryUrl + queryMethodCompany + deleteMethod,
-            data: {
-                "id": $(this).attr('value')
-            },
+            type: "post",
+            url: queryUrl + queryMethodCompany+ updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "companyId": $(this).attr('value'),
+                "companyStatus":2
+            }),
             success: function (res) {
-                layui.use('layer', function () {
-                    var layer = layui.layer;
-                    layer.msg('禁用成功');
-                });
-                setTimeout(() => {
+                if (res==1){
+                    layer.msg('审核成功');
                     getEventData();
-                }, 1000);
+                }
+                else
+                    layer.msg("审核失败");
+
+            }
+        });
+    });
+    //审核通过
+    $('body').on('click', '.audEvent', function () {
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodCompany + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "companyId": $(this).attr('value'),
+                "companyStatus":1
+            }),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('审核成功');
+                    getEventData();
+                }
+                else
+                    layer.msg("审核失败");
+
             }
         });
     });

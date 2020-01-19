@@ -12,6 +12,15 @@ import java.util.Date;
  * @create: 2019-12-25 14:01
  **/
 public class CompanyVo extends BaseVo implements Serializable {
+    private Integer aud;
+
+    public Integer getAud() {
+        return aud;
+    }
+
+    public void setAud(Integer aud) {
+        this.aud = aud;
+    }
     /**
      * Database Column Remarks:
      *   公司ID
@@ -44,6 +53,7 @@ public class CompanyVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private Integer companyType;
+    private  String companyTypeName;
 
     /**
      * Database Column Remarks:
@@ -55,6 +65,7 @@ public class CompanyVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private Integer companySize;
+    private String companySizeName;
 
     /**
      * Database Column Remarks:
@@ -66,6 +77,8 @@ public class CompanyVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private Integer companyStatus;
+    private String companyStatusName;
+
 
     /**
      * Database Column Remarks:
@@ -367,5 +380,29 @@ public class CompanyVo extends BaseVo implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getCompanySizeName() {
+        return companySizeName;
+    }
+
+    public void setCompanySizeName(String companySizeName) {
+        this.companySizeName = companySizeName;
+    }
+
+    public String getCompanyStatusName() {
+        return companyStatusName;
+    }
+
+    public void setCompanyStatusName(String companyStatusName) {
+        this.companyStatusName = companyStatusName;
+    }
+
+    public String getCompanyTypeName() {
+        return companyTypeName;
+    }
+
+    public void setCompanyTypeName(String companyTypeName) {
+        this.companyTypeName = companyTypeName;
     }
 }

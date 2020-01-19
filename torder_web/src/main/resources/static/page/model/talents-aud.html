@@ -2,9 +2,199 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>人才管理</title>
+    <link rel="stylesheet" href="../../lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/model/talents.css">
 </head>
 <body>
+<div id="eventContainer">
+    <div class="layui-form">
+        <div class="searchBox">
+            <div class="searchName">
+                <input type="text" placeholder="请输入姓名">
+                <img src="../../images/search.png" alt="">
+            </div>
+        </div>
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th style="width:80px">序号</th>
+                <th style="width:325px">姓名</th>
+                <th style="width:130px">用户ID</th>
+                <th style="width:130px">状态</th>
+                <th style="width:330px">联系方式</th>
+                <th style="width:330px">身份证号码</th>
+                <th style="width:330px">支付宝账号</th>
+                <th style="width:330px">操作</th>
 
+            </tr>
+            </thead>
+            <tbody id="eventTable">
+            </tbody>
+        </table>
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+        </script>
+        <div id="pagetion"></div>
+    </div>
+</div>
+
+<!--最外层-->
+
+<!--修改-->
+<div id="updateForm" style="display:none;width: 700px" >
+    <form class="layui-form" lay-filter="update" readonly="readonly">
+        <div class="formBody">
+            <div class="left-form">
+                <fieldset class="layui-elem-field">
+                    <legend>
+                        <div class="title">人才信息</div>
+                    </legend>
+                    <div class="layui-field-box">
+                        <div class="sendInfo">
+                            <!-- 部门信息 -->
+                            <div class=" layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label required">真实姓名</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="talentsName" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                               class="layui-input" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">绑定用户ID</label>
+                                    <div class="layui-input-inline" >
+                                        <input name="userId" class="layui-input" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">民族</label>
+                                    <div class="layui-input-inline">
+                                        <input name="talentsNation" class="layui-input" readonly="readonly">
+                                    </div>
+
+                                </div>
+
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">联系方式</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="talentsPhone" class="layui-input" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">性别</label>
+                                    <div class="layui-input-block" readonly="readonly" >
+                                        <input type="radio" name="talentsSex" value="1" title="男" >
+                                        <input type="radio" name="talentsSex" value="0" title="女">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">政治面貌</label>
+                                    <div class="layui-input-inline">
+                                        <input name="talentsPoliticeStatus" class="layui-input" readonly="readonly">
+
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">出生年月</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="talentsDate" class="layui-input input-date"
+                                               placeholder="yyyy-MM-dd" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">最高学历</label>
+                                    <div class="layui-input-inline">
+                                        <input name="talentsEducation" class="layui-input" readonly="readonly">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">毕业院校</label>
+                                    <div class="layui-input-inline">
+                                        <input name="talentsGraduate" class="layui-input" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">专业</label>
+                                    <div class="layui-input-inline">
+                                        <input name="talentsMajor" class="layui-input" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">工作经验</label>
+                                    <div class="layui-input-inline">
+                                        <input name="talentsExperience" class="layui-input" readonly="readonly">
+
+                                    </div>
+
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">邮箱</label>
+                                    <div class="layui-input-inline">
+                                        <input name="talentsEmail" class="layui-input" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">简介</label>
+                                    <div class="layui-input-inline">
+                                        <input name="talentsResume" class="layui-input" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">简历</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="talentsInfo" class="layui-input" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">人才状态</label>
+                                    <div class="layui-input-inline">
+                                        <input name="talentsStatue" class="layui-input" readonly="readonly">
+                                    </div>
+
+
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">身份证号码</label>
+                                    <div class="layui-input-inline">
+                                        <input name="talentsIdentity" class="layui-input" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">支付宝账号</label>
+                                    <div class="layui-input-inline">
+                                        <input name="talentsAlipay" class="layui-input" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="text" name="talentsId" class="layui-input" style="display: none">
+                                </div>
+                            </div>
+                        </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="layui-form-item formButton">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit id="updateMsg"
+                        lay-filter="verify1">审核通过</button>
+                <button type="submit" class="layui-btn" lay-submit id="updateMsg2"
+                        lay-filter="verify2">审核未通过</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="../../lib/layui-v2.5.4/layui.js"></script>
+<script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="../../js/api.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/module/talents-aud.js?ver=1"></script>
 </body>
 </html>

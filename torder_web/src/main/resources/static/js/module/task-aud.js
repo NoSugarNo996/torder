@@ -3,15 +3,15 @@ let tableLength; // 分页长度
 let editId;
 let status;
 let eventObj = {
-    "orderName":'',
+    "taskName":'',
     "pageSize": 10,
     "pageNum": numEvent
 }
-getSelectOption("select[name='orderNation']", 'NATION');
-getSelectOption("select[name='orderStatus']", 'STATE');
-getSelectOption("select[name='orderEducation']", 'EDUCATION');
-getSelectOption("select[name='orderExperience']", 'EXPERIENCE');
-getSelectOption("select[name='orderPoliticeStatus']", 'POLITICE');
+getSelectOption("select[name='taskNation']", 'NATION');
+getSelectOption("select[name='taskStatus']", 'STATE');
+getSelectOption("select[name='taskEducation']", 'EDUCATION');
+getSelectOption("select[name='taskExperience']", 'EXPERIENCE');
+getSelectOption("select[name='taskPoliticeStatus']", 'POLITICE');
 //表单初始化
 layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     var form = layui.form,
@@ -24,7 +24,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             elem: this, //指定元素  表示当前的元素
             type: 'date'
             , value: new Date()
-            , format: 'yyyy-MM-dd HH:mm:ss'
+            , format: 'yyyy-MM-dd'
             , theme: '#009688'  //主题  颜色改变
 
         });
@@ -40,7 +40,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
 
         $.ajax({
             type: "post",
-            url: queryUrl + queryMethodOrder + queryListMethod,
+            url: queryUrl + queryMethodTask + queryListMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify(eventObj),
@@ -56,21 +56,27 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                         '<div>' + ((index + 1) + (eventObj.pageNum - 1) * 10) + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].orderPartyAName + '</div>\n' +
+                        '<div>' + res.data[index].taskName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].orderPartyBName + '</div>\n' +
+                        '<div>' + res.data[index].taskPublisher + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].orderMoney + '</div>\n' +
+                        '<div>' + res.data[index].taskAccepter + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].orderStatusName + '</div>\n' +
+                        '<div>' + res.data[index].taskStatue + '</div>\n' +
+                        '</td>\n' +
+                        '<td>\n' +
+                        '<div>' + res.data[index].taskMoney + '</div>\n' +
+                        '</td>\n' +
+                        '<td>\n' +
+                        '<div>' + res.data[index].taskType + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
-                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].orderId + '">编辑</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].orderId + '">禁用</button>\n' +
+                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">编辑</button>\n' +
+                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">禁用</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -105,7 +111,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
 
 // 搜索框实时响应
     $('.searchName :input').on('input propertychange', function () {
-        eventObj.orderName = $('.searchName input').val();
+        eventObj.taskName = $('.searchName input').val();
         getEventData();
     });
 
@@ -113,11 +119,11 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     //监听更新
     form.on('submit(verify1)', function (data) {
         let eventObj = data.field;
-        eventObj.orderSex = $('#orderSex').attr('value');
+        eventObj.taskSex = $('#taskSex').attr('value');
         console.log(eventObj);
         $.ajax({
             type: "post",
-            url: queryUrl + queryMethodOrder + updateMethod,
+            url: queryUrl + queryMethodTask + updateMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify(eventObj),
@@ -143,7 +149,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     $('body').on('click', '.checkDetail', function () {
         $.ajax({
             type: "get",
-            url: queryUrl + queryMethodOrder + getInfoMethod,
+            url: queryUrl + queryMethodTask + getInfoMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
             data: {
@@ -151,14 +157,24 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             },
             success: function (res) {
                 form.val('update', {
-                    "orderId":res.orderId,
-                    "orderPartyA": res.orderPartyA,
-                    "orderPartyB": res.orderPartyB,
-                    "orderStatus": res.orderStatus,
-                    "orderMoney": res.orderMoney,
-                    "taskId": res.taskId,
-                    "orderStart": res.orderStart,
-                    "orderEnd": res.orderEnd
+                    "taskId":res.taskId,
+                    "taskName": res.taskName,
+                    "userId": res.userId,
+                    "taskSex": res.taskSex,
+                    "taskPhone": res.taskPhone,
+                    "taskNation": res.taskNation,
+                    "taskPoliticeStatus": res.taskPoliticeStatus,
+                    "taskDate": res.taskDate,
+                    "taskEducation": res.taskEducation,
+                    "taskGraduate": res.taskGraduate,
+                    "taskMajor": res.taskMajor,
+                    "taskExperience": res.taskExperience,
+                    "taskEmail": res.taskEmail,
+                    "taskResume": res.taskResume,
+                    "taskInfo": res.taskInfo,
+                    "taskStatue": res.taskStatue,
+                    "taskIdentity": res.taskIdentity,
+                    "taskAlipay": res.taskAlipay
 
                 });
             }
@@ -178,7 +194,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     $('body').on('click', '.endorseEvent', function () {
         $.ajax({
             type: "get",
-            url: queryUrl + queryMethodOrder + deleteMethod,
+            url: queryUrl + queryMethodTask + deleteMethod,
             data: {
                 "id": $(this).attr('value')
             },

@@ -12,7 +12,7 @@
     <result column="talents_sex" jdbcType="INTEGER" property="talentsSex" />
     <result column="talents_nation" jdbcType="INTEGER" property="talentsNation" />
     <result column="talents_politice_status" jdbcType="VARCHAR" property="talentsPoliticeStatus" />
-    <result column="talents_date" jdbcType="TIMESTAMP" property="talentsDate" />
+    <result column="talents_date" jdbcType="DATE" property="talentsDate" />
     <result column="talents_education" jdbcType="INTEGER" property="talentsEducation" />
     <result column="talents_graduate" jdbcType="VARCHAR" property="talentsGraduate" />
     <result column="talents_major" jdbcType="VARCHAR" property="talentsMajor" />
@@ -58,18 +58,24 @@
     g.key_name as talentsExperienceName,
     h.key_name as talentsStatueName
     from talents_info a
-    left join user_info b on a.user_id=b.code
-    left join dics_info c on a.talents_sex=c.key_value and c.key_code='SEX'
-    left join dics_info d on a.talents_sex=d.key_value and d.key_code='NATION'
-    left join dics_info e on a.talents_sex=e.key_value and e.key_code='POLITICE'
-    left join dics_info f on a.talents_sex=f.key_value and f.key_code='EDUCATION'
-    left join dics_info g on a.talents_sex=g.key_value and g.key_code='EXPERIENCE'
-    left join dics_info h on a.talents_sex=h.key_value and h.key_code='STATE'
-    <where>
+    left join user_info b on a.user_id=b.user_id
+    left join dics_info c on a.talents_sex=c.key_value and c.dics_code='SEX'
+    left join dics_info d on a.talents_nation=d.key_value and d.dics_code='NATION'
+    left join dics_info e on a.talents_politice_status=e.key_value and e.dics_code='POLITICE'
+    left join dics_info f on a.talents_education=f.key_value and f.dics_code='EDUCATION'
+    left join dics_info g on a.talents_experience=g.key_value and g.dics_code='EXPERIENCE'
+    left join dics_info h on a.talents_statue=h.key_value and h.dics_code='STATE'
+    where 1=1
       <if test="talentsName !=null">
-        talents_name like concat ('%',#{talentsName},'%')
+       and  a.talents_name like concat ('%',#{talentsName},'%')
       </if>
-    </where>
+      <if test="talentsStatue !=null">
+        and a.talents_statue=#{talentsStatue}
+      </if>
+      <if test="aud !=null">
+        and a.talents_statue!=#{aud}
+      </if>
+
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.TalentsVo">
     <!--
@@ -85,13 +91,13 @@
     g.key_name as talentsExperienceName,
     h.key_name as talentsStatueName
     from talents_info a
-    left join user_info b on a.user_id=b.code
-    left join dics_info c on a.talents_sex=c.key_value and c.key_code='SEX'
-    left join dics_info d on a.talents_sex=d.key_value and d.key_code='NATION'
-    left join dics_info e on a.talents_sex=e.key_value and e.key_code='POLITICE'
-    left join dics_info f on a.talents_sex=f.key_value and f.key_code='EDUCATION'
-    left join dics_info g on a.talents_sex=g.key_value and g.key_code='EXPERIENCE'
-    left join dics_info h on a.talents_sex=h.key_value and h.key_code='STATE'
+    left join user_info b on a.user_id=b.user_id
+    left join dics_info c on a.talents_sex=c.key_value and c.dics_code='SEX'
+    left join dics_info d on a.talents_nation=d.key_value and d.dics_code='NATION'
+    left join dics_info e on a.talents_politice_status=e.key_value and e.dics_code='POLITICE'
+    left join dics_info f on a.talents_education=f.key_value and f.dics_code='EDUCATION'
+    left join dics_info g on a.talents_experience=g.key_value and g.dics_code='EXPERIENCE'
+    left join dics_info h on a.talents_statue=h.key_value and h.dics_code='STATE'
     where a.talents_id = #{talentsId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -117,7 +123,7 @@
       others,code)
     values (#{talentsId,jdbcType=INTEGER}, #{talentsName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
       #{talentsSex,jdbcType=INTEGER}, #{talentsNation,jdbcType=INTEGER}, #{talentsPoliticeStatus,jdbcType=VARCHAR}, 
-      #{talentsDate,jdbcType=TIMESTAMP}, #{talentsEducation,jdbcType=INTEGER}, #{talentsGraduate,jdbcType=VARCHAR}, 
+      #{talentsDate,jdbcType=DATE}, #{talentsEducation,jdbcType=INTEGER}, #{talentsGraduate,jdbcType=VARCHAR},
       #{talentsMajor,jdbcType=VARCHAR}, #{talentsExperience,jdbcType=INTEGER}, #{talentsPhone,jdbcType=VARCHAR}, 
       #{talentsEmail,jdbcType=VARCHAR}, #{talentsResume,jdbcType=VARCHAR}, #{talentsInfo,jdbcType=VARCHAR}, 
       #{talentsStatue,jdbcType=INTEGER}, #{talentsIdentity,jdbcType=VARCHAR}, #{talentsAlipay,jdbcType=VARCHAR}, 
@@ -221,7 +227,7 @@
         #{talentsPoliticeStatus,jdbcType=VARCHAR},
       </if>
       <if test="talentsDate != null">
-        #{talentsDate,jdbcType=TIMESTAMP},
+        #{talentsDate,jdbcType=DATE},
       </if>
       <if test="talentsEducation != null">
         #{talentsEducation,jdbcType=INTEGER},
@@ -296,7 +302,7 @@
         talents_politice_status = #{talentsPoliticeStatus,jdbcType=VARCHAR},
       </if>
       <if test="talentsDate != null">
-        talents_date = #{talentsDate,jdbcType=TIMESTAMP},
+        talents_date = #{talentsDate,jdbcType=DATE},
       </if>
       <if test="talentsEducation != null">
         talents_education = #{talentsEducation,jdbcType=INTEGER},
@@ -360,7 +366,7 @@
       talents_sex = #{talentsSex,jdbcType=INTEGER},
       talents_nation = #{talentsNation,jdbcType=INTEGER},
       talents_politice_status = #{talentsPoliticeStatus,jdbcType=VARCHAR},
-      talents_date = #{talentsDate,jdbcType=TIMESTAMP},
+      talents_date = #{talentsDate,jdbcType=DATE},
       talents_education = #{talentsEducation,jdbcType=INTEGER},
       talents_graduate = #{talentsGraduate,jdbcType=VARCHAR},
       talents_major = #{talentsMajor,jdbcType=VARCHAR},

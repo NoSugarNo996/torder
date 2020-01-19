@@ -3,17 +3,17 @@ let tableLength; // 分页长度
 let editId;
 let status;
 let eventObj = {
-    "companyName":'',
+    "adName":'',
     "pageSize": 10,
-    "pageNum": numEvent
+    "pageNum": numEvent,
+    "aud":1
 }
-getSelectOption("select[name='companyStatus']", 'STATE');
-getSelectOption("select[name='companyType']", 'CTYPE');
-getSelectOption("select[name='companySize']", 'CSIZE');
+getSelectOption("select[name='adState']", 'STATE');
 //表单初始化
 layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     var form = layui.form,
         layer = layui.layer,laydate = layui.laydate;
+    form.render();
     $(".input-date").each(function () {
         //日期时间选择
         laydate.render({
@@ -26,15 +26,17 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
         });
         console.log("dateAddOk");
     });
+
+
 // 进入页面获取表格
     getEventData();
-
+console.log(11);
 // 获取列表
     function getEventData(first) {
 
         $.ajax({
             type: "post",
-            url: queryUrl + queryMethodCompany + queryListMethod,
+            url: queryUrl + queryMethodAdvertising + queryListMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify(eventObj),
@@ -50,21 +52,22 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                         '<div>' + ((index + 1) + (eventObj.pageNum - 1) * 10) + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].companyName + '</div>\n' +
+                        '<div>' + res.data[index].adTitle + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].companyTypeName + '</div>\n' +
+                        '<div>' + res.data[index].adUrl + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].companyStatusName + '</div>\n' +
+                        '<div>' + res.data[index].adStateName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].companySizeName + '</div>\n' +
+                        '<div>' + res.data[index].adClick + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
-                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].companyId + '">编辑</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].companyId + '">禁用</button>\n' +
+                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].adId + '">查看详情</button>\n' +
+                        '<button type="button" class="audEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].adId + '">审核通过</button>\n' +
+                        '<button type="button" class="unAudEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].adId + '">审核未通过</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -99,7 +102,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
 
 // 搜索框实时响应
     $('.searchName :input').on('input propertychange', function () {
-        eventObj.companyName = $('.searchName input').val();
+        eventObj.adTitle = $('.searchName input').val();
         getEventData();
     });
 
@@ -113,47 +116,25 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
         });
     })
 
-    //监听提交
-    form.on('submit(verify)', function (data) {
-        let eventObj = data.field;
-        $.ajax({
-            type: "post",
-            url: queryUrl + queryMethodCompany + addMethod,
-            dataType: "json",
-            contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify(eventObj),
-            success: function (res) {
-                if (res==1){
-                    layer.msg('添加成功');
-                    getEventData();
-                }
-                else {
-                    layer.msg("添加失败");
-                }
-            }
-        });
-        setTimeout(() => {
-            //$('#addForm').css("display","none");
-        }, 1000);
-        return false;
-    });
-    //监听更新
+    //监听审核通过
     form.on('submit(verify1)', function (data) {
         let eventObj = data.field;
-        eventObj.companySex = $('#companySex').attr('value');
         $.ajax({
             type: "post",
-            url: queryUrl + queryMethodCompany + updateMethod,
+            url: queryUrl + queryMethodAdvertising + updateMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify(eventObj),
+            data: JSON.stringify({
+                "adId":eventObj.adId,
+                "adState":1
+            }),
             success: function (res) {
                 if (res==1){
-                    layer.msg('更新成功');
+                    layer.msg('审核成功');
                     getEventData();
                 }
                 else
-                    layer.msg("更新失败");
+                    layer.msg("审核失败");
 
             }
         });
@@ -163,6 +144,33 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
         return false;
     });
 
+    //监听审核未通过
+    form.on('submit(verify2)', function (data) {
+        let eventObj = data.field;
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodAdvertising + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "adId":eventObj.adId,
+                "adState":2
+            }),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('审核成功');
+                    getEventData();
+                }
+                else
+                    layer.msg("审核失败");
+
+            }
+        });
+        setTimeout(() => {
+            // $('#updateForm').css("display","none");
+        }, 1000);
+        return false;
+    });
 
 
     // $('#layerDemo .layui-btn').on('click', function () {
@@ -174,7 +182,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     $('body').on('click', '.checkDetail', function () {
         $.ajax({
             type: "get",
-            url: queryUrl + queryMethodCompany + getInfoMethod,
+            url: queryUrl + queryMethodAdvertising + getInfoMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
             data: {
@@ -182,11 +190,14 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             },
             success: function (res) {
                 form.val('update', {
-                    "companyId":res.companyId,
-                    "companyName": res.companyName,
-                    "companyType": res.companyType,
-                    "companySize": res.companySize,
-                    "companyStatus": res.companyStatus
+                    "adId":res.adId,
+                    "adTitle": res.adTitle,
+                    "adUrl": res.adUrl,
+                    "adStart": res.adStart,
+                    "adEnd": res.adEnd,
+                    "adSort":res.adSort,
+                    "adAddTime":res.adAddTime,
+                    "adStateName":res.adStateName
                 });
             }
         });
@@ -198,24 +209,50 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
         });
     });
 
-//删除
-    $('body').on('click', '.endorseEvent', function () {
+   //审核未通过
+    $('body').on('click', '.unAudEvent', function () {
         $.ajax({
-            type: "get",
-            url: queryUrl + queryMethodCompany + deleteMethod,
-            data: {
-                "id": $(this).attr('value')
-            },
+            type: "post",
+            url: queryUrl + queryMethodAdvertising + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "adId": $(this).attr('value'),
+                "adState":2
+            }),
             success: function (res) {
-                layui.use('layer', function () {
-                    var layer = layui.layer;
-                    layer.msg('禁用成功');
-                });
-                setTimeout(() => {
+                if (res==1){
+                    layer.msg('审核成功');
                     getEventData();
-                }, 1000);
+                }
+                else
+                    layer.msg("审核失败");
+
             }
         });
     });
+    //审核通过
+    $('body').on('click', '.audEvent', function () {
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodAdvertising + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "adId": $(this).attr('value'),
+                "adState":1
+            }),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('审核成功');
+                    getEventData();
+                }
+                else
+                    layer.msg("审核失败");
+
+            }
+        });
+        });
+
 
 });

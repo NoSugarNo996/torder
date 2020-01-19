@@ -45,7 +45,7 @@
             },
             {
               "title": "人才审核",
-              "href": "page/welcome.html",
+              "href": "page/model/talents-aud.html",
               "icon": "fa fa-lightbulb-o",
               "target": "_self"
             }
@@ -59,7 +59,7 @@
           "child": [
             {
               "title": "公告查看",
-              "href": "page/model/ad.html",
+              "href": "page/model/notice.html",
               "icon": "fa fa-search",
               "target": "_self"
             },
@@ -85,7 +85,7 @@
             },
             {
               "title": "广告审核",
-              "href": "page/welcome.html",
+              "href": "page/model/ad-aud.html",
               "icon": "fa fa-lightbulb-o",
               "target": "_self"
             }
@@ -105,7 +105,7 @@
             },
             {
               "title": "交易审核",
-              "href": "page/welcome.html",
+              "href": "page/model/order-aud.html",
               "icon": "fa fa-legal",
               "target": "_self"
             },
@@ -125,7 +125,7 @@
           "child": [
             {
               "title": "注册公司审核",
-              "href": "page/welcome.html",
+              "href": "page/model/company-aud1.html",
               "icon": "fa fa-sign-in",
               "target": "_self"
             },

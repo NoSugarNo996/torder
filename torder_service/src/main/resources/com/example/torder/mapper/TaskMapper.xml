@@ -44,6 +44,13 @@
      left join dics_info c on a.task_status=c.key_value and c.key_code='STATE'
      left join user_info d on a.task_publisher=d.code
      left join user_info e on a.task_accepter=e.code
+     where 1=1
+     <if test="taskStatus !=null">
+       a.task_status=#{taskStatus}
+     </if>
+    <if test="aud !=null">
+      a.task_status!=#{aud}
+    </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.TaskVo">
     <!--

@@ -5,7 +5,8 @@ let status;
 let eventObj = {
     "talentsName":'',
     "pageSize": 10,
-    "pageNum": numEvent
+    "pageNum": numEvent,
+    "aud":1
 }
 getSelectOption("select[name='talentsNation']", 'NATION');
 getSelectOption("select[name='talentsStatue']", 'STATE');
@@ -75,8 +76,9 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
-                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].talentsId + '">编辑</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].talentsId + '">禁用</button>\n' +
+                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].talentsId + '">查看详情</button>\n' +
+                        '<button type="button" class="audEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].talentsId + '">审核通过</button>\n' +
+                        '<button type="button" class="unAudEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].talentsId + '">审核未通过</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -116,7 +118,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     });
 
 
-    //监听更新
+    //监听审核通过
     form.on('submit(verify1)', function (data) {
         let eventObj = data.field;
         //eventObj.talentsSex = $('#talentsSex').attr('value');
@@ -126,14 +128,17 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             url: queryUrl + queryMethodTalents + updateMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify(eventObj),
+            data: JSON.stringify({
+                "talentsId":eventObj.talentsId,
+                "talentsStatue":1
+            }),
             success: function (res) {
                 if (res==1){
-                    layer.msg('更新成功');
+                    layer.msg('审核成功');
                     getEventData();
                 }
                 else
-                    layer.msg("更新失败");
+                    layer.msg("审核失败");
 
             }
         });
@@ -143,6 +148,35 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
         return false;
     });
 
+    //监听审核未通过
+    form.on('submit(verify2)', function (data) {
+        let eventObj = data.field;
+        //eventObj.talentsSex = $('#talentsSex').attr('value');
+        console.log(eventObj);
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodTalents + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "talentsId":eventObj.talentsId,
+                "talentsStatue":2
+            }),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('审核成功');
+                    getEventData();
+                }
+                else
+                    layer.msg("审核失败");
+
+            }
+        });
+        setTimeout(() => {
+            // $('#updateForm').css("display","none");
+        }, 1000);
+        return false;
+    });
 
 
 //更新弹窗初始化
@@ -162,17 +196,17 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                     "userId": res.userId,
                     "talentsSex": res.talentsSex,
                     "talentsPhone": res.talentsPhone,
-                    "talentsNation": res.talentsNation,
-                    "talentsPoliticeStatus": res.talentsPoliticeStatus,
+                    "talentsNation": res.talentsNationName,
+                    "talentsPoliticeStatus": res.talentsPoliticeStatusName,
                     "talentsDate": res.talentsDate,
-                    "talentsEducation": res.talentsEducation,
+                    "talentsEducation": res.talentsEducationName,
                     "talentsGraduate": res.talentsGraduate,
                     "talentsMajor": res.talentsMajor,
-                    "talentsExperience": res.talentsExperience,
+                    "talentsExperience": res.talentsExperienceName,
                     "talentsEmail": res.talentsEmail,
                     "talentsResume": res.talentsResume,
                     "talentsInfo": res.talentsInfo,
-                    "talentsStatue": res.talentsStatue,
+                    "talentsStatue": res.talentsStatueName,
                     "talentsIdentity": res.talentsIdentity,
                     "talentsAlipay": res.talentsAlipay
 
@@ -190,22 +224,47 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
         });
     });
 
-//删除
-    $('body').on('click', '.endorseEvent', function () {
+    //审核未通过
+    $('body').on('click', '.unAudEvent', function () {
         $.ajax({
-            type: "get",
-            url: queryUrl + queryMethodTalents + deleteMethod,
-            data: {
-                "id": $(this).attr('value')
-            },
+            type: "post",
+            url: queryUrl + queryMethodTalents + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "talentsId": $(this).attr('value'),
+                "talentsStatue":2
+            }),
             success: function (res) {
-                layui.use('layer', function () {
-                    var layer = layui.layer;
-                    layer.msg('禁用成功');
-                });
-                setTimeout(() => {
+                if (res==1){
+                    layer.msg('审核成功');
                     getEventData();
-                }, 1000);
+                }
+                else
+                    layer.msg("审核失败");
+
+            }
+        });
+    });
+    //审核通过
+    $('body').on('click', '.audEvent', function () {
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodTalents + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "talentsId": $(this).attr('value'),
+                "talentsStatue":1
+            }),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('审核成功');
+                    getEventData();
+                }
+                else
+                    layer.msg("审核失败");
+
             }
         });
     });

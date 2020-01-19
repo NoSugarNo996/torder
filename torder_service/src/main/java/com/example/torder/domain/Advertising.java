@@ -113,7 +113,7 @@ public class Advertising extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    private String adState;
+    private Integer adState;
 
     /**
      * Database Column Remarks:
@@ -378,7 +378,7 @@ public class Advertising extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public String getAdState() {
+    public Integer getAdState() {
         return adState;
     }
 
@@ -390,8 +390,8 @@ public class Advertising extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setAdState(String adState) {
-        this.adState = adState == null ? null : adState.trim();
+    public void setAdState(Integer adState) {
+        this.adState = adState;
     }
 
     /**

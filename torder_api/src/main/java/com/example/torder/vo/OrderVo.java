@@ -12,6 +12,15 @@ import java.util.Date;
  * @create: 2019-12-25 14:13
  **/
 public class OrderVo extends BaseVo implements Serializable {
+    private Integer aud;
+
+    public Integer getAud() {
+        return aud;
+    }
+
+    public void setAud(Integer aud) {
+        this.aud = aud;
+    }
     private String code;
     /**
      * Database Column Remarks:
@@ -33,7 +42,8 @@ public class OrderVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    private Integer orderPartya;
+    private String orderPartyA;
+    private String orderPartyAName;
 
     /**
      * Database Column Remarks:
@@ -44,7 +54,8 @@ public class OrderVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    private Integer orderPartyb;
+    private String orderPartyB;
+    private String orderPartyBName;
 
     /**
      * Database Column Remarks:
@@ -56,6 +67,7 @@ public class OrderVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private Integer orderStatus;
+    private String orderStatusName;
 
     /**
      * Database Column Remarks:
@@ -199,8 +211,8 @@ public class OrderVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    public Integer getOrderPartya() {
-        return orderPartya;
+    public String getOrderPartyA() {
+        return orderPartyA;
     }
 
     /**
@@ -211,8 +223,8 @@ public class OrderVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setOrderPartya(Integer orderPartya) {
-        this.orderPartya = orderPartya;
+    public void setOrderPartyA(String orderPartya) {
+        this.orderPartyA = orderPartya;
     }
 
     /**
@@ -223,8 +235,8 @@ public class OrderVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    public Integer getOrderPartyb() {
-        return orderPartyb;
+    public String getOrderPartyB() {
+        return orderPartyB;
     }
 
     /**
@@ -235,8 +247,8 @@ public class OrderVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setOrderPartyb(Integer orderPartyb) {
-        this.orderPartyb = orderPartyb;
+    public void setOrderPartyB(String orderPartyb) {
+        this.orderPartyB = orderPartyb;
     }
 
     /**
@@ -516,8 +528,6 @@ public class OrderVo extends BaseVo implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", orderId=").append(orderId);
-        sb.append(", orderPartya=").append(orderPartya);
-        sb.append(", orderPartyb=").append(orderPartyb);
         sb.append(", orderStatus=").append(orderStatus);
         sb.append(", orderMoney=").append(orderMoney);
         sb.append(", taskId=").append(taskId);
@@ -540,5 +550,29 @@ public class OrderVo extends BaseVo implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getOrderStatusName() {
+        return orderStatusName;
+    }
+
+    public void setOrderStatusName(String orderStatusName) {
+        this.orderStatusName = orderStatusName;
+    }
+
+    public String getOrderPartyBName() {
+        return orderPartyBName;
+    }
+
+    public void setOrderPartyBName(String orderPartyBName) {
+        this.orderPartyBName = orderPartyBName;
+    }
+
+    public String getOrderPartyAName() {
+        return orderPartyAName;
+    }
+
+    public void setOrderPartyAName(String orderPartyAName) {
+        this.orderPartyAName = orderPartyAName;
     }
 }

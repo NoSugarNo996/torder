@@ -57,7 +57,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                         '<div>' + res.data[index].adUrl + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].adState + '</div>\n' +
+                        '<div>' + res.data[index].adStateName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div>' + res.data[index].adClick + '</div>\n' +
@@ -117,7 +117,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     //监听提交
     form.on('submit(verify)', function (data) {
         let eventObj = data.field;
-        eventObj.adSex = $('#adSex').attr('value');
+       // eventObj.adSex = $('#adSex').attr('value');
         $.ajax({
             type: "post",
             url: queryUrl + queryMethodAdvertising + addMethod,

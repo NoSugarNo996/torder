@@ -42,11 +42,17 @@
     left join dics_info b on a.company_status=b.key_value and b.dics_code='STATE'
     left join dics_info c on a.company_type=c.key_value and c.dics_code='CTYPE'
     left join dics_info d on a.company_size=d.key_value and d.dics_code='CSIZE'
-    <where>
+    where 1=1
       <if test="companyName !=null">
-        a.company_name like concat ('%',#{companyName},'%')
+        and a.company_name like concat ('%',#{companyName},'%')
       </if>
-    </where>
+      <if test="companyStatus !=null">
+        and a.company_status=#{companyStatus}
+      </if>
+      <if test="aud !=null">
+        and a.company_status!=#{aud}
+      </if>
+
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.CompanyVo">
 
