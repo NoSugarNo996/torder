@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>particles.js</title>
+  <meta name="description" content="particles.js is a lightweight JavaScript library for creating particles.">
+  <meta name="author" content="Vincent Garreau" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="../css/model/style.css">
+</head>
+<body>
+
+//导航栏
+<div class="layui-row" >
+  <ul class="layui-nav" lay-filter="">
+  <li class="layui-nav-item"><a href="">最新活动</a></li>
+  <li class="layui-nav-item layui-this"><a href="">产品</a></li>
+  <li class="layui-nav-item"><a href="">大数据</a></li>
+  <li class="layui-nav-item">
+    <a href="javascript:;">解决方案</a>
+    <dl class="layui-nav-child"> <!-- 二级菜单 -->
+      <dd><a href="">移动模块</a></dd>
+      <dd><a href="">后台模版</a></dd>
+      <dd><a href="">电商平台</a></dd>
+    </dl>
+  </li>
+  <li class="layui-nav-item"><a href="">社区</a></li>
+</ul></div>
+<div id="particles-js"  class="layui-row" style="height: 200px"></div>
+
+<!-- scripts -->
+<script src="../lib/jq-module/particles.min.js"></script>
+<script src="../lib/jq-module/app.js"></script>
+
+</body>
+</html>

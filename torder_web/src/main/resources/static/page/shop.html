@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" media="screen" href="../css/model/style.css">
+    <link rel="stylesheet" href="../lib/layui-v2.5.4/css/layui.css" media="all">
+
+    <title>Title</title>
+</head>
+<body>
+<div class="layui-row" >
+    <div style="display:inline-block;position:absolute;left: 10px;background: none;color:#fff;font-size: 20px;height:60px;line-height: 60px " >hhh</div>
+    <ul class="layui-nav" lay-filter=""  style="display:inline-block;position:absolute;right: 10px;background: none">
+
+           <li class="layui-nav-item"><a href="">最新活动</a></li>
+           <li class="layui-nav-item layui-this"><a href="">产品</a></li>
+           <li class="layui-nav-item"><a href="">大数据</a></li>
+           <li class="layui-nav-item">
+               <a href="javascript:;">解决方案</a>
+               <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                   <dd><a href="">移动模块</a></dd>
+                   <dd><a href="">后台模版</a></dd>
+                   <dd><a href="">电商平台</a></dd>
+               </dl>
+           </li>
+           <li class="layui-nav-item"><a href="">社区</a></li>
+
+    </ul></div>
+<div id="particles-js"  class="layui-row" style="height: 200px"></div>
+<div>
+
+</div>
+<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script src="../lib/jq-module/particles.min.js"></script>
+<script src="../lib/jq-module/app.js"></script>
+<script>
+    layui.use('element', function(){
+        var element = layui.element;
+
+        //…
+    });
+</script>
+</body>
+</html>

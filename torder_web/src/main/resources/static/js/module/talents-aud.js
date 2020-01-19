@@ -130,7 +130,8 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "talentsId":eventObj.talentsId,
-                "talentsStatue":1
+                "talentsStatue":1,
+                "audDes":eventObj.audDes
             }),
             success: function (res) {
                 if (res==1){
@@ -160,7 +161,8 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "talentsId":eventObj.talentsId,
-                "talentsStatue":2
+                "talentsStatue":2,
+                "audDes":eventObj.audDes
             }),
             success: function (res) {
                 if (res==1){
@@ -208,7 +210,8 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                     "talentsInfo": res.talentsInfo,
                     "talentsStatue": res.talentsStatueName,
                     "talentsIdentity": res.talentsIdentity,
-                    "talentsAlipay": res.talentsAlipay
+                    "talentsAlipay": res.talentsAlipay,
+                    "audDes":res.audDes
 
                 });
             }

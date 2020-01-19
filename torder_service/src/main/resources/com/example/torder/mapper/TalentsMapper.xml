@@ -26,7 +26,7 @@
     <result column="talents_alipay" jdbcType="VARCHAR" property="talentsAlipay" />
     <result column="opr" jdbcType="VARCHAR" property="opr" />
     <result column="opr_time" jdbcType="TIMESTAMP" property="oprTime" />
-    <result column="other" jdbcType="VARCHAR" property="other" />
+    <result column="aud_des" jdbcType="VARCHAR" property="audDes" />
     <result column="others" jdbcType="VARCHAR" property="others" />
     <result column="code" jdbcType="VARCHAR" property="code" />
 
@@ -39,7 +39,7 @@
     talents_id, talents_name, user_id, talents_sex, talents_nation, talents_politice_status, 
     talents_date, talents_education, talents_graduate, talents_major, talents_experience, 
     talents_phone, talents_email, talents_resume, talents_info, talents_statue, talents_identity, 
-    talents_alipay, opr, opr_time, other, others
+    talents_alipay, opr, opr_time, aud_des, others
   </sql>
   <select id="getCount" resultType="java.lang.Long" parameterType="com.example.torder.vo.TalentsVo">
      select count(*) from talents_info
@@ -119,7 +119,7 @@
       talents_major, talents_experience, talents_phone, 
       talents_email, talents_resume, talents_info, 
       talents_statue, talents_identity, talents_alipay, 
-      opr, opr_time, other, 
+      opr, opr_time, aud_des,
       others,code)
     values (#{talentsId,jdbcType=INTEGER}, #{talentsName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
       #{talentsSex,jdbcType=INTEGER}, #{talentsNation,jdbcType=INTEGER}, #{talentsPoliticeStatus,jdbcType=VARCHAR}, 
@@ -127,7 +127,7 @@
       #{talentsMajor,jdbcType=VARCHAR}, #{talentsExperience,jdbcType=INTEGER}, #{talentsPhone,jdbcType=VARCHAR}, 
       #{talentsEmail,jdbcType=VARCHAR}, #{talentsResume,jdbcType=VARCHAR}, #{talentsInfo,jdbcType=VARCHAR}, 
       #{talentsStatue,jdbcType=INTEGER}, #{talentsIdentity,jdbcType=VARCHAR}, #{talentsAlipay,jdbcType=VARCHAR}, 
-      #{opr,jdbcType=VARCHAR}, #{oprTime,jdbcType=TIMESTAMP}, #{other,jdbcType=VARCHAR}, 
+      #{opr,jdbcType=VARCHAR}, #{oprTime,jdbcType=TIMESTAMP}, #{audDes,jdbcType=VARCHAR}, 
       #{others,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.torder.domain.Talents">
@@ -197,8 +197,8 @@
       <if test="oprTime != null">
         opr_time,
       </if>
-      <if test="other != null">
-        other,
+      <if test="audDes != null">
+        aud_des,
       </if>
       <if test="others != null">
         others,
@@ -268,8 +268,8 @@
       <if test="oprTime != null">
         #{oprTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="other != null">
-        #{other,jdbcType=VARCHAR},
+      <if test="audDes != null">
+        #{audDes,jdbcType=VARCHAR},
       </if>
       <if test="others != null">
         #{others,jdbcType=VARCHAR},
@@ -343,8 +343,8 @@
       <if test="oprTime != null">
         opr_time = #{oprTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="other != null">
-        other = #{other,jdbcType=VARCHAR},
+      <if test="audDes != null">
+        aud_des = #{audDes,jdbcType=VARCHAR},
       </if>
       <if test="others != null">
         others = #{others,jdbcType=VARCHAR},
@@ -380,7 +380,7 @@
       talents_alipay = #{talentsAlipay,jdbcType=VARCHAR},
       opr = #{opr,jdbcType=VARCHAR},
       opr_time = #{oprTime,jdbcType=TIMESTAMP},
-      other = #{other,jdbcType=VARCHAR},
+      aud_des = #{audDes,jdbcType=VARCHAR},
       others = #{others,jdbcType=VARCHAR},
     code=#{code,jdbcType=VARCHAR}
     where talents_id = #{talentsId,jdbcType=INTEGER}
