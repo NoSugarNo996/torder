@@ -51,7 +51,7 @@ a:hover {
     padding: 80px 0;
 }
 .case-box {
-    width: 1180px;
+    width: 100%;
     margin: 0 auto;
     position: relative;
 }
@@ -59,7 +59,7 @@ a:hover {
     text-align: center;
     color: #fff;
     font-weight: normal;
-    padding-bottom: 40px;
+    padding-bottom: 10px;
 }
 .case-box-title em {
     display: block;
@@ -76,8 +76,8 @@ a:hover {
 }
 .case-item {
     cursor: pointer;
-    width: 280px;
-    height: 390px;
+    width: 100px;
+    height: 100px;
     float: left;
     display: block;
     margin: 20px 0 0 0;
@@ -96,7 +96,7 @@ a:hover {
 }
 .case-wrapper .case-item:hover {
     margin-top: 0;
-    height: 430px;
+    height: 100px;
     background-color: #2F4C90;		
 }
 .case-item-bg1 {

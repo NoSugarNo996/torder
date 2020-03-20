@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" media="screen" href="../css/model/style.css">
+    <link rel="stylesheet" href="../lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../css/search-form.css">
+    <script src="../lib/dist/lib/modernizr.touch.js"></script>
+    <link href="../lib/dist/mfb.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="../css/style2.css" rel="stylesheet" type="text/css"/>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="../js/script.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
+    <link href="../css/jq22.css" rel="stylesheet" type="text/css"/>
+    <link href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
+    <title>Title</title>
+</head>
+
+<body style="background-color: #eaefdd">
+<div class="layui-row">
+    <ul class="layui-nav" lay-filter="" style="display:inline-block;position:absolute;right: 10px;background: none">
+
+        <li class="layui-nav-item"><a href="">最新活动</a></li>
+        <li class="layui-nav-item layui-this"><a href="">产品</a></li>
+        <li class="layui-nav-item"><a href="">大数据</a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">解决方案</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">移动模块</a></dd>
+                <dd><a href="">后台模版</a></dd>
+                <dd><a href="">电商平台</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">社区</a></li>
+
+    </ul>
+</div>
+
+
+<section class="container">
+    <form onsubmit="submitFn(this, event);">
+        <div class="search-wrapper">
+            <div class="input-holder">
+                <input type="text" class="search-input" placeholder="梦想从这里开始..."/>
+                <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+            </div>
+            <span class="close" onclick="searchToggle(this, event);"></span>
+            <div class="result-container">
+
+            </div>
+        </div>
+    </form>
+</section>
+<div id="particles-js" class="layui-row" style="height: 400px">
+</div>
+<div style="margin: 0 auto;text-align: center;position:relative;top: -220px">
+    <h2 style="font-size: 50px;color: rgba(237,242,240,0.9);">Look For Less,Do More</h2>
+    <h5 style="font-size: 20px;color: rgba(137,140,139,0.9);">ji，faef diadj dc dfev dgrgsdrgd dga jid aeihani aneirhs
+        fiashfianaie gajeigeia!</h5>
+</div>
+
+
+<!--中间-->
+<div class="layui-row">
+
+</div>
+<br>
+<br>
+<br>
+<!--底部-->
+<ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
+    <li class="mfb-component__wrap">
+        <a href="#" class="mfb-component__button--main">
+            <i class="fa fa-bug" aria-hidden="true"></i>
+        </a>
+        <ul class="mfb-component__list">
+            <li>
+                <a href="#" data-mfb-label="View on jq22" class="mfb-component__button--child">
+                    <i class="fa fa-bus" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-mfb-label="Follow me on jq22" class="mfb-component__button--child">
+                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="#" data-mfb-label="Share on Twitter" class="mfb-component__button--child">
+                    <i class="fa fa-bell-o" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<div class="layui-row">
+    <div class="wave-box">
+        <div class="marquee-box marquee-up" id="marquee-box">
+            <div class="marquee">
+                <div class="wave-list-box" id="wave-list-box1">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="../images/wave_02.png">
+                        </li>
+                    </ul>
+                </div>
+                <div class="wave-list-box" id="wave-list-box2">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="../images/wave_02.png">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="marquee-box" id="marquee-box3">
+            <div class="marquee">
+                <div class="wave-list-box" id="wave-list-box4">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="../images/wave_01.png">
+                        </li>
+                    </ul>
+                </div>
+                <div class="wave-list-box" id="wave-list-box5">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="../images/wave_01.png">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="auto clearfix">
+            <!-- footer主要-->
+            <div class="five-superiority">
+                <ul class="five-superiority-list clearfix">
+                    <li class="compensate_ico">
+                        <a href="#compensate">
+								<span class="superiority-icon">
+								</span>
+                            <span>
+									100倍故障赔偿
+								</span>
+                        </a>
+                    </li>
+                    <li class="retreat_ico">
+                        <a href="#refund">
+								<span class="superiority-icon">
+								</span>
+                            <span>
+									5天无理由退款
+								</span>
+                        </a>
+                    </li>
+                    <li class="technology_ico">
+                        <a class="superiority-text" href="#afterService">
+								<span class="superiority-icon">
+								</span>
+                            <span>
+									7x24小时技术支持
+								</span>
+                        </a>
+                    </li>
+                    <li class="prepare_ico">
+                        <a href="#ico">
+								<span class="superiority-icon">
+								</span>
+                            <span>
+									0元快速备案
+								</span>
+                        </a>
+                    </li>
+                    <li class="service_ico">
+                        <a href="#secret">
+								<span class="superiority-icon">
+								</span>
+                            <span>
+									1V1专席秘书
+								</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-floor1">
+                <div class="footer-list">
+                    <ul>
+                        <li class="flist-title">
+                            产品与服务
+                        </li>
+                        <li>
+                            <a href="#">
+                                <strong>
+                                    弹性云服务器
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <strong>
+                                    服务器托管
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <strong>
+                                    云虚拟主机
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <strong>
+                                    某公司管家
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <strong>
+                                    某公司监控
+                                </strong>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">
+                            云解决方案
+                        </li>
+                        <li>
+                            <a href="#">
+                                金融解决方案
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                电商解决方案
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                移动解决方案
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                游戏解决方案
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                网站解决方案
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">
+                            技术与支持
+                        </li>
+                        <li>
+                            <a href="#" target="user/">
+                                工单系统
+                            </a>
+                        </li>
+                        <!--<li><a href="http://icp.niaoyun.com/">备案中心</a></li>-->
+                        <li>
+                            <a href="#">
+                                意见反馈
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                会员服务
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                IDC公司
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                帮助中心
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="flist-4">
+                        <li class="flist-title">
+                            关于某公司
+                        </li>
+                        <li>
+                            <a href="#">
+                                公司简介
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                新闻动态
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                加入我们
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                服务协议
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                友情链接
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clear-float">
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <div class="telephone" title="服务热线">
+							<span>
+							</span>
+                        <div class="tel-number">
+                            400-688-3065
+                        </div>
+                    </div>
+                    <div class="official-plat">
+                        <p class="weixin" style="background-image: ">
+								<span id="wx-corner">
+								</span>
+                        </p>
+                        <p class="weibo" style="background-image: ">
+								<span id="wb-corner">
+								</span>
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="#a_null">
+										<span class="weixin-logo">
+										</span>
+                                    某公司官方微信
+                                </a>
+                            </li>
+                            <li title="点击打开官方微博">
+                                <a href="#" target="_blank">
+										<span class="weibo-logo">
+										</span>
+                                    某公司官方微博
+                                </a>
+                            </li>
+                            <li title="点击打开官方客服">
+                                <a href="http://crm2.qq.com/page/portalpage/wpa.php?uin=XXXXXXXX&amp;aty=0&amp;a=0&amp;curl=&amp;ty=1">
+										<span class="qq-logo">
+										</span>
+                                    某公司官方客服
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear-float">
+                </div>
+            </div>
+        </div>
+        <div class="footer-floor2">
+            <p>
+                网站信息·1997-2018 版权所有
+            </p>
+            <p>
+                Copyright(C)web.com, All Rights Reserved.
+            </p>
+        </div>
+    </div>
+</div>
+<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script src="../lib/jq-module/particles.min.js"></script>
+<script src="../lib/jq-module/app.js"></script>
+<script>
+    layui.use(['carousel', 'form'], function () {
+        var carousel = layui.carousel
+            , form = layui.form;
+
+
+        //改变下时间间隔、动画类型、高度
+        carousel.render({
+            elem: '#test2'
+            , interval: 1800
+            , anim: 'fade'
+            , width: '600px'
+            , height: '200px'
+        });
+
+    });
+
+</script>
+<script>
+    function searchToggle(obj, evt) {
+        var container = $(obj).closest('.search-wrapper');
+
+        if (!container.hasClass('active')) {
+            container.addClass('active');
+            evt.preventDefault();
+        } else if (container.hasClass('active') && $(obj).closest('.input-holder').length == 0) {
+            container.removeClass('active');
+            // clear input
+            container.find('.search-input').val('');
+            // clear and hide result container when we press close
+            container.find('.result-container').fadeOut(100, function () {
+                $(this).empty();
+            });
+        }
+    }
+
+    function submitFn(obj, evt) {
+        value = $(obj).find('.search-input').val().trim();
+
+        _html = "Yup yup! Your search text sounds like this: ";
+        if (!value.length) {
+            _html = "请输入要搜索的内容";
+        } else {
+            _html += "<b>" + value + "</b>";
+        }
+
+        $(obj).find('.result-container').html('<span>' + _html + '</span>');
+        $(obj).find('.result-container').fadeIn(100);
+
+        evt.preventDefault();
+    }
+</script>
+<script src="../lib/dist/mfb.js"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../js/divhover.js"></script>
+<script type="text/javascript">
+
+    $(".num2").num({Type: 'num2'});
+
+
+</script>
+
+</body>
+</html>

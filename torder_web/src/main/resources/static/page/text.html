@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../lib/layui-v2.5.4/css/layui.css" media="all">
+    <title>Title</title>
+</head>
+<body>
+<div class="layui-col-md6" style="background-color: aquamarine;padding: 20px">
+    <p style="font-size: 20px;color: #222222;"><strong>今日推荐</strong></p>
+    <hr class="layui-bg-black">
+    <div class="layui-row" style="height: 200px;width: 90%;padding: 10px;background-color: #00a2d4">
+        <div class="layui-carousel" id="test2" style="margin-top: 20px;">
+            <div carousel-item="">
+                <div>
+                    条目1
+                </div>
+                <div>
+                    条目2
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['carousel', 'form'], function(){
+        var carousel = layui.carousel
+            ,form = layui.form;
+
+
+
+
+        //改变下时间间隔、动画类型、高度
+        carousel.render({
+            elem: '#test2'
+            ,interval: 1800
+            ,anim: 'fade'
+            ,height: '180px'
+        });
+
+    });
+
+</script>
+</body>
+</html>
