@@ -15,6 +15,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
     <link href="../css/jq22.css" rel="stylesheet" type="text/css"/>
     <link href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
+    <link rel="stylesheet" href="../css/control.css" type="text/css" />
     <title>Title</title>
 </head>
 
@@ -63,8 +64,490 @@
 
 
 <!--中间-->
-<div class="layui-row">
+<div class="layui-row" style="width: 80%;margin: 0 auto;">
+    <div class="layui-col-md9" style="padding-bottom: 10px;">
+        <div class="layui-row" style="background-color: #ffffff;padding-left: 20px">
+            <br>
+            <div class="layui-row">
+                <div class="layui-col-md1" style="background-color: #ef6119;font-size: 20px;color: #f6f6f6;text-align: center">
+                    <span >招标</span>
+                </div>
+                <div class="layui-col-md2" style="text-align: center;color: #ef6119;font-size: 20px;border: 2px solid #ef6119">
+                    <span >¥2000-3000</span>
 
+                </div>
+                <div class="layui-col-md7">&nbsp;</div>
+                <div class="layui-col-md2" style="font-size: 15px;color: #ef6119"><i class="layui-icon layui-icon-star" style="font-size: 20px; color:#ef6119;"></i>收藏</div>
+            </div>
+            <br>
+            <div class="layui-row" style="font-size: 20px">APP直播软件</div>
+            <br>
+            <div class="layui-row" style="font-size: 15px;color: #919999">
+                <div class="layui-col-md2">交易模式：招标</div>
+                <div class="layui-col-md2" style="color: #5a2abd">雇主选标中</div>
+                <div class="layui-col-md4">赏金分配：单人中标，一人独享赏金</div>
+            </div>
+            <br>
+            <div class="layui-row">
+                <div id="stepBar" class="ui-stepBar-wrap">
+                    <div class="ui-stepBar">
+                        <div class="ui-stepProcess"></div>
+                    </div>
+                    <div class="ui-stepInfo-wrap">
+                        <table class="ui-stepLayout" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td class="ui-stepInfo">
+                                    <a class="ui-stepSequence">1</a>
+                                    <p class="ui-stepName">发布需求</p>
+                                </td>
+                                <td class="ui-stepInfo">
+                                    <a class="ui-stepSequence">2</a>
+                                    <p class="ui-stepName">投标</p>
+                                </td>
+                                <td class="ui-stepInfo">
+                                    <a class="ui-stepSequence">3</a>
+                                    <p class="ui-stepName">雇主选标</p>
+                                </td>
+                                <td class="ui-stepInfo">
+                                    <a class="ui-stepSequence">4</a>
+                                    <p class="ui-stepName">发布悬赏金</p>
+                                </td>
+                                <td class="ui-stepInfo">
+                                    <a class="ui-stepSequence">5</a>
+                                    <p class="ui-stepName">工作</p>
+                                </td>
+                                <td class="ui-stepInfo">
+                                    <a class="ui-stepSequence">6</a>
+                                    <p class="ui-stepName">验收付款</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="layui-row">
+                <div class="layui-row" style="font-size: 20px;">任务详情</div>
+                <br>
+                <div class="layui-row" style="font-size: 16px;color: #666966">需要制作一个APP抢单的辅助，登陆账户密码，有个活动到点自动抢的辅助软件</div>
+            </div>
+            <br>
+            <div class="layui-row">
+                <div class="layui-row" style="font-size: 20px;">图片详情</div>
+                <br>
+                <div class="layui-row" style="font-size: 16px;color: #666966">无</div>
+            </div>
+            <br>
+            <div class="layui-row">
+                <div class="layui-col-md2">&nbsp;</div>
+                <div class="layui-col-md3" style="height:40px;line-height:40px;background-color: #ef6119;font-size: 20px;color: #f6f6f6;text-align: center"><i class="layui-icon layui-icon-release" style="font-size: 30px; color: #f6f6f6;"></i> 立即投标</div>
+                <div class="layui-col-md2">&nbsp;</div>
+                <div class="layui-col-md3" style="height:40px;line-height:40px;background-color: #5a2abd;font-size: 20px;color: #f6f6f6;text-align: center"><i class="layui-icon layui-icon-chat" style="font-size: 30px; color: #f6f6f6;"></i> 与我联系</div>
+                <div class="layui-col-md2">&nbsp;</div>
+            </div>
+            <br>
+        </div>
+<br>
+        <div class="layui-row" style="background-color: #ffffff;padding-left: 20px;font-size: 16px">
+            <br>
+            <div class="layui-tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">所有方案</li>
+                    <li>中标方案</li>
+                    <li>最新提交</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <!--                            一个方案-->
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+                        <div class="layui-row">
+
+                            <div class="layui-row">
+                                <div class="layui-col-md1">
+                                    <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                </div>
+                                <div class="layui-col-md3" style="margin-left: 20px">
+                                    <div class="layui-row" style="font-size: 18px;">UNICORN设计</div><br>
+                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-left: 50px;">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo003.png" style="width: 100%;height: 100%">
+                                <br>
+                                <img src="../images/case-logo001.png" style="width: 100%;height: 100%">
+                            </div>
+
+
+                        </div>
+                        <hr class="layui-bg-gray">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-col-md3" style="padding-left: 10px;">
+        <div>
+            <div class="layui-row" style="background-color:white;text-align: center">
+                <br>
+                <div class="layui-col-md6" style="border-right: 1px solid #919999;font-size: 18px">
+                    <p>浏览数量</p>
+                    <p style="color: #666966">1243</p>
+                </div>
+                <div class="layui-col-md6" style="font-size: 18px">
+                    <p>竞标数量</p>
+                    <p style="color: #ef6119">5</p>
+                </div>
+                <br> <br>
+                <br> <br>
+            </div>
+            <br>
+            <div class="layui-row" style="background-color:white;font-size: 14px;">
+               <br>
+                <div class="layui-row" style="font-size: 20px">&nbsp;类似需求<hr class="layui-bg-gray"></div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #ef6119">¥1000-2000</div>
+                    <div class="layui-row" style="color: #00a2d4">QQ群免加好友拉群软件</div>
+                    <div class="layui-row" style="text-align: right;color: #666966">2&nbsp;人投标</div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #ef6119">¥1000-2000</div>
+                    <div class="layui-row" style="color: #00a2d4">QQ群免加好友拉群软件</div>
+                    <div class="layui-row" style="text-align: right;color: #666966">2&nbsp;人投标</div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #ef6119">¥1000-2000</div>
+                    <div class="layui-row" style="color: #00a2d4">QQ群免加好友拉群软件</div>
+                    <div class="layui-row" style="text-align: right;color: #666966">2&nbsp;人投标</div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #ef6119">¥1000-2000</div>
+                    <div class="layui-row" style="color: #00a2d4">QQ群免加好友拉群软件</div>
+                    <div class="layui-row" style="text-align: right;color: #666966">2&nbsp;人投标</div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #ef6119">¥1000-2000</div>
+                    <div class="layui-row" style="color: #00a2d4">QQ群免加好友拉群软件</div>
+                    <div class="layui-row" style="text-align: right;color: #666966">2&nbsp;人投标</div>
+                    <hr class="layui-bg-gray">
+                </div>
+            </div>
+
+            <div class="layui-row" style="background-color:white;font-size: 14px;">
+                <br>
+                <div class="layui-row" style="font-size: 20px">&nbsp;相关疑问<hr class="layui-bg-gray"></div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #666966"><a>卡通吉祥物设计用什么软件?</a></div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #666966"><a>卡通吉祥物设计用什么软件?</a></div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #666966"><a>卡通吉祥物设计用什么软件?</a></div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #666966"><a>卡通吉祥物设计用什么软件?</a></div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #666966"><a>卡通吉祥物设计用什么软件?</a></div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #666966"><a>卡通吉祥物设计用什么软件?</a></div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #666966"><a>卡通吉祥物设计用什么软件?</a></div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #666966"><a>卡通吉祥物设计用什么软件?</a></div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #666966"><a>卡通吉祥物设计用什么软件?</a></div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">
+                    <div class="layui-row" style="color: #666966"><a>卡通吉祥物设计用什么软件?</a></div>
+                    <hr class="layui-bg-gray">
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 </div>
 <br>
 <br>
@@ -444,6 +927,24 @@
 
 
 </script>
+<script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="../js/stepBar.js"></script>
+<script type="text/javascript">
+    $(function(){
+        stepBar.init("stepBar", {
+            step : 4,
+            change : true,
+            animation : true
+        });
+    });
+</script>
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
 
+        //…
+    });
+</script>
 </body>
 </html>

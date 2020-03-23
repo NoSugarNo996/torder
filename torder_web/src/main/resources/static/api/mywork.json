@@ -1,0 +1,252 @@
+{
+  "clearInfo": {
+    "clearUrl": "../../api/clear.json"
+  },
+  "homeInfo": {
+    "title": "首页",
+    "icon": "fa fa-home",
+    "href": "../../page/mywork/myhome.html"
+  },
+  "logoInfo": {
+    "title": "LayuiMini",
+    "image": "../../images/logo.png",
+    "href": ""
+  },
+  "menuInfo": {
+    "currency": {
+      "title": "常规管理",
+      "icon": "fa fa-address-book",
+      "child": [
+        {
+          "title": "账号管理",
+          "href": "",
+          "icon": "fa fa-home",
+          "target": "_self",
+          "child": [
+            {
+              "title": "基本信息",
+              "href": "../../page/user-setting.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            },
+            {
+              "title": "修改密码",
+              "href": "../../page/user-password.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            },
+            {
+              "title": "人才信息",
+              "href": "../../page/mywork/talents.html",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "项目管理",
+          "href": "",
+          "icon": "fa fa-graduation-cap",
+          "target": "_self",
+          "child": [
+            {
+              "title": "进行中的项目",
+              "href": "../../page/model/talents.html",
+              "icon": "fa fa-child",
+              "target": "_self"
+            },
+            {
+              "title": "已投标的项目",
+              "href": "page/model/talents-aud.html",
+              "icon": "fa fa-lightbulb-o",
+              "target": "_self"
+            }
+          ,
+            {
+              "title": "已完成的项目",
+              "href": "page/model/talents-aud.html",
+              "icon": "fa fa-lightbulb-o",
+              "target": "_self"
+            }
+          ,
+            {
+              "title": "我收藏的项目",
+              "href": "page/model/talents-aud.html",
+              "icon": "fa fa-lightbulb-o",
+              "target": "_self"
+            }
+          ,
+            {
+              "title": "项目记录",
+              "href": "page/model/talents-aud.html",
+              "icon": "fa fa-lightbulb-o",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "财务管理",
+          "href": "",
+          "icon": "fa fa-list-alt",
+          "target": "_self",
+          "child": [
+            {
+              "title": "充值",
+              "href": "../../page/mywork/push.html",
+              "icon": "fa fa-search",
+              "target": "_self"
+            },
+            {
+              "title": "提现",
+              "href": "page/welcome.html",
+              "icon": "fa fa-paper-plane-o",
+              "target": "_self"
+            },
+            {
+              "title": "交易记录",
+              "href": "page/welcome.html",
+              "icon": "fa fa-paper-plane-o",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "消息管理",
+          "href": "",
+          "icon": "fa fa-newspaper-o",
+          "target": "_self",
+          "child": [
+            {
+              "title": "我收到的邀请",
+              "href": "page/model/ad.html",
+              "icon": "fa fa-search",
+              "target": "_self"
+            },
+            {
+              "title": "未读消息",
+              "href": "page/model/ad.html",
+              "icon": "fa fa-search",
+              "target": "_self"
+            },
+            {
+              "title": "全部消息",
+              "href": "page/model/ad-aud.html",
+              "icon": "fa fa-lightbulb-o",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "我的收藏",
+          "href": "",
+          "icon": "fa fa-credit-card",
+          "target": "_self",
+          "child": [
+            {
+              "title": "关注的人",
+              "href": "page/welcome.html",
+              "icon": "fa fa-jpy",
+              "target": "_self"
+            },
+            {
+              "title": "收藏的项目",
+              "href": "page/model/order-aud.html",
+              "icon": "fa fa-legal",
+              "target": "_self"
+            }
+          ]
+        }
+      ]
+    },
+    "component": {
+      "title": "快速办公",
+      "icon": "fa fa-lemon-o",
+      "child": [
+        {
+          "title": "图标列表",
+          "href": "page/icon.html",
+          "icon": "fa fa-dot-circle-o",
+          "target": "_self"
+        },
+        {
+          "title": "图标选择",
+          "href": "page/icon-picker.html",
+          "icon": "fa fa-adn",
+          "target": "_self"
+        },
+        {
+          "title": "颜色选择",
+          "href": "page/color-select.html",
+          "icon": "fa fa-dashboard",
+          "target": "_self"
+        },
+        {
+          "title": "下拉选择",
+          "href": "page/table-select.html",
+          "icon": "fa fa-angle-double-down",
+          "target": "_self"
+        },
+        {
+          "title": "文件上传",
+          "href": "page/upload.html",
+          "icon": "fa fa-arrow-up",
+          "target": "_self"
+        },
+        {
+          "title": "富文本编辑器",
+          "href": "page/editor.html",
+          "icon": "fa fa-edit",
+          "target": "_self"
+        }
+      ]
+    },
+    "other": {
+      "title": "动态圈",
+      "icon": "fa fa-slideshare",
+      "child": [
+        {
+          "title": "多级菜单",
+          "href": "",
+          "icon": "fa fa-meetup",
+          "target": "",
+          "child": [
+            {
+              "title": "按钮1",
+              "href": "page/button.html",
+              "icon": "fa fa-calendar",
+              "target": "_self",
+              "child": [
+                {
+                  "title": "按钮2",
+                  "href": "page/button.html",
+                  "icon": "fa fa-snowflake-o",
+                  "target": "_self",
+                  "child": [
+                    {
+                      "title": "按钮3",
+                      "href": "page/button.html",
+                      "icon": "fa fa-snowflake-o",
+                      "target": "_self"
+                    },
+                    {
+                      "title": "表单4",
+                      "href": "page/form.html",
+                      "icon": "fa fa-calendar",
+                      "target": "_self"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "失效菜单",
+          "href": "page/error.html",
+          "icon": "fa fa-superpowers",
+          "target": "_self"
+        }
+      ]
+    }
+  }
+}

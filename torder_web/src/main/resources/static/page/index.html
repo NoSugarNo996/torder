@@ -1,183 +1,58 @@
-<!doctype html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="utf-8">
-<title>鼠标移入方向感知</title>
-<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
-<!--全局初始化样式-->
-<link rel="stylesheet" type="text/css" href="../css/reset.css" />
-<!--头尾样式-->
-<link rel="stylesheet" type="text/css" href="../css/headfoot.css" />
-<!--全局样式-->
-<link rel="stylesheet" type="text/css" href="../css/master.css" />
-<link rel="stylesheet" type="text/css" href="../css/experience.css" />
-<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery滑动分步式进度导航条代码</title>
+<link rel="stylesheet" href="../css/control.css" type="text/css" />
 </head>
-
-<!--banner-->
-
-<ul id="container" class="clearfix">
-   <li>
-	   <img class="img" src="../images/t1.png">
-	   <p>
-		   <span>《A-10》VR 是一款非常精致的FPS游戏，游戏画面精美度与沉浸感都非常的舒适，UI布局非常的有条理，戴上虚拟头盔进入游戏无丝毫眩晕的效果，背景音乐旋律非常的有动感，与精美的画面结合在一起，会让你立马喜欢上这款第一人称射击游戏。</span>
-		   <i></i>
-	   </p>
-   </li>
-   <li>
-	   <img class="img" src="../images/t2.png">
-	   <p>
-		   <span>《鬼开棺》是一款第一人称单机次世代vr冒险解密类游戏。游戏使用unity3d引擎开发，采用自主开发的游戏底层技术开发，并结合了3Glasses的虚拟头盔技术开发的虚拟现实游戏。游戏描述了一名盗墓贼，进入虚拟的古墓内，破解重重机关，杀死守护墓穴的怪物，最终获得终极宝藏。</span>
-		   <i></i>
-	   </p>
-   </li>
-   <li style="width:400px; height:530px; margin:10px 0 0 0;">
-	   <img class="img" src="../images/t7.png"  style="width:400px !important; height:530px !important;">
-	   <p>
-		   <span>欢迎来到《Cloudlands：VR Minigolf！》在云端你将会体验到前所未有的迷你虚拟现实高尔夫运动。你将会被转送到一个在云上的美丽群岛。
-</span>
-		   <i></i>
-	   </p>
-   </li>
-   <li style="margin-top:-260px;">
-   	   <img class="img" src="../images/t3.png">
-	   <p>
-		   <span>《热舞节拍》为深圳火花幻境虚拟现实技术有限公司自主研发的一款VR音乐游戏，具有偏观赏性、简单易上手、难精通等特点。
-</span>
-		   <i></i>
-	   </p>
-   </li>
-   <li style="margin-top:-260px;">
-	   <img class="img" src="../images/t4.png">
-	   <p>
-		   <span>《隐秘地牢》是一款潜行玩法的第一人称设计游戏。在科幻的迷宫中，玩家必须前进，一个房间一个房间的进行探索，在时间用尽，一切爆炸之前找到正确的出路。许多的机器人在阴暗的走廊上巡逻；镭射警报器也需要注意；灯光要被摧毁，以便潜行于黑暗；还有许多们必须打开。最后还有一个必须按的按钮。</span>
-		   <i></i>
-	   </p>
-   </li>
-   <li style="  margin:0 10px 10px 0;">
-	   <img class="img" src="../images/t5.png">
-	   <p>
-		   <span>《自体悖论》是一款与自己对抗的游戏。当时间机器发疯之后会发生什么？为了避免可怕的时间悖论，你唯一的希望就是在时间的螺旋中修好这台机器。
-
-</span>
-		   <i></i>
-	   </p>
-   </li>
-   <li style="  margin:0 10px 10px 0;">
-	   <img class="img" src="../images/t6.png">
-	   <p>
-		   <span>《疯狂鬼魅》是一款第一人称恐怖游戏。你将扮演主角凯瑟琳，一位年轻的女孩迷失在了她认为是她的学校的走廊里。她开始意识到她身处的迷宫开始慢慢的扭曲她的思维；她必须逃出去，重获自由。</span>
-		   <i></i>
-	   </p>
-   </li>
-   <li style="  margin:0 ">
-	   <img class="img" src="../images/t1.png">
-	   <p>
-		   <span>《意能释放》是一款特别为VR量身打造的第一人称科幻射击游戏。以扮演一个机器人，要尽力在落基山脉中的一个秘密军事基地里生存下来，在这场史诗般的挑战中，你将被未来科幻的场景所环绕，你要尽一切可能生存下来，与那些机械军团作战。</span>
-		   <i></i>
-	   </p>
-   </li>
-</ul>
-<script>
-   $("#container li").each(function(){
-	   $(this).on('mouseenter',function(e){
-		   var e=e||window.event;
-		   var angle=direct(e,this)
-		   mouseEvent(angle,this,'in')
-	   })
-	   $(this).on('mouseleave',function(e){
-		   var e=e||window.event;
-		   var angle=direct(e,this)
-		   mouseEvent(angle,this,'off')
-	   })
-   })
-   function direct(e,o){
-	 var w=o.offsetWidth;
-	 var h=o.offsetHeight;
-	 var top= o.offsetTop;                    //包含滚动条滚动的部分
-	 var left= o.offsetLeft;
-	 var scrollTOP=document.body.scrollTop||document.documentElement.scrollTop;
-	 var scrollLeft=document.body.scrollLeft||document.documentElement.scrollLeft;
-	 var offTop=top-  scrollTOP;
-	 var offLeft= left- scrollLeft;
-	 //console.log(offTop+";"+offLeft)
-	// e.pageX|| e.clientX;
-			//pageX 是从页面0 0 点开始  clientX是当前可视区域0 0开始  即当有滚动条时clientX  小于  pageX
-		   //ie678不识别pageX
-		   //PageY=clientY+scrollTop-clientTop;(只讨论Y轴,X轴同理,下同) 页面上的位置=可视区域位置+页面滚动条切去高度-自身border高度
-	 var ex= (e.pageX-scrollLeft)|| e.clientX;
-	 var ey=(e.pageY-scrollTOP)|| e.clientY;
-	 var x=(ex-offLeft-w/2)*(w>h?(h/w):1);
-	 var y=(ey-offTop-h/2)*(h>w?(w/h):1);
-
-	 var angle=(Math.round((Math.atan2(y,x)*(180/Math.PI)+180)/90)+3)%4 //atan2返回的是弧度 atan2(y,x)
-	 var directName=["上","右","下","左"];
-	 return directName[angle];  //返回方向  0 1 2 3对应 上 右 下 左
-   }
-   function mouseEvent(angle,o,d){ //方向  元素  鼠标进入/离开
-	   var w=o.offsetWidth;
-	   var h=o.offsetHeight;
-
-	   if(d=='in'){
-		   switch(angle){
-			   case '上':
-				   $(o).find("p").css({left:0,top:-h+"px"}).stop(true).animate({left:0,top:0},300)
-					setTimeout(function(){
-						$(o).find("p a").css({left:'50%',top:-h+"px"}).stop(true).animate({left:'50%',top:'20px'},300)
-					},200)
-				   break;
-			   case '右':
-				   $(o).find("p").css({left:w+"px",top:0}).stop(true).animate({left:0,top:0},300)
-				   setTimeout(function(){
-					   $(o).find("p a").css({left:w+"px",top:'20px'}).stop(true).animate({left:'50%',top:'20px'},300)
-				   },200)
-				   break;
-			   case '下':
-				   $(o).find("p").css({left:0,top:h+"px"}).stop(true).animate({left:0,top:0},300)
-				   setTimeout(function(){
-					   $(o).find("p a").css({left:'50%',top:h+"px"}).stop(true).animate({left:'50%',top:'20px'},300)
-				   },200)
-				   break;
-			   case '左':
-				   $(o).find("p").css({left:-w+"px",top:0}).stop(true).animate({left:0,top:0},300)
-				   setTimeout(function(){
-					   $(o).find("p a").css({left:-w+"px",top:'20px'}).stop(true).animate({left:'50%',top:'20px'},300)
-				   },200)
-				   break;
-		   }
-	   }else if(d=='off'){
-		   switch(angle){
-			   case '上':
-				   $(o).find("p a").stop(true).animate({left:'50%',top:-h+"px"},300)
-				   setTimeout(function(){
-					   $(o).find("p").stop(true).animate({left:0,top:-h+"px"},300)
-				   },200)
-				   break;
-			   case '右':
-				   $(o).find("p a").stop(true).animate({left:w+"px",top:'20px'},300)
-				   setTimeout(function(){
-					   $(o).find("p").stop(true).animate({left:w+"px",top:0},300)
-				   },200)
-				   break;
-			   case '下':
-				   $(o).find("p a").stop(true).animate({left:'50%',top:h+"px"},300)
-				   setTimeout(function(){
-					   $(o).find("p").stop(true).animate({left:0,top:h+"px"},300)
-				   },200)
-				   break;
-			   case '左':
-				   $(o).find("p a").stop(true).animate({left:-w+"px",top:'20px'},300)
-				   setTimeout(function(){
-					   $(o).find("p").stop(true).animate({left:-w+"px",top:0},300)
-				   },200)
-				   break;
-		   }
-	   }
-   }
-</script> 
-
 <body>
+<div id="stepBar" class="ui-stepBar-wrap">
+	<div class="ui-stepBar">
+		<div class="ui-stepProcess"></div>
+	</div>
+	<div class="ui-stepInfo-wrap">
+		<table class="ui-stepLayout" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="ui-stepInfo">
+					<a class="ui-stepSequence">1</a>
+					<p class="ui-stepName">发布需求</p>
+				</td>
+				<td class="ui-stepInfo">
+					<a class="ui-stepSequence">2</a>
+					<p class="ui-stepName">投标</p>
+				</td>
+				<td class="ui-stepInfo">
+					<a class="ui-stepSequence">3</a>
+					<p class="ui-stepName">雇主选标</p>
+				</td>
+				<td class="ui-stepInfo">
+					<a class="ui-stepSequence">4</a>
+					<p class="ui-stepName">发布悬赏金</p>
+				</td>
+				<td class="ui-stepInfo">
+					<a class="ui-stepSequence">5</a>
+					<p class="ui-stepName">工作</p>
+				</td>
+				<td class="ui-stepInfo">
+					<a class="ui-stepSequence">6</a>
+					<p class="ui-stepName">验收付款</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<script src="http://www.jq22.com/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="../js/stepBar.js"></script>
+<script type="text/javascript">
+$(function(){
+	stepBar.init("stepBar", {
+		step : 4,
+		change : true,
+		animation : true
+	});
+});
+</script>
+
 </body>
 </html>

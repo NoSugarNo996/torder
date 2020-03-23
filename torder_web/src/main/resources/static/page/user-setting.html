@@ -20,26 +20,28 @@
             <div class="layui-form-item">
                 <label class="layui-form-label required">账号</label>
                 <div class="layui-input-block">
-                    <input type="text" name="username" lay-verify="required" lay-reqtext="管理账号不能为空" placeholder="请输入管理账号"  value="admin" class="layui-input">
-                    <tip>填写自己的账号</tip>
+                    <input type="text" name="userid" lay-verify="required" lay-reqtext="管理账号不能为空" placeholder="请输入管理账号"  value="admin" class="layui-input" readonly="readonly" style="color: #363636">
+                    <tip>账号不可以更改</tip>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label required">手机</label>
+                <label class="layui-form-label required">昵称</label>
                 <div class="layui-input-block">
-                    <input type="number" name="phone" lay-verify="required" lay-reqtext="手机不能为空" placeholder="请输入手机"  value="" class="layui-input">
+                    <input type="text" name="username" lay-verify="required" lay-reqtext="管理账号不能为空" placeholder="请输入管理账号"  value="魔鬼天使" class="layui-input" >
+                    <tip>昵称不能为空，请控制在10个汉字以内</tip>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">邮箱</label>
+                <label class="layui-form-label required">联系方式</label>
                 <div class="layui-input-block">
-                    <input type="email" name="email"  placeholder="请输入邮箱"  value="" class="layui-input">
+                    <input type="number" name="phone" lay-verify="required" lay-reqtext="联系方式不能为空" placeholder="请输入手机"  value="" class="layui-input">
                 </div>
             </div>
-            <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">备注信息</label>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">性别</label>
                 <div class="layui-input-block">
-                    <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息"></textarea>
+                    <input type="radio" name="sex" value="男" title="男">
+                    <input type="radio" name="sex" value="女" title="女" checked>
                 </div>
             </div>
 
