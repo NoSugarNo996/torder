@@ -20,31 +20,31 @@
             <div class="layui-form-item">
                 <label class="layui-form-label required">账号</label>
                 <div class="layui-input-block">
-                    <input type="text" name="userid" lay-verify="required" lay-reqtext="管理账号不能为空" placeholder="请输入管理账号"  value="admin" class="layui-input" readonly="readonly" style="color: #363636">
+                    <input type="text" id="userName" name="userName" lay-verify="required" lay-reqtext="管理账号不能为空" placeholder="请输入管理账号"  value="" class="layui-input" readonly="readonly" style="color: #363636">
                     <tip>账号不可以更改</tip>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label required">昵称</label>
                 <div class="layui-input-block">
-                    <input type="text" name="username" lay-verify="required" lay-reqtext="管理账号不能为空" placeholder="请输入管理账号"  value="魔鬼天使" class="layui-input" >
+                    <input type="text" id="userNickname" name="userNickname" lay-verify="required" lay-reqtext="管理账号不能为空" placeholder="请输入管理账号"  value="" class="layui-input" >
                     <tip>昵称不能为空，请控制在10个汉字以内</tip>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label required">联系方式</label>
                 <div class="layui-input-block">
-                    <input type="number" name="phone" lay-verify="required" lay-reqtext="联系方式不能为空" placeholder="请输入手机"  value="" class="layui-input">
+                    <input type="number" id="userPhone" name="userPhone" lay-verify="required" lay-reqtext="联系方式不能为空" placeholder="请输入手机"  value="" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label required">性别</label>
                 <div class="layui-input-block">
-                    <input type="radio" name="sex" value="男" title="男">
-                    <input type="radio" name="sex" value="女" title="女" checked>
+                    <input type="radio" name="userSex" value="1" title="男">
+                    <input type="radio" name="userSex" value="0" title="女" checked>
                 </div>
             </div>
-
+<input type="hidden" id="userId" name="userId" value="">
             <div class="layui-form-item">
                 <div class="layui-input-block">
                     <button class="layui-btn" lay-submit lay-filter="saveBtn">确认保存</button>
@@ -55,21 +55,48 @@
 </div>
 <script src="../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="../js/config.js?"></script>
+<script src="../js/user-info.js?v=1.0.4" charset="utf-8"></script>
 <script>
+    let eventObj = {
+        "userName":USERNAME,
+        "userId":USERID,
+        "userNickname":USERNICKNAME,
+        "userPhone":USERPHONE,
+        "userSex":USERSEX
+    }
+
     layui.use(['form','layuimini'], function () {
         var form = layui.form,
             layer = layui.layer,
             layuimini = layui.layuimini;
 
+            $('#userName').val(eventObj.userName);
+            $('#userId').val(eventObj.userId);
+            $('#userNickname').val(eventObj.userNickname);
+            $('#userPhone').val(eventObj.userPhone);
+            $('#userSex').val(eventObj.userSex);
+
         //监听提交
         form.on('submit(saveBtn)', function (data) {
-            var index = layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            }, function () {
-                layer.close(index);
-                layuimini.closeCurrentTab();
+             eventObj = data.field;
+            $.ajax({
+                type: "post",
+                url: queryUrl + queryMethodUser + updateMethod,
+                dataType: "json",
+                contentType: "application/json;charset=UTF-8",
+                data: JSON.stringify(eventObj),
+                success: function (res) {
+                    if (res==1){
+                        layer.msg('修改成功');
+
+                    }
+                    else {
+                        layer.msg("修改失败");
+                    }
+                }
             });
-            return false;
         });
 
     });

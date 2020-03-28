@@ -102,16 +102,16 @@
 <div class="layui-container">
     <div class="admin-login-background">
         <div class="admin-header">
-            <span>登入</span>
+            <span>梦想从此刻开始</span>
         </div>
         <form class="layui-form" action="">
             <div>
                 <i class="layui-icon layui-icon-username admin-icon"></i>
-                <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input admin-input admin-input-username" value="admin">
+                <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input admin-input admin-input-username" value="">
             </div>
             <div>
                 <i class="layui-icon layui-icon-password admin-icon"></i>
-                <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input admin-input" value="123456">
+                <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input admin-input" value="">
             </div>
             <div>
                 <i class="layui-icon layui-icon-face-cry admin-icon" ></i>
@@ -120,7 +120,7 @@
 <!--                <img class="admin-captcha" width="90" height="30" src="../images/captcha.jpg">-->
 
             </div>
-            <button class="layui-btn admin-button" lay-submit="" lay-filter="login">登 陆</button>
+            <button class="layui-btn admin-button" lay-submit="" lay-filter="login">开 启</button>
         </form>
     </div>
 </div>
@@ -149,7 +149,11 @@
 <script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
 <script src="../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
+<script src="../js/config.js"></script>
+<script src="../js/user-info.js.js"></script>
 <script>
+    var vail=false;
+
     // 加一个div全部 然后设置display：block；
     $(function () {
         // 点击按钮
@@ -173,7 +177,7 @@
             getSuccessState: function (res) {//验证通过 返回  true;
                 $(".layui-icon-face-smile-b").css("display","inline");
                 $(".layui-icon-face-cry").css("display","none");
-
+                vail=true;
                     setTimeout(function () {
                         $(".box").css("display", "none");
                         // $("body").css("background", "#fff");
@@ -202,6 +206,7 @@
         // 进行登录操作
         form.on('submit(login)', function (data) {
             data = data.field;
+
             if (data.username == '') {
                 layer.msg('用户名不能为空');
                 return false;
@@ -212,13 +217,48 @@
             }
 
 
-            if (data.captcha == '') {
-                layer.msg('验证码不能为空');
+            if (vail==false) {
+                layer.msg('验证码错误');
                 return false;
             }
-            layer.msg('登录成功', function () {
-                window.location = '/index.html';
-            });
+            let eventObj = {
+                "userName":data.username,
+                "userPwd":data.password
+            }
+            $.ajax({
+                type: "post",
+                url: queryUrl + queryMethodUser + loginUrl,
+                dataType: "json",
+                contentType: "application/json;charset=UTF-8",
+                data: JSON.stringify(eventObj),
+                success: function (res) {
+                    console.log(res);
+                    if (res!=null){
+                         USERID=res.userId;
+                         CODE=res.code;
+                         USERPWE=res.userPwd;
+                         USERNICKNAME=res.userNickname;
+                         USERSEX=res.userSex;
+                         USERPHONE=res.userPhone;
+                         USERNAME=res.userName;
+                        layer.msg('登录成功', function () {
+                            window.location.href = '/torder/torder_web/static/page/shop.html';
+                        });
+                    }
+                    else {
+                        layer.msg('登录失败', function () {
+                            window.location.href = '/torder/torder_web/static/page/login.html';
+                        });
+                    }
+
+                },
+                error:function (res) {
+                    layer.msg('登录失败', function () {
+                        window.location.href = '/torder/torder_web/static/page/login.html';
+                    });
+                }
+                });
+
             return false;
         });
     });

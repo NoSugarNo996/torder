@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/layuimini.css" media="all">
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <link href="../../css/flow.css" rel="stylesheet" type="text/css"  />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        #alert {
+            z-index: 2;
+            border: 1px solid rgba(0,0,0,.2);
+            width: 598px;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.5);
+            background: #fff;
+            z-index: 1000;
+            position: absolute;
+            left: 50%;
+            top: 15%;
+            margin-left: -299px;
+            display: none;
+        }
+        .model-head {
+            padding: 15px;
+            color: #73879C;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .close {
+            padding: 0;
+            cursor: pointer;
+            background: 0 0;
+            border: 0;
+            float: right;
+            font-size: 14px !important;
+            font-weight: 700;
+            text-shadow: 0 1px 0 #fff;
+            opacity: 0.4;
+            margin-top: 5px;
+        }
+        #close:hover {
+            cursor: pointer;
+            color: #000;
+        }
+        #mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: #000;
+            opacity: 0.3;
+            display: none;
+            z-index: 1;
+        }
+        .model-content {
+            position: relative;
+            padding: 15px;
+        }
+        .model-foot {
+            padding: 15px;
+            text-align: right;
+        }
+        #alert {
+
+            border: 0px solid rgba(0,0,0,.2);
+            box-shadow: 0px 0px 19px 1px rgba(0, 0, 0, 0.15);
+
+        }
+        #mask {
+            opacity: 0.8;
+        }
+        #iList{text-align: center}
+    </style>
+    <title>Title</title>
+</head>
+<body style="background-color: #fff3e7">
+<div class="layui-row" style="background-color: white">
+    <div class="model-content">
+        <div class="main">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flow">
+                        <div class="flowListBox"> </div>
+                    </div>
+                </div>
+                <div class="col-md-12" id="flowDiv">
+                    <ol id="iList">
+                        <div id="contA" style="font-size: 20px;">
+
+                            选择类目，描述您的需求
+                            <hr class="layui-bg-gray">
+                            <div class="layui-row" style="color: black;margin-left: 20px;text-align: left">
+                                <form class="layui-form" action="" style="margin:0 auto;font-size: 20px;">
+                                    <div class="layui-row" style="font-size: 20px;margin: 20px;">
+                                        <div class="layui-col-md3" style="font-size: 20px;"> 1.请选择项目的分类：</div>
+                                        <div class="layui-col-md8">
+                                            <div class="layui-inline">
+                                                <div class="layui-input-block">
+                                                    <select name="parent" lay-verify="required" id="parent"  lay-filter="college">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="layui-inline">
+                                                <div class="layui-input-block">
+                                                    <select id='children' name="children" lay-verify="required" >
+                                                    </select>
+                                                </div>
+                                            </div></div>
+
+
+                                    </div>
+                                    <div class="layui-row" style="font-size: 20px;margin: 20px;">
+                                        <div class="layui-col-md3" style="font-size: 20px;"> 2.填写需求标题：</div>
+                                        <div class="layui-col-md8">
+                                            <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <input type="text" id="taskName" name="taskName" lay-verify="required" lay-reqtext="需求标题不能为空"
+                                                       class="layui-input">
+                                            </div>
+                                        </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="layui-row" style="font-size: 20px;margin: 20px;">
+                                        <div class="layui-col-md3" style="font-size: 20px;">  3.描述您的具体需求：</div>
+                                        <div class="layui-col-md8">
+                                            <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <textarea id="taskDes" name="taskDes" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                            </div>
+                                        </div></div>
+
+
+                                    </div>
+
+                                    <div class="layui-row" style="font-size: 20px;margin: 20px;">
+                                        <div class="layui-col-md3" style="font-size: 20px;">  4.上传所需的附件：</div>
+                                        <div class="layui-col-md8">
+                      上传接口
+                                        </div>
+
+
+                                    </div>
+                                    <div class="layui-row" style="font-size: 20px;margin: 20px;">
+                                        <div class="layui-col-md3" style="font-size: 20px;"> 5.请填写您的联系方式：</div>
+                                        <div class="layui-col-md8">
+                                            <div class="layui-form-item">
+                                                <div class="layui-input-block">
+                                                    <input type="text" name="talentsName" lay-verify="required" lay-reqtext="联系方式不能为空"
+                                                           class="layui-input">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </form>
+                                <hr class="layui-bg-gray">
+                            </div>
+                        </div>
+                        <div class="contentList" id="contB" style="font-size: 20px;">确认需求
+                            <hr class="layui-bg-gray">
+                            <div class="layui-row" style="color: black;margin-left: 20px;text-align: left">
+                                <form class="layui-form" action="" style="margin:0 auto;font-size: 20px;">
+
+                                    <div class="layui-row" style="font-size: 20px;margin: 20px;">
+                                        <div class="layui-col-md3" style="font-size: 20px;"> 1.填写价格：</div>
+                                        <div class="layui-col-md6">
+                                            <div class="layui-form-item">
+                                                <div class="layui-input-block">
+                                                    <input type="text" id="taskMoney" name="taskMoney" lay-verify="required" lay-reqtext="价格不能为空"
+                                                           class="layui-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-md1" style="font-size: 20px;margin-left: 20px;">元</div>
+                                    </div>
+
+                                    <div class="layui-row" style="font-size: 20px;margin: 20px;">
+                                        <div class="layui-col-md3" style="font-size: 20px;"> 2.选择开始时间：</div>
+                                        <div class="layui-col-md6">
+
+                                            <div class="layui-form-item">
+                                                <div class="layui-input-block">
+                                                    <input type="text" id="taskStart" name="taskStart" class="layui-input input-date"
+                                                           placeholder="yyyy-MM-dd">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-row" style="font-size: 20px;margin: 20px;">
+                                        <div class="layui-col-md3" style="font-size: 20px;"> 3.选择截止时间：</div>
+                                        <div class="layui-col-md6">
+
+                                            <div class="layui-form-item">
+                                                <div class="layui-input-block">
+                                                        <input type="text" id="taskEnd" name="taskEnd" class="layui-input input-date"
+                                                               placeholder="yyyy-MM-dd">
+                                                    </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+                                <hr class="layui-bg-gray">
+                            </div></div>
+                        <div class="contentList" id="contC" style="font-size: 20px;">支付赏金
+                            <hr class="layui-bg-gray">
+                            <div class="layui-row" style="font-size: 20px">
+                                可用余额&nbsp;&nbsp;<span style="color: #d11b18;font-size: 25px">0.00</span><span style="color: #919999;">&nbsp;元</span>
+                            </div>
+                            <div class="layui-row" style="margin-top: 40px;">
+                                <button type="button" class="layui-btn layui-btn-lg layui-btn-danger" >确认支付</button>
+                            </div>
+
+                        </div>
+                        <div class="contentList" id="contD" style="font-size: 20px;">核对信息
+                            <hr class="layui-bg-gray">
+                        <div style="font-size: 20px;padding: 40px;">
+                            <div class="layui-col-md2" >
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务编码：</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务发布者：</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务类型：</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务状态：</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务赏金：</div>
+                            </div>
+                            <div class="layui-col-md4">
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">3213487</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">麻辣淤泥小龙虾</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">独立完成</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;color: #205099;text-align: left">审核中</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;color: #d11b18;text-align: left">1200.00<span style="color: #919999">&nbsp;元</span></div>
+                            </div>
+                            <div class="layui-col-md2">
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务标题：</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务需求：</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务任务分类：</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务发布时间：</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务截止时间：</div>
+                            </div>
+                            <div class="layui-col-md4">
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">网络直播app的开发</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">1.简洁清晰2.易于上手...</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">app研发</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">2020.03.23</div>
+                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">2020.04.23</div>
+                            </div>
+                        </div>
+                            <br>
+                        </div>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="foot-btn">
+        <button type="button" class="btn btn-primary" id="btnBack">上一步</button>
+        <button type="button" class="btn btn-default"  style="float:right; display:none" name="btnok" id="btnok">完成</button>
+        <button type="button" class="btn btn-success"  style="float:right; margin-right:10px;" id="btnNext">下一步</button>
+    </div>
+</div>
+
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="../../lib/layui-v2.5.4/layui.js"></script>
+<script type="text/javascript" src="../../js/flow.js"></script>
+<script src="../../js/config.js"></script>
+<script type="text/javascript">
+    var myAlert = document.getElementById("alert");
+    var myMask=document.getElementById('mask');
+
+    $("#content a").click(function(){
+        myMask.style.display="block";
+        myAlert.style.display = "block";
+        document.body.style.overflow = "hidden";
+    })
+    $(".close").click(function(){
+        myAlert.style.display = "none";
+        myMask.style.display = "none";
+    })
+</script>
+<script>
+    //Demo
+    // layui.use('form', function(){
+    //     var form = layui.form;
+    //
+    //     //监听提交
+    //
+    //
+    //
+    // });
+
+    layui.use(['form', 'layedit', "laydate",'laydate'], function () {
+        var form = layui.form,
+            layer = layui.layer,laydate = layui.laydate;
+        form.render();
+
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+
+        form.on('select(college)', function (data) {
+
+            $.ajax({
+                type: "post",
+                url: queryUrl + "/category/children?cParent=" + $("#parent").val(),
+                aynsc:false,
+                success: function (res) {
+                    var data = '';
+                    data += '<option value="">请选择具体类别</option>\n'
+                    for (let index = 0; index < res.length; index++) {
+                        data += '<option value="' + res[index].cCode + '">' + res[index].cName + '</option>\n'
+                    }
+                    $("#children").find("option").remove();
+                    $("#children").append(data);
+                   // $("#children").innerHTML=data;
+
+                    form.render('select');
+                    // $("select[name='children']").options.length=0;
+                    //  $(select[name='children']).append(data);
+
+                }
+            });
+
+        });
+
+
+        // 渲染多个日期组件
+        $(".input-date").each(function () {
+            //日期时间选择
+            laydate.render({
+                elem: this, //指定元素  表示当前的元素
+                type: 'date'
+                , value: new Date()
+                , format: 'yyyy-MM-dd'
+                , theme: '#009688'  //主题  颜色改变
+
+            });
+            console.log("dateAddOk");
+        });
+    });
+</script>
+<script src="../../js/user-info.js"></script>
+<script src="../../js/mywork/publish.js"></script>
+</body>
+</html>

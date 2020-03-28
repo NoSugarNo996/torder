@@ -46,5 +46,7 @@ public interface UserService {
      */
     UserVo getById(Integer id);
 
+    UserVo login(UserVo obj);
+
     long getCount();
 }

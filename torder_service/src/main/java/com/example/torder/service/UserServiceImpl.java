@@ -5,6 +5,7 @@ import com.example.torder.domain.User;
 import com.example.torder.mapper.UserMapper;
 import com.example.torder.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,6 +43,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserVo getById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public UserVo login(UserVo obj) {
+        return userMapper.login(BeanUtil.copy(obj, User.class));
     }
 
     @Override

@@ -116,7 +116,14 @@
 
         $('.login-out').on("click", function () {
             layer.msg('退出登录成功', function () {
-                window.location = '/page/login-1.html';
+                USERID='';
+                CODE='';
+                USERPWE='';
+                USERNICKNAME='';
+                USERSEX='';
+                USERPHONE='';
+                USERNAME='';
+                window.location.href = '/torder/torder_web/static/page/shop.html';
             });
         });
     });

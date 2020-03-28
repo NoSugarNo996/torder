@@ -83,15 +83,10 @@
 			<ignoreColumn column="FRED" />
 			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
 		</table> -->
- 		<table schema="" tableName="task_waitting_info" domainObjectName="TaskWaitting"
+ 		<table schema="" tableName="category_info" domainObjectName="Category"
 			enableCountByExample="false" selectByExampleQueryId="false"
 			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false">
 	        <generatedKey column="id" sqlStatement="JDBC" />
-		</table>
-		<table schema="" tableName="user_info" domainObjectName="User"
-			   enableCountByExample="false" selectByExampleQueryId="false"
-			   enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false">
-			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
 
 <!--		<table schema="" tableName="camera_info" domainObjectName="Camera"-->

@@ -165,24 +165,9 @@
 </div>
 <script src="../../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
-<script>
-    layui.use(['form','layuimini'], function () {
-        var form = layui.form,
-            layer = layui.layer,
-            layuimini = layui.layuimini;
-
-        //监听提交
-        form.on('submit(saveBtn)', function (data) {
-            var index = layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            }, function () {
-                layer.close(index);
-                layuimini.closeCurrentTab();
-            });
-            return false;
-        });
-
-    });
-</script>
+<script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="../../js/api.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/mywork/talents.js?ver=1"></script>
 </body>
 </html>

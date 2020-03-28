@@ -98,13 +98,13 @@
             },
             {
               "title": "提现",
-              "href": "page/welcome.html",
+              "href": "../../page/mywork/pull.html",
               "icon": "fa fa-paper-plane-o",
               "target": "_self"
             },
             {
               "title": "交易记录",
-              "href": "page/welcome.html",
+              "href": "../../page/mywork/trade-h.html",
               "icon": "fa fa-paper-plane-o",
               "target": "_self"
             }
@@ -118,19 +118,19 @@
           "child": [
             {
               "title": "我收到的邀请",
-              "href": "page/model/ad.html",
+              "href": "../../page/mywork/invite.html",
               "icon": "fa fa-search",
               "target": "_self"
             },
             {
               "title": "未读消息",
-              "href": "page/model/ad.html",
+              "href": "../../page/mywork/unread.html",
               "icon": "fa fa-search",
               "target": "_self"
             },
             {
               "title": "全部消息",
-              "href": "page/model/ad-aud.html",
+              "href": "../../page/mywork/message.html",
               "icon": "fa fa-lightbulb-o",
               "target": "_self"
             }
@@ -144,13 +144,33 @@
           "child": [
             {
               "title": "关注的人",
-              "href": "page/welcome.html",
+              "href": "../../page/mywork/fav-people.html",
               "icon": "fa fa-jpy",
               "target": "_self"
             },
             {
               "title": "收藏的项目",
-              "href": "page/model/order-aud.html",
+              "href": "../../page/mywork/fav-task.html",
+              "icon": "fa fa-legal",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "我的发布",
+          "href": "",
+          "icon": "fa fa-credit-card",
+          "target": "_self",
+          "child": [
+            {
+              "title": "一键发布",
+              "href": "../../page/mywork/publish.html",
+              "icon": "fa fa-jpy",
+              "target": "_self"
+            },
+            {
+              "title": "发布的项目",
+              "href": "../../page/mywork/task-publish.html",
               "icon": "fa fa-legal",
               "target": "_self"
             }

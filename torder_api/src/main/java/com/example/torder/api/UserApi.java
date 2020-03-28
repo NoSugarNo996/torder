@@ -54,6 +54,9 @@ public interface UserApi {
     @RequestMapping("/getInfo")
     UserVo getById(@RequestParam("id") Integer id);
 
+    @RequestMapping("/login")
+    UserVo login(@RequestBody UserVo obj);
+
     @RequestMapping("/getCount")
     long getCount(@RequestBody UserVo obj);
 }

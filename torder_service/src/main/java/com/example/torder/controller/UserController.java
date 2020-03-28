@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 public class UserController extends BaseController implements UserApi {
+
     @Autowired
     UserService userService;
+
     @Override
     public int add(UserVo obj) {
         return userService.add(obj);
@@ -41,6 +43,11 @@ public class UserController extends BaseController implements UserApi {
     @Override
     public UserVo getById(Integer id) {
         return userService.getById(id);
+    }
+
+    @Override
+    public UserVo login(UserVo obj) {
+        return userService.login(obj);
     }
 
     @Override

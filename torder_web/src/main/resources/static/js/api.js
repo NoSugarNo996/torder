@@ -24,3 +24,35 @@ function getSelectOption(obj, type) {
     });
 }
 
+function getCategoryParentSelectOption(obj) {
+    // 获取下拉框
+    $.ajax({
+        type: "get",
+        url: queryUrl +'/category/parent',
+        aynsc:false,
+        success: function (res) {
+            var data = '';
+            data += '<option value="">请选择</option>\n'
+            for (let index = 0; index < res.length; index++) {
+                data += '<option value="' + res[index].keyValue + '">' + res[index].keyName + '</option>\n'
+            }
+            $(obj).append(data);
+        }
+    });
+}
+function getCategoryChildrenSelectOption(obj, type) {
+    // 获取下拉框
+    $.ajax({
+        type: "get",
+        url: queryUrl + "/category/children?cParent=" + type,
+        aynsc:false,
+        success: function (res) {
+            var data = '';
+            data += '<option value="">请选择</option>\n'
+            for (let index = 0; index < res.length; index++) {
+                data += '<option value="' + res[index].keyValue + '">' + res[index].keyName + '</option>\n'
+            }
+            $(obj).append(data);
+        }
+    });
+}

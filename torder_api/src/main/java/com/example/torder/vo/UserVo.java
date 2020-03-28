@@ -54,7 +54,14 @@ public class UserVo extends BaseVo implements Serializable {
      * @mbg.generated
      */
     private String userName;
+private  String userCompanyCode;
+    public String getUserCompanyCode() {
+        return userCompanyCode;
+    }
 
+    public void setUserCompanyCode(String userCompanyCode) {
+        this.userCompanyCode = userCompanyCode;
+    }
     /**
      * Database Column Remarks:
      *   用户性别

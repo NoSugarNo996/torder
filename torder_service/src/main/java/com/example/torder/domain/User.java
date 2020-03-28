@@ -10,6 +10,15 @@ import java.util.Date;
  * This class corresponds to the database table user_info
  */
 public class User extends BasePo implements Serializable {
+    public String getUserCompanyCode() {
+        return userCompanyCode;
+    }
+
+    public void setUserCompanyCode(String userCompanyCode) {
+        this.userCompanyCode = userCompanyCode;
+    }
+
+    private  String userCompanyCode;
     private String code;
     /**
      * Database Column Remarks:
