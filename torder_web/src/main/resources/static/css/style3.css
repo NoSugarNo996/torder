@@ -1,10 +1,10 @@
 
 *{margin: 0; padding: 0; box-sizing: border-box;}
-.container{margin: 0 auto; max-width: 1400px;}
-.row{width: 103%; float: left; margin: 110px -1.5%;}
+.container{margin: 0 auto;}
+.row{width: 103%; float: left; margin: 50px -1.5%;}
 
 /*= common css to all effects =*/
-.single-member{width: 280px; float: left; margin: 30px 2.5%; background-color: #fff; text-align: center; position: relative;}
+.single-member{width: 280px; float: left; margin: 10px 2.5%; background-color: #fff; text-align: center; position: relative;}
 .member-image img{max-width: 100%; vertical-align: middle;}
 h3 {font-size: 24px; font-weight: normal; margin: 10px 0 0; text-transform: uppercase;}
 h5 {font-size: 16px; font-weight: 300; margin: 0 0 15px; line-height: 22px;}
@@ -107,7 +107,7 @@ p {font-size: 14px; font-weight: 300; line-height: 22px; padding: 0 30px; margin
 /*= Media Query 
 =============== */
 @media only screen and (max-width: 980px){
-	.row{width: 100%; margin: 110px 0;}
+	.row{width: 100%; margin: 50px 0;}
 	.team-members{text-align: center;}
 	.single-member{float: none; display: inline-block; vertical-align: bottom;}
 }
