@@ -40,16 +40,23 @@
      d.user_name as taskPublisherName,
      e.user_name as taskAccepterName
      from task_info a
-     left join dics_info b on a.task_type=b.key_value and b.key_code='TYPE'
-     left join dics_info c on a.task_status=c.key_value and c.key_code='STATE'
+     left join dics_info b on a.task_type=b.key_value and b.dics_code='TYPE'
+     left join dics_info c on a.task_status=c.key_value and c.dics_code='STATE'
      left join user_info d on a.task_publisher=d.code
      left join user_info e on a.task_accepter=e.code
+     left join category_info f on a.task_classify=f.c_code
      where 1=1
      <if test="taskStatus !=null">
-       a.task_status=#{taskStatus}
+        and a.task_status=#{taskStatus}
      </if>
     <if test="aud !=null">
-      a.task_status!=#{aud}
+      and a.task_status!=#{aud}
+    </if>
+    <if test="taskClassifyName !=null">
+    and   f.c_name=#{taskClassifyName}
+    </if>
+    <if test="taskClassify !=null">
+      and   a.task_classify=#{taskClassify}
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.TaskVo">
@@ -63,11 +70,12 @@
     d.user_name as taskPublisherName,
     e.user_name as taskAccepterName
     from task_info a
-    left join dics_info b on a.task_type=b.key_value and b.key_code='TYPE'
-    left join dics_info c on a.task_status=c.key_value and c.key_code='STATE'
+    left join dics_info b on a.task_type=b.key_value and b.dics_code='TYPE'
+    left join dics_info c on a.task_status=c.key_value and c.dics_code='STATE'
     left join user_info d on a.task_publisher=d.code
     left join user_info e on a.task_accepter=e.code
     where a.task_id = #{taskId,jdbcType=INTEGER}
+
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
@@ -264,7 +272,7 @@
         code=#{code,jdbcType=VARCHAR},
       </if>
     </set>
-    where task_id = #{taskId,jdbcType=INTEGER}
+    where code = #{code}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.torder.domain.Task">
     <!--

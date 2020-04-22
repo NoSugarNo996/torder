@@ -52,7 +52,7 @@ public interface TalentsApi {
      * @return
      */
     @RequestMapping("/getInfo")
-    TalentsVo getById(@RequestParam("id") Integer id);
+    TalentsVo getById(@RequestBody TalentsVo obj);
 
     @RequestMapping("/getCount")
     long getCount(@RequestBody TalentsVo obj);

@@ -41,8 +41,8 @@ public class TalentsServiceImpl implements TalentsService{
     }
 
     @Override
-    public TalentsVo getById(Integer id) {
-        return talentsMapper.selectByPrimaryKey(id);
+    public TalentsVo getById(TalentsVo obj) {
+        return talentsMapper.selectByPrimaryKey(obj);
     }
 
     @Override

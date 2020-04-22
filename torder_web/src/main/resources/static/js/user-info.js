@@ -1,7 +1,0 @@
-var USERID='2';
-var CODE='1';
-var USERPWE='123';
-var USERNICKNAME='天天';
-var USERSEX='1';
-var USERPHONE='18999999999';
-var USERNAME='32386281';

@@ -28,9 +28,14 @@
   <select id="findList" parameterType="com.example.torder.vo.TaskWaittingVo" resultType="com.example.torder.vo.TaskWaittingVo">
     select a.*,
     b.task_name as taskName,
-    c.talents_name as talentsName,
-
-     from task_waitting_info
+    c.talents_name as talentsName
+    from task_waitting_info a
+    left join task_info b on a.task_code=b.code
+    left join talents_info c on a.talents_code=c.code
+    where 1=1
+    <if test="taskCode !=null">
+      and a.task_code=#{taskCode}
+    </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.TaskWaittingVo">
     <!--
@@ -72,11 +77,11 @@
       <if test="waittingId != null">
         waitting_id,
       </if>
-      <if test="taskId != null">
-        task_id,
+      <if test="taskCode != null">
+        task_code,
       </if>
-      <if test="talentsId != null">
-        talents_id,
+      <if test="talentsCode != null">
+        talents_code,
       </if>
       <if test="waittingShortSolution != null">
         waitting_short_solution,
@@ -101,11 +106,11 @@
       <if test="waittingId != null">
         #{waittingId,jdbcType=INTEGER},
       </if>
-      <if test="taskId != null">
-        #{taskId,jdbcType=VARCHAR},
+      <if test="taskCode != null">
+        #{taskCode,jdbcType=VARCHAR},
       </if>
-      <if test="talentsId != null">
-        #{talentsId,jdbcType=VARCHAR},
+      <if test="talentsCode != null">
+        #{talentsCode,jdbcType=VARCHAR},
       </if>
       <if test="waittingShortSolution != null">
         #{waittingShortSolution,jdbcType=VARCHAR},

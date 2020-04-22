@@ -13,6 +13,14 @@ import java.util.Date;
  **/
 public class TaskVo extends BaseVo implements Serializable {
     private Integer aud;
+    private String taskClassifyName;
+    public String getTaskClassifyName() {
+        return taskClassifyName;
+    }
+
+    public void setTaskClassifyName(String taskClassifyName) {
+        this.taskClassifyName = taskClassifyName;
+    }
 
     public Integer getAud() {
         return aud;

@@ -39,8 +39,8 @@ public class TalentsController extends BaseController implements TalentsApi {
     }
 
     @Override
-    public TalentsVo getById(Integer id) {
-        return talentsService.getById(id);
+    public TalentsVo getById(TalentsVo obj) {
+        return talentsService.getById(obj);
     }
 
     @Override

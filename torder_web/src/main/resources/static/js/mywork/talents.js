@@ -2,6 +2,7 @@ let editId;
 let status;
 let eventObj = {
     "talentsName":'',
+    "userId":layui.sessionData('user').user.userId
 }
 getSelectOption("select[name='talentsNation']", 'NATION');
 getSelectOption("select[name='talentsStatue']", 'STATE');
@@ -28,13 +29,11 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     });
 
     $.ajax({
-        type: "get",
+        type: "post",
         url: queryUrl + queryMethodTalents + getInfoMethod,
         dataType: "json",
         contentType: "application/json;charset=UTF-8",
-        data: {
-            "id":1
-        },
+        data: JSON.stringify(eventObj),
         success: function (res) {
             form.val('update', {
                 "talentsId":res.talentsId,

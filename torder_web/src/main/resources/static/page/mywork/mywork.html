@@ -50,7 +50,7 @@
                 <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
             </li>
             <li class="layui-nav-item layuimini-setting">
-                <a href="javascript:;">菠萝包</a>
+                <a href="javascript:;" id="name"></a>
                 <dl class="layui-nav-child">
                     <dd>
                         <a href="javascript:;" data-iframe-tab="../../page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料</a>
@@ -113,16 +113,11 @@
             layer = layui.layer;
 
         layuimini.init('../../api/mywork.json');
-
+        $('#name').text(layui.sessionData('user').user.userNickname);
+console.log(layui.sessionData('user').user.userNickname);
         $('.login-out').on("click", function () {
             layer.msg('退出登录成功', function () {
-                USERID='';
-                CODE='';
-                USERPWE='';
-                USERNICKNAME='';
-                USERSEX='';
-                USERPHONE='';
-                USERNAME='';
+                layui.sessionData('user', null);
                 window.location.href = '/torder/torder_web/static/page/shop.html';
             });
         });

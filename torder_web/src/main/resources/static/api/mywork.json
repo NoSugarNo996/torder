@@ -8,7 +8,7 @@
     "href": "../../page/mywork/myhome.html"
   },
   "logoInfo": {
-    "title": "菠萝包",
+    "title": "layui.sessionData('user').user.userNickname",
     "image": "../../images/rctj8.jpg",
     "href": ""
   },
@@ -170,7 +170,7 @@
             },
             {
               "title": "发布的项目",
-              "href": "../../page/mywork/task-publish.html",
+              "href": "../../page/mywork/publish-task.html",
               "icon": "fa fa-legal",
               "target": "_self"
             }

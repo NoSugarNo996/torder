@@ -180,7 +180,6 @@
                 vail=true;
                     setTimeout(function () {
                         $(".box").css("display", "none");
-                        // $("body").css("background", "#fff");
                         $(".btn").attr("disabled", false);
                     },1500);
 
@@ -215,8 +214,6 @@
                 layer.msg('密码不能为空');
                 return false;
             }
-
-
             if (vail==false) {
                 layer.msg('验证码错误');
                 return false;
@@ -234,13 +231,10 @@
                 success: function (res) {
                     console.log(res);
                     if (res!=null){
-                         USERID=res.userId;
-                         CODE=res.code;
-                         USERPWE=res.userPwd;
-                         USERNICKNAME=res.userNickname;
-                         USERSEX=res.userSex;
-                         USERPHONE=res.userPhone;
-                         USERNAME=res.userName;
+                        layui.sessionData('user', {
+                            key: 'user'
+                            , value: res
+                        });
                         layer.msg('登录成功', function () {
                             window.location.href = '/torder/torder_web/static/page/shop.html';
                         });

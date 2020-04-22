@@ -60,11 +60,11 @@
 <script src="../js/user-info.js?v=1.0.4" charset="utf-8"></script>
 <script>
     let eventObj = {
-        "userName":USERNAME,
-        "userId":USERID,
-        "userNickname":USERNICKNAME,
-        "userPhone":USERPHONE,
-        "userSex":USERSEX
+        "userName":layui.sessionData('user').user.userName,
+        "userId":layui.sessionData('user').user.userId,
+        "userNickname":layui.sessionData('user').user.userNickname,
+        "userPhone":layui.sessionData('user').user.userPhone,
+        "userSex":layui.sessionData('user').user.userSex
     }
 
     layui.use(['form','layuimini'], function () {

@@ -11,6 +11,15 @@ import java.util.Date;
  * This class corresponds to the database table task_info
  */
 public class Task extends BasePo implements Serializable {
+    public String getTaskClassifyName() {
+        return taskClassifyName;
+    }
+
+    public void setTaskClassifyName(String taskClassifyName) {
+        this.taskClassifyName = taskClassifyName;
+    }
+
+    private String taskClassifyName;
     private String code;
     /**
      * Database Column Remarks:

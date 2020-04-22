@@ -43,14 +43,19 @@ let eventObj = {
     "taskName":'',
     "taskType":0,
     "taskStatus":'',
-    "taskPublisher":USERID,
+    "taskPublisher":layui.sessionData('user').user.userId,
     "taskClassify":'',
     "taskMoney":'',
     "taskStart":'',
     "taskEnd":''
 }
 $("#btnok").onclick=function () {
-    eventObj.taskName=$("#btnok").val();
+    eventObj.taskName=$("#taskName").val();
+    eventObj.taskClassify=$("#children").val();
+    eventObj.taskDes=$("#taskDes").val();
+    eventObj.taskMoney=$("#taskMoney").val();
+    eventObj.taskStart=$("#taskStart").val();
+    eventObj.taskEnd=$("#taskEnd").val();
     $.ajax({
         type: "post",
         url: queryUrl + queryMethodTask+addMethod,

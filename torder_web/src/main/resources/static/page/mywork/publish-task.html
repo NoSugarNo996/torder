@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/layuimini.css" media="all">
+    <title>Title</title>
+</head>
+<style type="text/css">
+
+    .pagetion {
+        width: 100%;
+        position: relative;
+    }
+
+    .pagetion .layui-laypage {
+        position: absolute;
+        left: 50%;
+        top: 5px;
+        transform: translateX(-50%);
+        white-space: nowrap;
+    }
+    .selectTalents :hover {
+        background: #87c0f6;
+    }
+</style>
+<body style="background-color: #f6ecc4">
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin: 30px;background-color: white">
+    <ul class="layui-tab-title">
+        <li class="layui-this">发布的项目</li>
+        <li>提交待审核</li>
+        <li>招标中</li>
+        <li>项目交付中</li>
+        <li>交易待审核</li>
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width:50px">序号</th>
+                    <th style="width:225px">创建时间</th>
+                    <th style="width:630px">项目名称</th>
+                    <th style="width:130px">项目金额</th>
+                    <th style="width:130px">接收人</th>
+                    <th style="width:130px">项目状态</th>
+                    <th style="width:330px">操作</th>
+
+                </tr>
+                </thead>
+                <tbody id="eventTable1">
+                </tbody>
+            </table>
+
+            <div id="pagetion1" class="pagetion"></div>
+        </div>
+        <div class="layui-tab-item ">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width:50px">序号</th>
+                    <th style="width:225px">创建时间</th>
+                    <th style="width:630px">项目名称</th>
+                    <th style="width:130px">项目金额</th>
+                    <th style="width:130px">接收人</th>
+                    <th style="width:130px">项目状态</th>
+                    <th style="width:330px">操作</th>
+
+                </tr>
+                </thead>
+                <tbody id="eventTable2" >
+                </tbody>
+            </table>
+            <div id="pagetion2" class="pagetion"></div>
+        </div>
+        <div class="layui-tab-item ">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width:50px">序号</th>
+                    <th style="width:225px">创建时间</th>
+                    <th style="width:630px">项目名称</th>
+                    <th style="width:130px">项目金额</th>
+                    <th style="width:130px">接收人</th>
+                    <th style="width:130px">项目状态</th>
+                    <th style="width:330px">操作</th>
+
+                </tr>
+                </thead>
+                <tbody id="eventTable3">
+                </tbody>
+            </table>
+            <div id="pagetion3" class="pagetion"></div>
+        </div>
+        <div class="layui-tab-item ">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width:50px">序号</th>
+                    <th style="width:225px">创建时间</th>
+                    <th style="width:630px">项目名称</th>
+                    <th style="width:130px">项目金额</th>
+                    <th style="width:130px">接收人</th>
+                    <th style="width:130px">项目状态</th>
+                    <th style="width:330px">操作</th>
+
+                </tr>
+                </thead>
+                <tbody id="eventTable4">
+                </tbody>
+            </table>
+            <div id="pagetion4" class="pagetion"></div>
+        </div>
+        <div class="layui-tab-item ">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width:50px">序号</th>
+                    <th style="width:225px">创建时间</th>
+                    <th style="width:630px">项目名称</th>
+                    <th style="width:130px">项目金额</th>
+                    <th style="width:130px">接收人</th>
+                    <th style="width:130px">项目状态</th>
+                    <th style="width:330px">操作</th>
+
+                </tr>
+                </thead>
+                <tbody id="eventTable5">
+                </tbody>
+            </table>
+            <div id="pagetion5" class="pagetion"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--查看详情-->
+<div id="info" style="display:none;width: 700px" >
+    <form class="layui-form" lay-filter="update">
+        <div class="formBody">
+            <div class="left-form">
+                <fieldset class="layui-elem-field">
+                    <legend>
+                        <div class="title">项目信息</div>
+                    </legend>
+                    <div class="layui-field-box">
+                        <div class="sendInfo">
+                            <!-- 部门信息 -->
+                            <div class=" layui-form-item" style="font-size: 16px;line-height: 50px">
+                                <div class="layui-row">
+                                    <label class=" required">项目名称:</label>
+                                    <label id="taskName" name="taskName" ></label>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md4">
+                                    <label class="">项目状态：</label>
+                                    <label id="taskStatus"  name="taskStatus" ></label>
+                                    </div>
+                                   <div class="layui-col-md4">
+                                    <label class="">项目发布者：</label>
+                                    <label id="taskPublisher" name="taskPublisher" ></label>
+
+                                     </div>
+
+                                    <div class="layui-col-md4">
+                                    <label >项目接收者:</label>
+                                    <label id="taskAccepter" name="taskAccepter" ></label>
+                                    </div>
+                                </div>
+                                <div class="layui-row">
+                                    <label >项目简介：</label>
+                                    <label id="taskDes"  name="taskDes" ></label>
+                                </div>
+                                <div class="layui-row">
+                                    <label >项目文件：</label>
+                                    <label id="taskFile" name="taskFile" ></label>
+                                </div>
+                                <div class="layui-row">
+                                    <label >项目开始时间：</label>
+                                    <label id="taskStart" name="taskStart" ></label>
+                                </div>
+                                <div class="layui-row">
+                                    <label>项目结束时间：</label>
+                                    <label id="taskEnd" name="taskEnd" ></label>
+
+                                </div>
+
+                                <div class="layui-row">
+                                    <label >项目金额：</label>
+                                    <label id="taskMoney" name="taskMoney" ></label>
+                                </div>
+
+                            </div>
+                        </div>
+                </fieldset>
+            </div>
+        </div>
+
+    </form>
+</div>
+<!--完成任务-->
+<div id="finish" style="display:none;width: 900px" >
+
+</div>
+<!--选取人才-->
+<div id="selecttalents" style="display:none;width: 900px" >
+    <form class="layui-form" lay-filter="update">
+
+        <div class="formBody">
+            <div class="left-form">
+                <fieldset class="layui-elem-field">
+                    <legend>
+                        <div class="title">选取人才</div>
+                    </legend>
+                    <div class="layui-row" id="eventTable10">
+
+                    </div>
+
+<!--                  <div class="layui-row">-->
+<!--                      <div class="layui-col-md4" style="padding: 5px;background-color: #ef6119">-->
+<!--                          <div style="border: 1px solid #c0c6c0;height: 170px;">-->
+<!--                              <div class="layui-row" style="padding: 10px;">-->
+<!--                                  <div class="layui-col-md4" style="height: 100px;"><img src="../../images/case-logo004.png" style="width: 100%;height: 100%"></div>-->
+<!--                                  <div class="layui-col-md7" style="padding: 15px;">-->
+<!--                                      <div class="layui-row" style="font-size: 18px;margin-bottom: 10px;">麻辣淤泥</div>-->
+<!--                                      <div class="layui-row"><div style="font-size:15px;color:#818581;border: 0px solid #818581;border-radius: 20%;width: 100px;height: 30px;"><i class="layui-icon layui-icon-ok" style="font-size: 20px; color: #818581;"></i>  已关注</div></div>-->
+<!--                                  </div>-->
+<!--                                  <div class="layui-col-md1" style="text-align: right"><i class="layui-icon layui-icon-close-fill" style="font-size: 20px; color: #af1714;"></i></div>-->
+<!--                              </div>-->
+<!--                              <div class="layui-row" style="padding: 5px;height: 30px;">简介：一个简单的人，不喜欢复杂的调调</div>-->
+<!--                          </div>-->
+
+<!--                      </div>-->
+<!--                      <div class="layui-col-md6" style="padding: 5px;">-->
+<!--                          <div style="border: 1px solid #c0c6c0;height: 170px;">-->
+<!--                              <div class="layui-row" style="padding: 10px;">-->
+<!--                                  <div class="layui-col-md4" style="height: 100px;"><img src="../../images/case-logo004.png" style="width: 100%;height: 100%"></div>-->
+<!--                                  <div class="layui-col-md7" style="padding: 15px;">-->
+<!--                                      <div class="layui-row" style="font-size: 18px;margin-bottom: 10px;">麻辣淤泥</div>-->
+<!--                                      <div class="layui-row"><div style="font-size:15px;color:#818581;border: 0px solid #818581;border-radius: 20%;width: 100px;height: 30px;"><i class="layui-icon layui-icon-ok" style="font-size: 20px; color: #818581;"></i>  已关注</div></div>-->
+<!--                                  </div>-->
+<!--                                  <div class="layui-col-md1" style="text-align: right"><i class="layui-icon layui-icon-close-fill" style="font-size: 20px; color: #af1714;"></i></div>-->
+<!--                              </div>-->
+<!--                              <div class="layui-row" style="padding: 5px;height: 30px;">简介：一个简单的人，不喜欢复杂的调调</div>-->
+<!--                          </div>-->
+
+<!--                      </div>-->
+<!--                  </div>-->
+
+                    <div id="pagetion10" class="pagetion"></div>
+                </fieldset>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="../../lib/layui-v2.5.4/layui.js"></script>
+
+<script src="../../js/config.js"></script>
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+
+        //…
+    });
+</script>
+<script src="../../js/mywork/publish-task.js"></script>
+</body>
+
+</html>
