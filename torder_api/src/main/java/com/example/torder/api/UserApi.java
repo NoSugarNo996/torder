@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @program: torder
  * @description: 用户
@@ -55,7 +57,10 @@ public interface UserApi {
     UserVo getById(@RequestParam("id") Integer id);
 
     @RequestMapping("/login")
-    UserVo login(@RequestBody UserVo obj);
+    UserVo login(@RequestBody UserVo vo, HttpServletRequest request);
+
+    @RequestMapping("/logout")
+    boolean logout(@RequestBody UserVo vo);
 
     @RequestMapping("/getCount")
     long getCount(@RequestBody UserVo obj);

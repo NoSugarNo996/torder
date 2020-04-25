@@ -3,6 +3,7 @@ package com.example.torder.service;
 import com.cetccity.common.base.util.BeanUtil;
 import com.example.torder.domain.Notice;
 import com.example.torder.mapper.NoticeMapper;
+import com.example.torder.util.UUIDUtil;
 import com.example.torder.vo.NoticeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class NoticeServiceImpl implements NoticeService{
 
     @Override
     public int add(NoticeVo obj) {
+        obj.setCode(UUIDUtil.getUUID());
         return noticeMapper.insertSelective(BeanUtil.copy(obj, Notice.class));
     }
 

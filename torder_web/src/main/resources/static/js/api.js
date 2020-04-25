@@ -1,11 +1,17 @@
 
+
 // 拦截非login页面
-// if (location.href.lastIndexOf('/login') == -1) {
-//     if (!layui.data('user').user) {
-//         location.href = '../html/login.html';
-//     }
-//     var userId = layui.data('user').user.personnelId;
-// }
+if (location.href.lastIndexOf('/login') == -1) {
+    if (!layui.sessionData('user').user) {
+        if (location.href.indexOf("backStage/") > 0) {
+            location.href = '/torder/torder_web/static/page/login.html';
+        } else {
+            location.href = '/torder/torder_web/static/page/login.html';
+        }
+    }
+    var userId = layui.sessionData('user').user.userId;
+}
+
 
 function getSelectOption(obj, type) {
     // 获取下拉框
@@ -56,3 +62,54 @@ function getCategoryChildrenSelectOption(obj, type) {
         }
     });
 }
+
+// 给所有ajax请求加头部。
+$(document).ajaxSend(function (event, xhr) {
+    xhr.setRequestHeader('token', layui.sessionData('user').user.token);
+    xhr.setRequestHeader('userId', layui.sessionData('user').user.userId);
+});
+
+function getToJson(params) {
+    var paramArr = params.split('&');
+    var res = {};
+    for (var i = 0; i < paramArr.length; i++) {
+        var str = paramArr[i].split('=');
+        res[str[0]] = decodeURI(str[1]);
+        // decodeURI(param) 将ASCII码转为中文
+    }
+    return res;
+}
+
+layui.use(['layer'], function () {
+    var layer = layui.layer;
+    // 设置状态码错误提示
+    $(document).ajaxError(function (event, xhr, options, exc) {
+        switch (xhr.status) {
+            case (500):
+                layer.msg("服务器繁忙，请稍后再试");
+                break;
+            case (401):
+                layer.msg('登录超时，请重新登录', {
+                    time: 20000, //20s后自动关闭
+                    btn: ['确定'],
+                    yes: function () {
+
+                            location.href = '/torder/torder_web/static/page/login.html';
+
+                    }
+                });
+                setTimeout(() => {
+                   
+                location.href = '/torder/torder_web/static/page/login.html';
+            
+        }, 20000);
+        break;
+        //case(403):
+        //    layer.msg("无权限执行此操作");
+        //     break;
+        // case (408):
+        //     layer.msg("请求超时");
+        //     break;
+    }
+    });
+});

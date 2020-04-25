@@ -1,5 +1,5 @@
 //表单初始化
-layui.use(['form', 'layedit', "laydate",'laydate'], function () {
+layui.use(['form', 'layer','layedit', "laydate",'laydate'], function () {
     var form = layui.form,
         layer = layui.layer,laydate = layui.laydate;
 
@@ -27,7 +27,7 @@ let eventObj1 = {
     "taskName":'',
     "pageSize": 10,
     "pageNum": numEvent1,
-    "taskPublisher":"策划师助理"
+    "taskPublisher":layui.sessionData('user').user.code
 }
 
 //加载任务详情
@@ -44,8 +44,8 @@ let eventObj1 = {
 
                 $("#taskName").text(res.taskName);
                 $("#taskStatus").text(res.taskStatus);
-                $("#taskPublisher").text(res.taskPublisher);
-                $("#taskAccepter").text(res.taskAccepter);
+                $("#taskPublisher").text(res.taskPublisherName);
+                $("#taskAccepter").text(res.taskAccepterName);
                 $("#taskDes").text(res.taskDes);
                 $("#taskFile").text(res.taskFile);
                 $("#taskStart").text(res.taskStart);
@@ -248,8 +248,8 @@ let eventObj1 = {
 
                 $("#taskName").text(res.taskName);
                 $("#taskStatus").text(res.taskStatus);
-                $("#taskPublisher").text(res.taskPublisher);
-                $("#taskAccepter").text(res.taskAccepter);
+                $("#taskPublisher").text(res.taskPublisherName);
+                $("#taskAccepter").text(res.taskAccepterName);
                 $("#taskDes").text(res.taskDes);
                 $("#taskFile").text(res.taskFile);
                 $("#taskStart").text(res.taskStart);
@@ -302,10 +302,10 @@ let eventObj1 = {
                         '<div>' + res.data[index].taskMoney + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskAccepter + '</div>\n' +
+                        '<div>' + res.data[index].taskAccepterName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskStatus + '</div>\n' +
+                        '<div>' + res.data[index].taskStatusName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
@@ -313,13 +313,13 @@ let eventObj1 = {
                         if(res.data[index].taskStatus==1){
                             data+=  '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
                         }
-                        else if (res.data[index].taskStatus==2){
+                        else if (res.data[index].taskStatus==3){
                             data+=  '<button type="button" class="selecttalents layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">选取人才</button>\n'
                         }
-                        else if (res.data[index].taskStatus==4){
+                        else if (res.data[index].taskStatus==5){
                             data+=  '<button type="button" class="finishEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">任务完成</button>\n'
                         }
-                        else if (res.data[index].taskStatus==5){
+                        else if (res.data[index].taskStatus==6){
                             data+=  '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
                         }
 
@@ -371,10 +371,11 @@ let eventObj1 = {
             data:JSON.stringify(update),
             success: function (res) {
                 if (res==1){
-                    layui.msg("任务完成成功，请等待审核");
+                    layer.msg("任务完成成功，请等待审核");
+                    getEventData1();
                 }
                 else {
-                   layui.msg("提交失败");
+                    layer.msg("提交失败");
                 }
             }
         });
@@ -390,7 +391,7 @@ let eventObj1 = {
         "taskName":'',
         "pageSize": 10,
         "pageNum": numEvent2,
-        "taskPublisher":"策划师助理",
+        "taskPublisher":layui.sessionData('user').user.code,
         "taskStatus":1
     }
 
@@ -429,15 +430,15 @@ let eventObj1 = {
                         '<div>' + res.data[index].taskMoney + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskAccepter + '</div>\n' +
+                        '<div>' + res.data[index].taskAccepterName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskStatus + '</div>\n' +
+                        '<div>' + res.data[index].taskStatusName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
                         '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">办理</button>\n' +
+                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">催促</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -479,7 +480,7 @@ let eventObj1 = {
         "taskName":'',
         "pageSize": 10,
         "pageNum": numEvent3,
-        "taskPublisher":"策划师助理",
+        "taskPublisher":layui.sessionData('user').user.code,
         "taskStatus":2
     }
 
@@ -518,10 +519,10 @@ let eventObj1 = {
                         '<div>' + res.data[index].taskMoney + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskAccepter + '</div>\n' +
+                        '<div>' + res.data[index].taskAccepterName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskStatus + '</div>\n' +
+                        '<div>' + res.data[index].taskStatusName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
@@ -568,7 +569,7 @@ let eventObj1 = {
         "taskName":'',
         "pageSize": 10,
         "pageNum": numEvent4,
-        "taskPublisher":"策划师助理",
+        "taskPublisher":layui.sessionData('user').user.code,
         "taskStatus":4
     }
 
@@ -607,10 +608,10 @@ let eventObj1 = {
                         '<div>' + res.data[index].taskMoney + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskAccepter + '</div>\n' +
+                        '<div>' + res.data[index].taskAccepterName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskStatus + '</div>\n' +
+                        '<div>' + res.data[index].taskStatusName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
@@ -657,7 +658,7 @@ let eventObj1 = {
         "taskName":'',
         "pageSize": 10,
         "pageNum": numEvent5,
-        "taskPublisher":"策划师助理",
+        "taskPublisher":layui.sessionData('user').user.code,
         "taskStatus":6
     }
 
@@ -696,10 +697,10 @@ let eventObj1 = {
                         '<div>' + res.data[index].taskMoney + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskAccepter + '</div>\n' +
+                        '<div>' + res.data[index].taskAccepterName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskStatus + '</div>\n' +
+                        '<div>' + res.data[index].taskStatusName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
@@ -759,10 +760,10 @@ function selectTalent(taskAccepter) {
         data:JSON.stringify(update),
         success: function (res) {
             if (res==1){
-                layui.msg("提交成功，请等待审核");
+                layer.msg("选取成功，请尽快与他联系吧");
             }
             else {
-                layui.msg("提交失败");
+                layer.msg("选取失败");
             }
         }
     });

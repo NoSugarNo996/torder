@@ -29,6 +29,34 @@ public class TaskVo extends BaseVo implements Serializable {
     public void setAud(Integer aud) {
         this.aud = aud;
     }
+
+    public String getTaskStatusName() {
+        return taskStatusName;
+    }
+
+    public void setTaskStatusName(String taskStatusName) {
+        this.taskStatusName = taskStatusName;
+    }
+
+    public String getTaskPublisherName() {
+        return taskPublisherName;
+    }
+
+    public void setTaskPublisherName(String taskPublisherName) {
+        this.taskPublisherName = taskPublisherName;
+    }
+
+    public String getTaskAccepterName() {
+        return taskAccepterName;
+    }
+
+    public void setTaskAccepterName(String taskAccepterName) {
+        this.taskAccepterName = taskAccepterName;
+    }
+
+    private String taskPublisherName;
+    private String taskAccepterName;
+    private  String taskStatusName;
     private String code;
     /**
      * Database Column Remarks:

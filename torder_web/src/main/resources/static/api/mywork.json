@@ -50,22 +50,9 @@
           "target": "_self",
           "child": [
             {
-              "title": "进行中的项目",
-              "href": "../../page/model/talents.html",
+              "title": "参与的项目",
+              "href": "../../page/mywork/my-task.html",
               "icon": "fa fa-child",
-              "target": "_self"
-            },
-            {
-              "title": "已投标的项目",
-              "href": "page/model/talents-aud.html",
-              "icon": "fa fa-lightbulb-o",
-              "target": "_self"
-            }
-          ,
-            {
-              "title": "已完成的项目",
-              "href": "page/model/talents-aud.html",
-              "icon": "fa fa-lightbulb-o",
               "target": "_self"
             }
           ,
@@ -117,7 +104,7 @@
           "target": "_self",
           "child": [
             {
-              "title": "我收到的邀请",
+              "title": "我收到的消息",
               "href": "../../page/mywork/invite.html",
               "icon": "fa fa-search",
               "target": "_self"
@@ -129,7 +116,7 @@
               "target": "_self"
             },
             {
-              "title": "全部消息",
+              "title": "已发送消息",
               "href": "../../page/mywork/message.html",
               "icon": "fa fa-lightbulb-o",
               "target": "_self"

@@ -9,7 +9,7 @@ var numEvent = 1; //当前页
 let tableLength; // 分页长度
 let eventObj = {
     "taskType":1,
-    "taskStatus":1,
+    "taskStatus":2,
     "taskClassifyName":getUrlParam('cateName'),
     "pageSize": 10,
     "pageNum": numEvent
@@ -36,37 +36,40 @@ function getEventData(first) {
 
                 //单个
                 for (let index = 0; index < 4; index++) {
-                    data+='  <!--        单个-->';
-                    data+=' <div class="layui-col-md3" style="height: 300px;padding: 10px;">';
-                    data+=' <div class="layui-card">';
-                    data+=' <div class="layui-card-header" style="height: 50px">';
-                    data+=' <div class="layui-col-md3">';
-                    data+=' <img src="../images/rctj8.jpg" style="height: 40px;width: 40px;border-radius: 50%;margin-top: 5px">';
-                    data+=' </div>';
-                    data+=' <div class="layui-col-md9" style="line-height: 50px;margin-top: 10px;"><a><p>'+res.data[cal*4+index].taskPublisher+'</p></a>';
-                    data+=' </div>';
-                    data+=' </div>';
-                    data+=' <div class="layui-card-body" onclick="urlHtml('+res.data[cal*4+index].taskId+')">';
-                    data+=' <div class="layui-row">';
-                    data+=' <div style="width: 90%;height: 150px;margin: 0 auto;background-color: #00a2d4">';
-                    data+=' <img src="../images/ptyx4.jpg" style="height: 100%;width: 100%;align:center;">';
-                    data+=' </div>';
-                    data+=' </div>';
-                    data+=' <div class="layui-row" style="height: 40px;line-height: 40px;">';
-                    data+=' <div class="layui-col-md4" style="margin-left: 0px;">';
-                    data+=' <p style="color: #ef6119;"><strong>¥'+res.data[cal*4+index].taskMoney+'</strong></p>';
-                    data+=' </div>';
-                    data+=' <div class="layui-col-md8">';
-                    data+=' <p style="color: #919999;text-align: right"><strong>投标数量：765</strong></p>';
-                    data+=' </div>';
-                    data+=' </div>';
-                    data+=' <div class="layui-row">';
-                    data+=' <a><p style="font-size: 12px;" ><strong>'+res.data[cal*4+index].taskName+'</strong></p></a>';
-                    data+=' <input type="hidden" value="'+res.data[cal*4+index].taskId+'">';
-                    data+=' </div>';
-                    data+=' </div>';
-                    data+=' </div>';
-                    data+=' </div>';
+                    if(cal*4+index<res.data.length){
+                        data+='  <!--        单个-->';
+                        data+=' <div class="layui-col-md3" style="height: 300px;padding: 10px;">';
+                        data+=' <div class="layui-card">';
+                        data+=' <div class="layui-card-header" style="height: 50px">';
+                        data+=' <div class="layui-col-md3">';
+                        data+=' <img src="../images/rctj8.jpg" style="height: 40px;width: 40px;border-radius: 50%;margin-top: 5px">';
+                        data+=' </div>';
+                        data+=' <div class="layui-col-md9" style="line-height: 50px;margin-top: 10px;"><a><p>'+res.data[cal*4+index].taskPublisherName+'</p></a>';
+                        data+=' </div>';
+                        data+=' </div>';
+                        data+=' <div class="layui-card-body" onclick="urlHtml('+res.data[cal*4+index].taskId+')">';
+                        data+=' <div class="layui-row">';
+                        data+=' <div style="width: 90%;height: 150px;margin: 0 auto;background-color: #00a2d4">';
+                        data+=' <img src="../images/ptyx4.jpg" style="height: 100%;width: 100%;align:center;">';
+                        data+=' </div>';
+                        data+=' </div>';
+                        data+=' <div class="layui-row" style="height: 40px;line-height: 40px;">';
+                        data+=' <div class="layui-col-md4" style="margin-left: 0px;">';
+                        data+=' <p style="color: #ef6119;"><strong>¥'+res.data[cal*4+index].taskMoney+'</strong></p>';
+                        data+=' </div>';
+                        data+=' <div class="layui-col-md8">';
+                        data+=' <p style="color: #919999;text-align: right"><strong>投标数量：765</strong></p>';
+                        data+=' </div>';
+                        data+=' </div>';
+                        data+=' <div class="layui-row">';
+                        data+=' <a><p style="font-size: 12px;" ><strong>'+res.data[cal*4+index].taskName+'</strong></p></a>';
+                        data+=' <input type="hidden" value="'+res.data[cal*4+index].taskId+'">';
+                        data+=' </div>';
+                        data+=' </div>';
+                        data+=' </div>';
+                        data+=' </div>';
+                    }
+
                 }
                 data+=' </div>';
             }

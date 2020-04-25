@@ -25,6 +25,8 @@ var queryMethodRole='/role';
 var queryMethodTalents='/talents';
 /*任务查询*/
 var queryMethodTask='/task';
+// 消息查询
+var queryMethodMsg='/msg';
 /*候选查询*/
 var queryMethodTaskwaitting='/taskwaitting';
 /*用户查询*/

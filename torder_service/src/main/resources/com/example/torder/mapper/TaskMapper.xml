@@ -37,13 +37,13 @@
     select a.*,
      b.key_name as taskTypeName,
      c.key_name as taskStatusName,
-     d.user_name as taskPublisherName,
-     e.user_name as taskAccepterName
+     d.talents_name as taskPublisherName,
+     e.talents_name as taskAccepterName
      from task_info a
      left join dics_info b on a.task_type=b.key_value and b.dics_code='TYPE'
-     left join dics_info c on a.task_status=c.key_value and c.dics_code='STATE'
-     left join user_info d on a.task_publisher=d.code
-     left join user_info e on a.task_accepter=e.code
+     left join dics_info c on a.task_status=c.key_value and c.dics_code='TASKSTATE'
+     left join talents_info d on a.task_publisher=d.code
+     left join talents_info e on a.task_accepter=e.code
      left join category_info f on a.task_classify=f.c_code
      where 1=1
      <if test="taskStatus !=null">

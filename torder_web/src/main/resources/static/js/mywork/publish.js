@@ -42,14 +42,15 @@ getCategoryParentSelectOption("select[name='parent']");
 let eventObj = {
     "taskName":'',
     "taskType":0,
-    "taskStatus":'',
-    "taskPublisher":layui.sessionData('user').user.userId,
+    "taskStatus":1,
+    "taskPublisher":layui.sessionData('user').user.code,
     "taskClassify":'',
     "taskMoney":'',
     "taskStart":'',
     "taskEnd":''
 }
-$("#btnok").onclick=function () {
+$("#btnok").click(function () {
+    console.log(3333)
     eventObj.taskName=$("#taskName").val();
     eventObj.taskClassify=$("#children").val();
     eventObj.taskDes=$("#taskDes").val();
@@ -60,15 +61,16 @@ $("#btnok").onclick=function () {
         type: "post",
         url: queryUrl + queryMethodTask+addMethod,
         aynsc:false,
+        contentType: "application/json;charset=UTF-8",
         data:JSON.stringify(eventObj),
         success: function (res) {
             if (res==1){
-                layui.msg("提交成功，请等待审核")
+                layer.msg("提交成功，请等待审核")
             }
             else {
-                layui.msg("提交失败")
+                layer.msg("提交失败")
             }
         }
     });
-}
+});
 

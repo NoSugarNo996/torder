@@ -3,6 +3,7 @@ package com.example.torder.service;
 import com.cetccity.common.base.util.BeanUtil;
 import com.example.torder.domain.Order;
 import com.example.torder.mapper.OrderMapper;
+import com.example.torder.util.UUIDUtil;
 import com.example.torder.vo.OrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public int add(OrderVo obj) {
+        obj.setCode(UUIDUtil.getUUID());
         return orderMapper.insertSelective(BeanUtil.copy(obj, Order.class));
     }
 

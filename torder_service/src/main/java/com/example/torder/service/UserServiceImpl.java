@@ -3,6 +3,7 @@ package com.example.torder.service;
 import com.cetccity.common.base.util.BeanUtil;
 import com.example.torder.domain.User;
 import com.example.torder.mapper.UserMapper;
+import com.example.torder.util.UUIDUtil;
 import com.example.torder.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public int add(UserVo obj) {
+        obj.setCode(UUIDUtil.getUUID());
         return userMapper.insertSelective(BeanUtil.copy(obj, User.class));
     }
 

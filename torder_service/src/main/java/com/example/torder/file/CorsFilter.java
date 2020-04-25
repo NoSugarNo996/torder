@@ -3,12 +3,13 @@ package com.example.torder.file;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author WangShuai
- * @date 2016/7/30 10:09 上午
+ * @author huangjiali
+ * @date
  */
 @Component
 public class CorsFilter implements Filter {
@@ -19,12 +20,19 @@ public class CorsFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        HttpServletRequest request=(HttpServletRequest) servletRequest;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "x-requested-with,content-type");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with,content-type,userId,token");
+        response.setHeader("X-Frame-Options", "SAMEORIGIN");
 //        response.setHeader("content-type:application","/json;charset=utf8");
 //        response.setHeader("Access-Control-Allow-Credentials","true");
+        if (request.getMethod().equals("OPTIONS")) {
+            response.setStatus(200);
+           // HttpUtil.setResponse(response, HttpStatus.OK.value(), null);
+            return;
+        }
 
         filterChain.doFilter(servletRequest, servletResponse);
     }

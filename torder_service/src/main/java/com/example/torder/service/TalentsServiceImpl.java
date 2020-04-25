@@ -3,6 +3,7 @@ package com.example.torder.service;
 import com.cetccity.common.base.util.BeanUtil;
 import com.example.torder.domain.Talents;
 import com.example.torder.mapper.TalentsMapper;
+import com.example.torder.util.UUIDUtil;
 import com.example.torder.vo.TalentsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,8 @@ public class TalentsServiceImpl implements TalentsService{
 
     @Override
     public int add(TalentsVo obj) {
-        return talentsMapper.insertSelective(BeanUtil.copy(obj, Talents.class));
+       obj.setCode(UUIDUtil.getUUID());
+       return talentsMapper.insertSelective(BeanUtil.copy(obj, Talents.class));
     }
 
     @Override

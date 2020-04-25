@@ -3,6 +3,7 @@ package com.example.torder.service;
 import com.cetccity.common.base.util.BeanUtil;
 import com.example.torder.domain.Advertising;
 import com.example.torder.mapper.AdvertisingMapper;
+import com.example.torder.util.UUIDUtil;
 import com.example.torder.vo.AdvertisingVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class AdvertisingServiceImpl implements AdvertisingService{
 
     @Override
     public int add(AdvertisingVo obj) {
+        obj.setCode(UUIDUtil.getUUID());
         return advertisingMapper.insertSelective(BeanUtil.copy(obj, Advertising.class));
     }
 

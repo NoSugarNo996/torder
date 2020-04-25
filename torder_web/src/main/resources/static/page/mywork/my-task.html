@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/layuimini.css" media="all">
+    <title>Title</title>
+</head>
+<style type="text/css">
+
+    .pagetion {
+        width: 100%;
+        position: relative;
+    }
+
+    .pagetion .layui-laypage {
+        position: absolute;
+        left: 50%;
+        top: 5px;
+        transform: translateX(-50%);
+        white-space: nowrap;
+    }
+    .selectTalents :hover {
+        background: #87c0f6;
+    }
+</style>
+<body style="background-color: #f6ecc4">
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin: 30px;background-color: white">
+    <ul class="layui-tab-title">
+        <li class="layui-this">项目记录</li>
+        <li>已投标</li>
+        <li>项目交付中</li>
+        <li>交易待审核</li>
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width:50px">序号</th>
+                    <th style="width:225px">创建时间</th>
+                    <th style="width:630px">项目名称</th>
+                    <th style="width:130px">项目金额</th>
+                    <th style="width:130px">发布者</th>
+                    <th style="width:150px">项目状态</th>
+                    <th style="width:330px">操作</th>
+
+                </tr>
+                </thead>
+                <tbody id="eventTable1">
+                </tbody>
+            </table>
+
+            <div id="pagetion1" class="pagetion"></div>
+        </div>
+        <div class="layui-tab-item ">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width:50px">序号</th>
+                    <th style="width:225px">创建时间</th>
+                    <th style="width:630px">项目名称</th>
+                    <th style="width:130px">项目金额</th>
+                    <th style="width:130px">接收人</th>
+                    <th style="width:150px">项目状态</th>
+                    <th style="width:330px">操作</th>
+
+                </tr>
+                </thead>
+                <tbody id="eventTable2" >
+                </tbody>
+            </table>
+            <div id="pagetion2" class="pagetion"></div>
+        </div>
+        <div class="layui-tab-item ">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width:50px">序号</th>
+                    <th style="width:225px">创建时间</th>
+                    <th style="width:630px">项目名称</th>
+                    <th style="width:130px">项目金额</th>
+                    <th style="width:130px">接收人</th>
+                    <th style="width:150px">项目状态</th>
+                    <th style="width:330px">操作</th>
+
+                </tr>
+                </thead>
+                <tbody id="eventTable4">
+                </tbody>
+            </table>
+            <div id="pagetion4" class="pagetion"></div>
+        </div>
+        <div class="layui-tab-item ">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width:50px">序号</th>
+                    <th style="width:225px">创建时间</th>
+                    <th style="width:630px">项目名称</th>
+                    <th style="width:130px">项目金额</th>
+                    <th style="width:130px">接收人</th>
+                    <th style="width:150px">项目状态</th>
+                    <th style="width:330px">操作</th>
+
+                </tr>
+                </thead>
+                <tbody id="eventTable5">
+                </tbody>
+            </table>
+            <div id="pagetion5" class="pagetion"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--查看详情-->
+<div id="info" style="display:none;width: 700px" >
+    <form class="layui-form" lay-filter="update">
+        <div class="formBody">
+            <div class="left-form">
+                <fieldset class="layui-elem-field">
+                    <legend>
+                        <div class="title">项目信息</div>
+                    </legend>
+                    <div class="layui-field-box">
+                        <div class="sendInfo">
+                            <!-- 部门信息 -->
+                            <div class=" layui-form-item" style="font-size: 16px;line-height: 50px">
+                                <div class="layui-row">
+                                    <label class=" required">项目名称:</label>
+                                    <label id="taskName" name="taskName" ></label>
+                                </div>
+                                <div class="layui-row">
+                                    <div class="layui-col-md4">
+                                    <label class="">项目状态：</label>
+                                    <label id="taskStatus"  name="taskStatus" ></label>
+                                    </div>
+                                   <div class="layui-col-md4">
+                                    <label class="">项目发布者：</label>
+                                    <label id="taskPublisher" name="taskPublisher" ></label>
+
+                                     </div>
+
+                                    <div class="layui-col-md4">
+                                    <label >项目接收者:</label>
+                                    <label id="taskAccepter" name="taskAccepter" ></label>
+                                    </div>
+                                </div>
+                                <div class="layui-row">
+                                    <label >项目简介：</label>
+                                    <label id="taskDes"  name="taskDes" ></label>
+                                </div>
+                                <div class="layui-row">
+                                    <label >项目文件：</label>
+                                    <label id="taskFile" name="taskFile" ></label>
+                                </div>
+                                <div class="layui-row">
+                                    <label >项目开始时间：</label>
+                                    <label id="taskStart" name="taskStart" ></label>
+                                </div>
+                                <div class="layui-row">
+                                    <label>项目结束时间：</label>
+                                    <label id="taskEnd" name="taskEnd" ></label>
+
+                                </div>
+
+                                <div class="layui-row">
+                                    <label >项目金额：</label>
+                                    <label id="taskMoney" name="taskMoney" ></label>
+                                </div>
+
+                            </div>
+                        </div>
+                </fieldset>
+            </div>
+        </div>
+
+    </form>
+</div>
+<!--完成任务-->
+<div id="finish" style="display:none;width: 900px" >
+
+</div>
+<!--选取人才-->
+<div id="selecttalents" style="display:none;width: 900px" >
+    <form class="layui-form" lay-filter="update">
+
+        <div class="formBody">
+            <div class="left-form">
+                <fieldset class="layui-elem-field">
+                    <legend>
+                        <div class="title">选取人才</div>
+                    </legend>
+                    <div class=" layui-form-item">
+
+                        <input type="text" name="taskFile"  style="display: none;">
+
+
+                        <label class="layui-form-label">附件上传</label>
+                        <div class="layui-input-block" id="uploaded" style="display: none;">
+                            <div class="layui-upload">
+                                <div class="layui-upload-list">
+                                    <table class="layui-table">
+                                        <thead>
+                                        <tr>
+                                            <th>已上传文件</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="uploadedList"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-input-block">
+                            <div class="layui-upload">
+                                <button type="button" class="layui-btn layui-btn-normal"
+                                        id="testList">选择文件</button><span>(单个附件大小<=10M)</span>
+                                <div class="layui-upload-list">
+                                    <table class="layui-table">
+                                        <thead>
+                                        <tr>
+                                            <th>文件名</th>
+                                            <th>大小</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="demoList"></tbody>
+                                    </table>
+                                </div>
+                                <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="../../lib/layui-v2.5.4/layui.js"></script>
+<script src="../../js/api.js?"></script>
+
+<script src="../../js/config.js"></script>
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+
+        //…
+    });
+</script>
+<script src="../../js/mywork/my-task.js"></script>
+</body>
+
+</html>

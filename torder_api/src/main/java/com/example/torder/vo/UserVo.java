@@ -12,6 +12,15 @@ import java.util.Date;
  * @create: 2019-12-25 14:20
  **/
 public class UserVo extends BaseVo implements Serializable {
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    private String token;
     private Integer aud;
 
     public Integer getAud() {

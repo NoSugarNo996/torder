@@ -3,6 +3,7 @@ package com.example.torder.service;
 import com.cetccity.common.base.util.BeanUtil;
 import com.example.torder.domain.Task;
 import com.example.torder.mapper.TaskMapper;
+import com.example.torder.util.UUIDUtil;
 import com.example.torder.vo.TaskVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public int add(TaskVo obj) {
+        obj.setCode(UUIDUtil.getUUID());
         return taskMapper.insertSelective(BeanUtil.copy(obj, Task.class));
     }
 

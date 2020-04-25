@@ -3,6 +3,7 @@ package com.example.torder.service;
 import com.cetccity.common.base.util.BeanUtil;
 import com.example.torder.domain.Favorites;
 import com.example.torder.mapper.FavoritesMapper;
+import com.example.torder.util.UUIDUtil;
 import com.example.torder.vo.FavoritesVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class FavoritesServiceImpl implements FavoritesService{
 
     @Override
     public int add(FavoritesVo obj) {
+        obj.setCode(UUIDUtil.getUUID());
         return favoritesMapper.insertSelective(BeanUtil.copy(obj, Favorites.class));
     }
 

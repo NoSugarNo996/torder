@@ -3,6 +3,7 @@ package com.example.torder.service;
 import com.cetccity.common.base.util.BeanUtil;
 import com.example.torder.domain.TaskWaitting;
 import com.example.torder.mapper.TaskWaittingMapper;
+import com.example.torder.util.UUIDUtil;
 import com.example.torder.vo.TaskWaittingVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class TaskWaittingServiceImpl implements TaskWaittingService{
 
     @Override
     public int add(TaskWaittingVo obj) {
+        obj.setCode(UUIDUtil.getUUID());
         return taskWaittingMapper.insertSelective(BeanUtil.copy(obj, TaskWaitting.class));
     }
 
