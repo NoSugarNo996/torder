@@ -4,9 +4,9 @@
 if (location.href.lastIndexOf('/login') == -1) {
     if (!layui.sessionData('user').user) {
         if (location.href.indexOf("backStage/") > 0) {
-            location.href = '/torder/torder_web/static/page/login.html';
+            window.location.href = '/torder/torder_web/static/page/login.html';
         } else {
-            location.href = '/torder/torder_web/static/page/login.html';
+            window.location.href = '/torder/torder_web/static/page/login.html';
         }
     }
     var userId = layui.sessionData('user').user.userId;
@@ -94,13 +94,13 @@ layui.use(['layer'], function () {
                     btn: ['确定'],
                     yes: function () {
 
-                            location.href = '/torder/torder_web/static/page/login.html';
+                        window.location.href = '/torder/torder_web/static/page/login.html';
 
                     }
                 });
                 setTimeout(() => {
-                   
-                location.href = '/torder/torder_web/static/page/login.html';
+
+                    window.location.href = '/torder/torder_web/static/page/login.html';
             
         }, 20000);
         break;

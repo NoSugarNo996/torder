@@ -210,50 +210,43 @@
     "other": {
       "title": "动态圈",
       "icon": "fa fa-slideshare",
+      "href": "../../page/mywork/dynamic-state.html",
       "child": [
         {
-          "title": "多级菜单",
+          "title": "好友管理",
           "href": "",
           "icon": "fa fa-meetup",
           "target": "",
           "child": [
             {
-              "title": "按钮1",
-              "href": "page/button.html",
+              "title": "通讯录",
+              "href": "../../page/mywork/call-all.html",
               "icon": "fa fa-calendar",
-              "target": "_self",
-              "child": [
-                {
-                  "title": "按钮2",
-                  "href": "page/button.html",
-                  "icon": "fa fa-snowflake-o",
-                  "target": "_self",
-                  "child": [
-                    {
-                      "title": "按钮3",
-                      "href": "page/button.html",
-                      "icon": "fa fa-snowflake-o",
-                      "target": "_self"
-                    },
-                    {
-                      "title": "表单4",
-                      "href": "page/form.html",
-                      "icon": "fa fa-calendar",
-                      "target": "_self"
-                    }
+              "target": "_self"
+            },
+            {
+              "title": "我的关注",
+              "href": "../../page/mywork/my-fav-people-all.html",
+              "icon": "fa fa-snowflake-o",
+              "target": "_self"
+            },
+            {
+              "title": "我的粉丝",
+              "href": "../../page/mywork/my-be-fav-people-all.html",
+              "icon": "fa fa-snowflake-o",
+              "target": "_self"
+            }
                   ]
                 }
+        , {
+          "title": "动态",
+          "href": "../../page/mywork/dynamic-state.html",
+          "icon": "fa fa-meetup",
+          "target": ""
+
+        }
               ]
             }
-          ]
-        },
-        {
-          "title": "失效菜单",
-          "href": "page/error.html",
-          "icon": "fa fa-superpowers",
-          "target": "_self"
         }
-      ]
+
     }
-  }
-}

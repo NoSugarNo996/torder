@@ -14,6 +14,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 import java.util.Date;
 
@@ -44,5 +45,10 @@ public class TorderServiceApplication extends WebSecurityConfigurerAdapter imple
         SimpleModule module = new SimpleModule();
         module.addDeserializer(Date.class, new DateDeserializers.DateDeserializer());
         return module;
+    }
+
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter(){
+        return new ServerEndpointExporter();
     }
 }
