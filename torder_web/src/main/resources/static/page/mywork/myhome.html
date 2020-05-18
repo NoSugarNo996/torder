@@ -12,105 +12,121 @@
     <div class="layui-col-md4" style="border-right: 1px solid #666966;padding: 20px;">
         <div style="margin:0 auto;height:100px;width:100px;background-color: #af1714;border: 2px solid #af1714;border-radius: 50%;text-align: center;font-size: 20px;color: #ffffff;">
             <div class="layui-row" style="line-height: 50px">余额</div>
-            <div class="layui-row" style="line-height: 50px">88.00元</div>
+            <div class="layui-row" style="line-height: 50px" ><span id="money">88.00</span>元</div>
         </div>
         </div>
     <div class="layui-col-md8">
-        <div class="layui-col-md2">
+        <a href="/torder/torder_web/static/page/mywork/my-task.html">
+            <div class="layui-col-md2">
             <div class="layui-row" style="height:60px;margin: 0 auto;padding-top:20px;text-align: center;line-height: 50px">
                 <strong><i class="layui-icon layui-icon-form" style="font-size: 50px; color: #243d11;margin: 0 auto"></i></strong>
             </div>
             <div class="layui-row" style="height:30px;margin: 0 auto;text-align: center;line-height: 30px;">参与的项目</div>
         </div>
+        </a>
+        <a href="/torder/torder_web/static/page/mywork/fav-task.html">
         <div class="layui-col-md2">
             <div class="layui-row" style="height:60px;margin: 0 auto;padding-top:20px;text-align: center;line-height: 50px">
-                <strong><i class="fa fa-gavel " style="color: #243d11;font-size: 50px;"></i> </strong>
+                <strong><i class="fa fa-star " style="color: #243d11;font-size: 50px;"></i> </strong>
             </div>
-            <div class="layui-row" style="height:30px;margin: 0 auto;text-align: center;line-height: 30px;">中标的项目</div>
+            <div class="layui-row" style="height:30px;margin: 0 auto;text-align: center;line-height: 30px;">收藏的项目</div>
         </div>
+        </a>
+        <a href="/torder/torder_web/static/page/mywork/publish-task.html">
         <div class="layui-col-md2">
             <div class="layui-row" style="height:60px;margin: 0 auto;padding-top:20px;text-align: center;line-height: 50px">
                 <strong><i class="layui-icon layui-icon-tabs" style="font-size: 50px; color: #243d11;margin: 0 auto"></i></strong>
             </div>
-            <div class="layui-row" style="height:30px;margin: 0 auto;text-align: center;line-height: 30px;">进行中的项目</div>
+            <div class="layui-row" style="height:30px;margin: 0 auto;text-align: center;line-height: 30px;">发布的项目</div>
         </div>
+        </a>
+        <a href="/torder/torder_web/static/page/mywork/trade-h.html">
         <div class="layui-col-md2">
             <div class="layui-row" style="height:60px;margin: 0 auto;padding-top:20px;text-align: center;line-height: 50px">
                 <strong><i class="layui-icon layui-icon-log" style="font-size: 50px; color: #243d11;margin: 0 auto"></i></strong>
             </div>
             <div class="layui-row" style="height:30px;margin: 0 auto;text-align: center;line-height: 30px;">交易记录</div>
         </div>
+        </a>
+        <a href="/torder/torder_web/static/page/mywork/push.html">
         <div class="layui-col-md2">
             <div class="layui-row" style="height:60px;margin: 0 auto;padding-top:20px;text-align: center;line-height: 50px">
                 <strong><i class="fa fa-money " style="color: #243d11;font-size: 50px;"></i> </strong>
             </div>
             <div class="layui-row" style="height:30px;margin: 0 auto;text-align: center;line-height: 30px;">提现</div>
         </div>
+        </a>
+        <a href="/torder/torder_web/static/page/mywork/pull.html">
         <div class="layui-col-md2">
             <div class="layui-row" style="height:60px;margin: 0 auto;padding-top:20px;text-align: center;line-height: 50px">
                 <strong><i class="fa fa-credit-card " style="color: #243d11;font-size: 50px;"></i> </strong>
             </div>
             <div class="layui-row" style="height:30px;margin: 0 auto;text-align: center;line-height: 30px;">充值</div>
         </div>
+        </a>
     </div>
 </div>
 <br>
 <div class="layui-row" style="background-color: white">
     <div class="layui-row" style="font-size: 20px;padding: 20px">最新动态 <hr class="layui-bg-gray"></div>
-    <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
-        <div class="layui-col-md1" style="color:red">¥700</div>
-        <div class="layui-col-md3">创意设计公司logo设计标志设计</div>
-        <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">高级设计师——董羟<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
-      <br>
-        <hr class="layui-bg-gray">
+    <div id="pingtai">
+        <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
+            <div class="layui-col-md1" style="color:red">¥700</div>
+            <div class="layui-col-md3">创意设计公司logo设计标志设计</div>
+            <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">高级设计师——董羟<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
+            <br>
+            <hr class="layui-bg-gray">
+        </div>
+        <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
+            <div class="layui-col-md1" style="color:red">¥5000</div>
+            <div class="layui-col-md3">网络购物直播APP可打赏可评论</div>
+            <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">高级项目工作室<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
+            <br>
+            <hr class="layui-bg-gray">
+        </div>
+        <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
+            <div class="layui-col-md1" style="color:red">¥1500</div>
+            <div class="layui-col-md3">公司团建活动策划案</div>
+            <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">卿霏<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
+            <br>
+            <hr class="layui-bg-gray">
+        </div>
+        <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
+            <div class="layui-col-md1" style="color:red">¥1000</div>
+            <div class="layui-col-md3">房屋设计装饰室内设计70平米</div>
+            <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">鹏飞装饰工程<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
+            <br>
+            <hr class="layui-bg-gray">
+        </div>
+        <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
+            <div class="layui-col-md1" style="color:red">¥2000</div>
+            <div class="layui-col-md3">公益慈善项目LOGO设计</div>
+            <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">友来广告公司<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
+            <br>
+            <hr class="layui-bg-gray">
+        </div>
+        <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
+            <div class="layui-col-md1" style="color:red">¥520</div>
+            <div class="layui-col-md3">商标设计创意设计</div>
+            <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">820广告设计<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
+            <br>
+            <hr class="layui-bg-gray">
+        </div>
+        <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
+            <div class="layui-col-md1" style="color:red">¥500</div>
+            <div class="layui-col-md3">LOGO设计</div>
+            <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">插画师古板<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
+            <br>
+            <hr class="layui-bg-gray">
+        </div>
     </div>
-    <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
-        <div class="layui-col-md1" style="color:red">¥5000</div>
-        <div class="layui-col-md3">网络购物直播APP可打赏可评论</div>
-        <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">高级项目工作室<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
-        <br>
-        <hr class="layui-bg-gray">
-    </div>
-    <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
-        <div class="layui-col-md1" style="color:red">¥1500</div>
-        <div class="layui-col-md3">公司团建活动策划案</div>
-        <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">卿霏<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
-        <br>
-        <hr class="layui-bg-gray">
-    </div>
-    <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
-        <div class="layui-col-md1" style="color:red">¥1000</div>
-        <div class="layui-col-md3">房屋设计装饰室内设计70平米</div>
-        <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">鹏飞装饰工程<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
-        <br>
-        <hr class="layui-bg-gray">
-    </div>
-    <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
-        <div class="layui-col-md1" style="color:red">¥2000</div>
-        <div class="layui-col-md3">公益慈善项目LOGO设计</div>
-        <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">友来广告公司<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
-        <br>
-        <hr class="layui-bg-gray">
-    </div>
-    <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
-        <div class="layui-col-md1" style="color:red">¥520</div>
-        <div class="layui-col-md3">商标设计创意设计</div>
-        <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">820广告设计<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
-        <br>
-        <hr class="layui-bg-gray">
-    </div>
-    <div class="layui-row" style="padding-left: 30px;padding-right: 30px;font-size: 17px">
-        <div class="layui-col-md1" style="color:red">¥500</div>
-        <div class="layui-col-md3">LOGO设计</div>
-        <div class="layui-col-md7" style="text-align: right;margin-right: 10px;color: #818581;">插画师古板<span style="color: #ef6119">&nbsp;&nbsp;&nbsp;正在发布</span></div>
-        <br>
-        <hr class="layui-bg-gray">
-    </div>
+
 </div>
 <br>
 <div class="layui-row" style="background-color: #f6b794;height: 700px;">
     <div class="layui-row" style="font-size: 20px;padding-top: 20px;padding-left: 20px">热门招标 <hr class="layui-bg-gray"></div>
-    <div class="layui-row" style="height: 310px;">
+    <div id="lunbo">
+        <div class="layui-row" style="height: 310px;">
         <!--              单个-->
         <div class="layui-col-md3" style="height: 300px;padding: 10px;">
             <div class="layui-card" style="border-radius: 5%">
@@ -230,128 +246,133 @@
         </div>
 
     </div>
-    <div class="layui-row" style="height: 310px;margin-top: 10px;">
-        <!--              单个-->
-        <div class="layui-col-md3" style="height: 300px;padding: 10px;">
-            <div class="layui-card" style="border-radius: 5%">
-                <div class="layui-card-header" style="height: 50px">
-                    <div class="layui-col-md3"><img src="../../images/1.png"
-                                                    style="height: 40px;width: 40px;border-radius: 50%;margin-top: 5px">
-                    </div>
-                    <div class="layui-col-md9" style="line-height: 50px;margin-top: 10px;"><a><p>光荣网络光荣文创</p></a>
-                    </div>
-                </div>
-                <div class="layui-card-body" >
-                    <div class="layui-row">
-                        <div style="width: 90%;height: 150px;margin: 0 auto;">
-                            <img src="../../images/case-logo001.png" style="height: 100%;width: 100%;align:center;">
+        <div class="layui-row" style="height: 310px;margin-top: 10px;">
+            <!--              单个-->
+            <div class="layui-col-md3" style="height: 300px;padding: 10px;">
+                <div class="layui-card" style="border-radius: 5%">
+                    <div class="layui-card-header" style="height: 50px">
+                        <div class="layui-col-md3"><img src="../../images/1.png"
+                                                        style="height: 40px;width: 40px;border-radius: 50%;margin-top: 5px">
+                        </div>
+                        <div class="layui-col-md9" style="line-height: 50px;margin-top: 10px;"><a><p>光荣网络光荣文创</p></a>
                         </div>
                     </div>
-                    <div class="layui-row" style="height: 40px;line-height: 40px;">
-                        <div class="layui-col-md4" style="margin-left: 0px;">
-                            <p style="color: #ef6119;"><strong>¥1200</strong></p>
+                    <div class="layui-card-body" >
+                        <div class="layui-row">
+                            <div style="width: 90%;height: 150px;margin: 0 auto;">
+                                <img src="../../images/case-logo001.png" style="height: 100%;width: 100%;align:center;">
+                            </div>
                         </div>
-                        <div class="layui-col-md8">
-                            <p style="color: #919999;text-align: right"><strong>成交量：3243</strong></p>
+                        <div class="layui-row" style="height: 40px;line-height: 40px;">
+                            <div class="layui-col-md4" style="margin-left: 0px;">
+                                <p style="color: #ef6119;"><strong>¥1200</strong></p>
+                            </div>
+                            <div class="layui-col-md8">
+                                <p style="color: #919999;text-align: right"><strong>成交量：3243</strong></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="layui-row">
-                        <a><p style="font-size: 12px;"><strong>公司logo设计标志设计动态卡通logo设计商标设计光荣文创</strong></p></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md3" style="height: 300px;padding: 10px;">
-            <div class="layui-card" style="border-radius: 5%">
-                <div class="layui-card-header" style="height: 50px">
-                    <div class="layui-col-md3"><img src="../../images/1.png"
-                                                    style="height: 40px;width: 40px;border-radius: 50%;margin-top: 5px">
-                    </div>
-                    <div class="layui-col-md9" style="line-height: 50px;margin-top: 10px;"><a><p>光荣网络光荣文创</p></a>
-                    </div>
-                </div>
-                <div class="layui-card-body" >
-                    <div class="layui-row">
-                        <div style="width: 90%;height: 150px;margin: 0 auto;">
-                            <img src="../../images/case-logo001.png" style="height: 100%;width: 100%;align:center;">
+                        <div class="layui-row">
+                            <a><p style="font-size: 12px;"><strong>公司logo设计标志设计动态卡通logo设计商标设计光荣文创</strong></p></a>
                         </div>
-                    </div>
-                    <div class="layui-row" style="height: 40px;line-height: 40px;">
-                        <div class="layui-col-md4" style="margin-left: 0px;">
-                            <p style="color: #ef6119;"><strong>¥1200</strong></p>
-                        </div>
-                        <div class="layui-col-md8">
-                            <p style="color: #919999;text-align: right"><strong>成交量：3243</strong></p>
-                        </div>
-                    </div>
-                    <div class="layui-row">
-                        <a><p style="font-size: 12px;"><strong>公司logo设计标志设计动态卡通logo设计商标设计光荣文创</strong></p></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="layui-col-md3" style="height: 300px;padding: 10px;">
-            <div class="layui-card" style="border-radius: 5%">
-                <div class="layui-card-header" style="height: 50px">
-                    <div class="layui-col-md3"><img src="../../images/1.png"
-                                                    style="height: 40px;width: 40px;border-radius: 50%;margin-top: 5px">
-                    </div>
-                    <div class="layui-col-md9" style="line-height: 50px;margin-top: 10px;"><a><p>光荣网络光荣文创</p></a>
-                    </div>
-                </div>
-                <div class="layui-card-body" >
-                    <div class="layui-row">
-                        <div style="width: 90%;height: 150px;margin: 0 auto;">
-                            <img src="../../images/case-logo001.png" style="height: 100%;width: 100%;align:center;">
+            <div class="layui-col-md3" style="height: 300px;padding: 10px;">
+                <div class="layui-card" style="border-radius: 5%">
+                    <div class="layui-card-header" style="height: 50px">
+                        <div class="layui-col-md3"><img src="../../images/1.png"
+                                                        style="height: 40px;width: 40px;border-radius: 50%;margin-top: 5px">
+                        </div>
+                        <div class="layui-col-md9" style="line-height: 50px;margin-top: 10px;"><a><p>光荣网络光荣文创</p></a>
                         </div>
                     </div>
-                    <div class="layui-row" style="height: 40px;line-height: 40px;">
-                        <div class="layui-col-md4" style="margin-left: 0px;">
-                            <p style="color: #ef6119;"><strong>¥1200</strong></p>
+                    <div class="layui-card-body" >
+                        <div class="layui-row">
+                            <div style="width: 90%;height: 150px;margin: 0 auto;">
+                                <img src="../../images/case-logo001.png" style="height: 100%;width: 100%;align:center;">
+                            </div>
                         </div>
-                        <div class="layui-col-md8">
-                            <p style="color: #919999;text-align: right"><strong>成交量：3243</strong></p>
+                        <div class="layui-row" style="height: 40px;line-height: 40px;">
+                            <div class="layui-col-md4" style="margin-left: 0px;">
+                                <p style="color: #ef6119;"><strong>¥1200</strong></p>
+                            </div>
+                            <div class="layui-col-md8">
+                                <p style="color: #919999;text-align: right"><strong>成交量：3243</strong></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="layui-row">
-                        <a><p style="font-size: 12px;"><strong>公司logo设计标志设计动态卡通logo设计商标设计光荣文创</strong></p></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md3" style="height: 300px;padding: 10px;">
-            <div class="layui-card" style="border-radius: 5%">
-                <div class="layui-card-header" style="height: 50px">
-                    <div class="layui-col-md3"><img src="../../images/1.png"
-                                                    style="height: 40px;width: 40px;border-radius: 50%;margin-top: 5px">
-                    </div>
-                    <div class="layui-col-md9" style="line-height: 50px;margin-top: 10px;"><a><p>光荣网络光荣文创</p></a>
-                    </div>
-                </div>
-                <div class="layui-card-body" >
-                    <div class="layui-row">
-                        <div style="width: 90%;height: 150px;margin: 0 auto;">
-                            <img src="../../images/case-logo001.png" style="height: 100%;width: 100%;align:center;">
+                        <div class="layui-row">
+                            <a><p style="font-size: 12px;"><strong>公司logo设计标志设计动态卡通logo设计商标设计光荣文创</strong></p></a>
                         </div>
-                    </div>
-                    <div class="layui-row" style="height: 40px;line-height: 40px;">
-                        <div class="layui-col-md4" style="margin-left: 0px;">
-                            <p style="color: #ef6119;"><strong>¥1200</strong></p>
-                        </div>
-                        <div class="layui-col-md8">
-                            <p style="color: #919999;text-align: right"><strong>成交量：3243</strong></p>
-                        </div>
-                    </div>
-                    <div class="layui-row">
-                        <a><p style="font-size: 12px;"><strong>公司logo设计标志设计动态卡通logo设计商标设计光荣文创</strong></p></a>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="layui-col-md3" style="height: 300px;padding: 10px;">
+                <div class="layui-card" style="border-radius: 5%">
+                    <div class="layui-card-header" style="height: 50px">
+                        <div class="layui-col-md3"><img src="../../images/1.png"
+                                                        style="height: 40px;width: 40px;border-radius: 50%;margin-top: 5px">
+                        </div>
+                        <div class="layui-col-md9" style="line-height: 50px;margin-top: 10px;"><a><p>光荣网络光荣文创</p></a>
+                        </div>
+                    </div>
+                    <div class="layui-card-body" >
+                        <div class="layui-row">
+                            <div style="width: 90%;height: 150px;margin: 0 auto;">
+                                <img src="../../images/case-logo001.png" style="height: 100%;width: 100%;align:center;">
+                            </div>
+                        </div>
+                        <div class="layui-row" style="height: 40px;line-height: 40px;">
+                            <div class="layui-col-md4" style="margin-left: 0px;">
+                                <p style="color: #ef6119;"><strong>¥1200</strong></p>
+                            </div>
+                            <div class="layui-col-md8">
+                                <p style="color: #919999;text-align: right"><strong>成交量：3243</strong></p>
+                            </div>
+                        </div>
+                        <div class="layui-row">
+                            <a><p style="font-size: 12px;"><strong>公司logo设计标志设计动态卡通logo设计商标设计光荣文创</strong></p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3" style="height: 300px;padding: 10px;">
+                <div class="layui-card" style="border-radius: 5%">
+                    <div class="layui-card-header" style="height: 50px">
+                        <div class="layui-col-md3"><img src="../../images/1.png"
+                                                        style="height: 40px;width: 40px;border-radius: 50%;margin-top: 5px">
+                        </div>
+                        <div class="layui-col-md9" style="line-height: 50px;margin-top: 10px;"><a><p>光荣网络光荣文创</p></a>
+                        </div>
+                    </div>
+                    <div class="layui-card-body" >
+                        <div class="layui-row">
+                            <div style="width: 90%;height: 150px;margin: 0 auto;">
+                                <img src="../../images/case-logo001.png" style="height: 100%;width: 100%;align:center;">
+                            </div>
+                        </div>
+                        <div class="layui-row" style="height: 40px;line-height: 40px;">
+                            <div class="layui-col-md4" style="margin-left: 0px;">
+                                <p style="color: #ef6119;"><strong>¥1200</strong></p>
+                            </div>
+                            <div class="layui-col-md8">
+                                <p style="color: #919999;text-align: right"><strong>成交量：3243</strong></p>
+                            </div>
+                        </div>
+                        <div class="layui-row">
+                            <a><p style="font-size: 12px;"><strong>公司logo设计标志设计动态卡通logo设计商标设计光荣文创</strong></p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+        </div>
     </div>
+
 </div>
 </body>
-<script src="../../js/api.js?"></script>
-
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../../lib/layui-v2.5.4/layui.js"></script>
+<script src="../../js/api.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/mywork/myhome.js"></script>
 </html>

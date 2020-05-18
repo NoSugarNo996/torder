@@ -6,10 +6,10 @@ let eventObj = {
     "talentsName":'',
     "pageSize": 10,
     "pageNum": numEvent,
-    "aud":1
+    "aud":2
 }
 getSelectOption("select[name='talentsNation']", 'NATION');
-getSelectOption("select[name='talentsStatue']", 'STATE');
+getSelectOption("select[name='talentsStatue']", 'TAlENTSSTATE');
 getSelectOption("select[name='talentsEducation']", 'EDUCATION');
 getSelectOption("select[name='talentsExperience']", 'EXPERIENCE');
 getSelectOption("select[name='talentsPoliticeStatus']", 'POLITICE');
@@ -130,7 +130,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "talentsId":eventObj.talentsId,
-                "talentsStatue":1,
+                "talentsStatue":2,
                 "audDes":eventObj.audDes
             }),
             success: function (res) {
@@ -161,7 +161,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "talentsId":eventObj.talentsId,
-                "talentsStatue":2,
+                "talentsStatue":0,
                 "audDes":eventObj.audDes
             }),
             success: function (res) {
@@ -183,16 +183,18 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
 
 //更新弹窗初始化
     $('body').on('click', '.checkDetail', function () {
+        let obj={
+            "talentsId": $(this).attr('value')
+        }
         $.ajax({
-            type: "get",
+            type: "post",
             url: queryUrl + queryMethodTalents + getInfoMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
-            data: {
-                "id": $(this).attr('value')
-            },
+            data: JSON.stringify(obj),
             success: function (res) {
-                form.val('update', {
+                $("#talentsInfo").empty().append('<a style="font-size: 15px;color: #00a2d4;text-align: center;line-height: 40px" href="' + queryUrl + '/file/'+res.talentsInfo + '" download="' + res.talentsInfo.split('/')[2] + '" target="_blank">下载</a>'),
+                    form.val('update', {
                     "talentsId":res.talentsId,
                     "talentsName": res.talentsName,
                     "userId": res.userId,
@@ -207,7 +209,6 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                     "talentsExperience": res.talentsExperienceName,
                     "talentsEmail": res.talentsEmail,
                     "talentsResume": res.talentsResume,
-                    "talentsInfo": res.talentsInfo,
                     "talentsStatue": res.talentsStatueName,
                     "talentsIdentity": res.talentsIdentity,
                     "talentsAlipay": res.talentsAlipay,
@@ -236,7 +237,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "talentsId": $(this).attr('value'),
-                "talentsStatue":2
+                "talentsStatue":0
             }),
             success: function (res) {
                 if (res==1){
@@ -245,6 +246,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                 }
                 else
                     layer.msg("审核失败");
+                getEventData();
 
             }
         });
@@ -258,7 +260,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "talentsId": $(this).attr('value'),
-                "talentsStatue":1
+                "talentsStatue":2
             }),
             success: function (res) {
                 if (res==1){
@@ -267,6 +269,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                 }
                 else
                     layer.msg("审核失败");
+                getEventData();
 
             }
         });

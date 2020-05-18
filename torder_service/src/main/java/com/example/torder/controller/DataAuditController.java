@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -31,13 +32,13 @@ public class DataAuditController implements DataAuditApi {
 
 
     @Override
-    public StartProcessVo start(@RequestBody Map<String, Object> map) {
-        StartProcessVo startProcessVo = dataAuditService.start(map);
+    public StartProcessVo start() {
+        StartProcessVo startProcessVo = dataAuditService.start();
         return startProcessVo;
     }
 
     @Override
-    public CompleteTaskVo completeTask(@RequestBody Map<String, Object> map) {
+    public CompleteTaskVo completeTask(@RequestBody Map<String, Object> map) throws IOException {
         CompleteTaskVo completeTaskVo = dataAuditService.completeTask(map);
         return completeTaskVo;
     }

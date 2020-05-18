@@ -28,7 +28,7 @@ public class TalentsServiceImpl implements TalentsService{
 
     @Override
     public int add(TalentsVo obj) {
-       obj.setCode(UUIDUtil.getUUID());
+       obj.setCode(obj.getUserId());
        return talentsMapper.insertSelective(BeanUtil.copy(obj, Talents.class));
     }
 

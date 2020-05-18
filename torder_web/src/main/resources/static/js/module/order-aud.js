@@ -6,13 +6,9 @@ let eventObj = {
     "orderName":'',
     "pageSize": 10,
     "pageNum": numEvent,
-    "aud":1
+    "orderStatus":0
 }
-getSelectOption("select[name='orderNation']", 'NATION');
 getSelectOption("select[name='orderStatus']", 'STATE');
-getSelectOption("select[name='orderEducation']", 'EDUCATION');
-getSelectOption("select[name='orderExperience']", 'EXPERIENCE');
-getSelectOption("select[name='orderPoliticeStatus']", 'POLITICE');
 //表单初始化
 layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     var form = layui.form,
@@ -151,7 +147,8 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "orderId":eventObj.orderId,
-                "orderStatus":2
+                "orderStatus":2,
+                "other1":$("#audDes").text()
             }),
             success: function (res) {
                 if (res==1){
@@ -184,8 +181,8 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             success: function (res) {
                 form.val('update', {
                     "orderId":res.orderId,
-                    "orderPartyA": res.orderPartyAName,
-                    "orderPartyB": res.orderPartyBName,
+                    "orderPartyAName": res.orderPartyAName,
+                    "orderPartyBName": res.orderPartyBName,
                     "orderStatus": res.orderStatusName,
                     "orderMoney": res.orderMoney,
                     "taskId": res.taskId,
@@ -215,7 +212,8 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify({
                 "orderId": $(this).attr('value'),
-                "orderStatus":2
+                "orderStatus":2,
+                "other1":$("#audDes").text()
             }),
             success: function (res) {
                 if (res==1){

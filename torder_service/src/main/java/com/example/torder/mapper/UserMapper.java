@@ -38,7 +38,7 @@ public interface UserMapper {
      *
      * @mbg.generated
      */
-    UserVo selectByPrimaryKey(Integer userId);
+    UserVo selectByPrimaryKey(String code);
 
     UserVo login(User record);
 

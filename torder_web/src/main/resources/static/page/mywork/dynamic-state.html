@@ -47,7 +47,7 @@
                     "pageSize": 10,
                     "pageNum": page,
                     // "taskPublisher":layui.sessionData('user').user.code,
-                    // "taskStatus":2
+                     "taskStatus":2
                 }
                 $.ajax({
                     type: "post",
@@ -64,7 +64,7 @@
                                     '        <div class="layui-col-md1" > <img src="../../images/user.jpg" style="height: 70px;width: 70px;border-radius: 50%;margin:15px;" ></div>\n' +
                                     '        <div class="layui-col-md7" style="margin-left:30px;line-height: 120px;font-size: 25px;text-align: left">'+res.data[i].taskPublisherName+'</div>\n' +
                                     '    </div>\n' +
-                                    '    <div class="layui-row" style="padding-left: 50px;font-size: 20px;" onclick=" window.location.href = \'/torder/torder_web/static/page/login.html\';">\n' +
+                                    '    <div class="layui-row" style="padding-left: 50px;font-size: 20px;" onclick="urlHtml('+res.data[i].taskId+')";">\n' +
                                     '        我发布了'+res.data[i].taskName+'的任务，快来看看吧！\n' +
                                     '        <div class="layui-row" style="padding-left: 50px;padding-right: 70px;margin-top:10px;font-size: 15px;color: #c0c6c0;font-family: \'Brush Script MT\'">\n' +
                                     +res.data[i].taskDes+
@@ -92,5 +92,10 @@
 
 
     });
+
+    function urlHtml(id){
+        var toUrl="http://localhost:63342/torder/torder_web/static/page/task.html?taskId="+id;
+        window.open(toUrl);
+    }
 </script>
 </html>

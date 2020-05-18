@@ -1,6 +1,7 @@
 package com.example.torder.service;
 
 import com.example.torder.vo.TaskVo;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -45,4 +46,6 @@ public interface TaskService {
      * @return
      */
     TaskVo getById(Integer id);
+
+    long getCount( TaskVo obj);
 }

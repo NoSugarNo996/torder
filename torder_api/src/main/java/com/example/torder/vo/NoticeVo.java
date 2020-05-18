@@ -1,10 +1,11 @@
 package com.example.torder.vo;
 
 import com.cetccity.common.base.vo.BaseVo;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
-
 /**
  * @program: torder
  * @description: 公告
@@ -44,6 +45,8 @@ public class NoticeVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date noticeStart;
 
     /**
@@ -55,6 +58,8 @@ public class NoticeVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date noticeEnd;
 
     /**

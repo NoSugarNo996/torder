@@ -11,6 +11,14 @@ import java.util.Date;
  * This class corresponds to the database table favorites_info
  */
 public class Favorites extends BasePo implements Serializable {
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     /**
      * Database Column Remarks:
      *   关注ID
@@ -20,6 +28,7 @@ public class Favorites extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
+    private String code;
     private Integer favId;
 
     /**

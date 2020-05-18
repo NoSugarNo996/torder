@@ -1,17 +1,23 @@
 
+var allUsers= new Array(); //定义一数组
+
 
 // 拦截非login页面
-if (location.href.lastIndexOf('/login') == -1) {
-    if (!layui.sessionData('user').user) {
-        if (location.href.indexOf("backStage/") > 0) {
-            window.location.href = '/torder/torder_web/static/page/login.html';
-        } else {
-            window.location.href = '/torder/torder_web/static/page/login.html';
-        }
-    }
-    var userId = layui.sessionData('user').user.userId;
-}
+function  lan() {
 
+    if (layui.sessionData('talents').talents.talentsStatue!=2) {
+        console.log("尚未开放权限，请先通过人才认证")
+            //利用对话框返回的值 （true 或者 false）
+            if (confirm("尚未开放权限，请先通过人才认证")) {
+                window.location.href = '/torder/torder_web/static/page/mywork/talents.html';
+            }
+         else {
+                window.location.href = '/torder/torder_web/static/page/mywork/myhome.html';
+            }
+    }
+
+
+};
 
 function getSelectOption(obj, type) {
     // 获取下拉框
@@ -82,6 +88,8 @@ function getToJson(params) {
 
 layui.use(['layer'], function () {
     var layer = layui.layer;
+
+
     // 设置状态码错误提示
     $(document).ajaxError(function (event, xhr, options, exc) {
         switch (xhr.status) {

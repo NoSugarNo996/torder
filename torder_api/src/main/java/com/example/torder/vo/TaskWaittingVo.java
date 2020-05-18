@@ -12,6 +12,15 @@ import java.util.Date;
  * @create: 2019-12-25 14:19
  **/
 public class TaskWaittingVo extends BaseVo implements Serializable {
+    public String getTalentsImg() {
+        return talentsImg;
+    }
+
+    public void setTalentsImg(String talentsImg) {
+        this.talentsImg = talentsImg;
+    }
+
+    private  String talentsImg;
     public String getTaskName() {
         return taskName;
     }

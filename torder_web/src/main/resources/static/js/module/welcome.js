@@ -12,6 +12,7 @@ $().ready(function() {
     getAudCompanyCount();
     getAudOrderCount();
     getAudTalentsCount();
+    getNoticeText();
 })
 //用户统计
 getUserCount = function() {
@@ -69,10 +70,10 @@ getTalentsCount = function() {
         }
     });
 }
-//订单统计
+//任务统计
 getOrderCount = function() {
     orderObj["orderStatus"] = 1;
-    var Url = queryUrl + queryMethodOrder + getCount;
+    var Url = queryUrl + queryMethodTask + getCount;
     console.log(Url);
     $.ajax({
         url : Url,
@@ -81,7 +82,7 @@ getOrderCount = function() {
         dataType : "JSON",
         contentType: "application/json;charset=UTF-8",
         success : function(result) {
-            $("#orderCount").text(result);
+            $("#taskCount").text(result);
         },
         error : function(e) {
             console.log(e);
@@ -90,8 +91,8 @@ getOrderCount = function() {
 }
 //待审人才统计
 getAudTalentsCount = function() {
-    talentsObj["talentsStatus"] = 0;
-    var Url = queryUrl + queryMethodTalents + getCount;
+    talentsObj["talentsStatue"] = 1;
+    var Url = queryUrl + queryMethodTalents + queryListMethod;
     console.log(Url);
     $.ajax({
         url : Url,
@@ -100,17 +101,17 @@ getAudTalentsCount = function() {
         dataType : "JSON",
         contentType: "application/json;charset=UTF-8",
         success : function(result) {
-            $("#audTalentCount").text(result);
+            $("#audTalentCount").text(result.size);
         },
         error : function(e) {
             console.log(e);
         }
     });
 }
-//待审公司统计
+//待审任务发布统计
 getAudCompanyCount = function() {
-    companyObj["companyStatus"] = 0;
-    var Url = queryUrl + queryMethodCompany + getCount;
+    companyObj["taskStatus"] = 1;
+    var Url = queryUrl + queryMethodTask + queryListMethod;
     console.log(Url);
     $.ajax({
         url : Url,
@@ -119,7 +120,7 @@ getAudCompanyCount = function() {
         dataType : "JSON",
         contentType: "application/json;charset=UTF-8",
         success : function(result) {
-            $("#audCompanyCount").text(result);
+            $("#audCompanyCount").text(result.size);
         },
         error : function(e) {
             console.log(e);
@@ -128,8 +129,8 @@ getAudCompanyCount = function() {
 }
 //待审交易统计
 getAudOrderCount = function() {
-    orderObj["orderStatus"] = 0;
-    var Url = queryUrl + queryMethodOrder + getCount;
+    orderObj["taskStatus"] = 5;
+    var Url = queryUrl +  queryMethodTask + queryListMethod;
     console.log(Url);
     $.ajax({
         url : Url,
@@ -138,17 +139,18 @@ getAudOrderCount = function() {
         dataType : "JSON",
         contentType: "application/json;charset=UTF-8",
         success : function(result) {
-            $("#audOrderCount").text(result);
+            $("#audOrderCount").text(result.size);
         },
         error : function(e) {
             console.log(e);
         }
     });
 }
-//待审广告统计
+//未处理消息统计
 getAudAdCount = function() {
-    adObj["adStatus"] = 0;
-    var Url = queryUrl + queryMethodAdvertising + getCount;
+    adObj["msgStatus"] = 0;
+    adObj["msgAccepter"] =layui.sessionData('user').user.code;
+    var Url = queryUrl + queryMethodMsg + queryListMethod;
     console.log(Url);
     $.ajax({
         url : Url,
@@ -157,10 +159,38 @@ getAudAdCount = function() {
         dataType : "JSON",
         contentType: "application/json;charset=UTF-8",
         success : function(result) {
-            $("#audAdCount").text(result);
+            $("#audAdCount").text(result.size);
         },
         error : function(e) {
             console.log(e);
         }
     });
+}
+//系统公告读取
+getNoticeText=function () {
+    let eventObj = {
+        "pageSize": 6,
+    }
+    $.ajax({
+        type: "post",
+        url: queryUrl + queryMethodNotice + queryListMethod,
+        dataType: "json",
+        contentType: "application/json;charset=UTF-8",
+        data: JSON.stringify(eventObj),
+        success: function (res) {
+
+            var data = '';
+            for (let index = 0; index < res.data.length; index++) {
+                data +='  <div class="layuimini-notice">\n' +
+                    '                            <div class="layuimini-notice-title">'+res.data[index].noticeTitle+'</div>\n' +
+                    '                            <div class="layuimini-notice-extra">'+res.data[index].noticeStart+'</div>\n' +
+                    '                            <div class="layuimini-notice-content layui-hide">\n' +
+                    '                                '+res.data[index].noticeTitle+'<br>\n' +res.data[index].noticeDes+
+                    '                            </div>\n' +
+                    '                        </div>';
+            }
+            $('#notice').empty().append(data);
+        }
+    });
+
 }

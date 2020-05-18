@@ -44,6 +44,9 @@
     <if test="favType!=null">
       and a.fav_type=#{favType}
     </if>
+    <if test="taskCode!=null">
+      and a.task_code=#{taskCode}
+    </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.FavoritesVo">
     <!--

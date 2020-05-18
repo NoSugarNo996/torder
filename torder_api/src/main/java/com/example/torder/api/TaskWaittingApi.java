@@ -36,7 +36,7 @@ public interface TaskWaittingApi {
      * @return
      */
     @RequestMapping("/delete")
-    int delete(@RequestParam("id") Integer id);
+    int delete(@RequestParam("taskCode") String id);
 
     /**
      * 更新信息

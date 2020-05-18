@@ -93,11 +93,11 @@
                                                 <div class="panel-body">
                                                     <div class="panel-title">
                                                         <span class="label pull-right layui-bg-green">实时</span>
-                                                        <h5>订单统计</h5>
+                                                        <h5>任务统计</h5>
                                                     </div>
                                                     <div class="panel-content">
-                                                        <h1 id="orderCount" class="no-margins">1234</h1>
-                                                        <small>当前订单总记录数</small>
+                                                        <h1 id="taskCount" class="no-margins">1234</h1>
+                                                        <small>当前任务总记录数</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,7 +143,7 @@
                                                 <div class="panel-body">
                                                     <div class="panel-title">
                                                         <a lay-href="app/content/comment.html" class="layadmin-backlog-body">
-                                                            <h3 class="">待审广告</h3>
+                                                            <h3 class="">未处理消息</h3>
                                                             <h1 id="audAdCount" class="no-margins" style="font-size: 30px;color: #088e73;margin-top: 17px">1234</h1>
                                                         </a>
                                                     </div>
@@ -155,7 +155,7 @@
                                                 <div class="panel-body">
                                                     <div class="panel-title">
                                                         <a lay-href="app/content/comment.html" class="layadmin-backlog-body">
-                                                            <h3 class="">待审公司</h3>
+                                                            <h3 class="">待审任务发布</h3>
                                                             <h1 id="audCompanyCount" class="no-margins" style="font-size: 30px;color: #088e73;margin-top: 17px">1234</h1>
                                                         </a>
                                                     </div>
@@ -183,7 +183,7 @@
 
                 <div class="layui-card">
                     <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>系统公告</div>
-                    <div class="layui-card-body layui-text">
+                    <div class="layui-card-body layui-text" id="notice">
                         <div class="layuimini-notice">
                             <div class="layuimini-notice-title">修改选项卡样式</div>
                             <div class="layuimini-notice-extra">2019-07-11 23:06</div>
@@ -277,13 +277,13 @@
                         <div class="welcome-module">
                             <div class="layui-row layui-col-space10 layuimini-qiuck">
                                 <div class="layui-col-xs3 layuimini-qiuck-module">
-                                    <a href="javascript:;" data-iframe-tab="page/menu.html" data-title="菜单管理" data-icon="fa fa-window-maximize">
+                                    <a href="javascript:;" data-iframe-tab="page/model/notice.html" data-title="菜单管理" data-icon="fa fa-window-maximize">
                                         <i class="fa fa-window-maximize"></i>
                                         <cite>公告设置</cite>
                                     </a>
                                 </div>
                                 <div class="layui-col-xs3 layuimini-qiuck-module">
-                                    <a href="javascript:;" data-iframe-tab="page/setting.html" data-title="系统设置" data-icon="fa fa-gears">
+                                    <a href="javascript:;" data-iframe-tab="page/model/notice.html" data-title="系统设置" data-icon="fa fa-gears">
                                         <i class="fa fa-gears"></i>
                                         <cite>系统设置</cite>
                                     </a>
@@ -303,23 +303,23 @@
                                 <div class="layui-col-xs3 layuimini-qiuck-module">
                                     <a href="javascript:;" data-iframe-tab="page/form.html" data-title="表单示例" data-icon="fa fa-calendar">
                                         <i class="fa fa-calendar"></i>
-                                        <cite>广告管理</cite>
+                                        <cite>消息管理</cite>
                                     </a>
                                 </div>
                                 <div class="layui-col-xs3 layuimini-qiuck-module">
-                                    <a href="javascript:;" data-iframe-tab="page/404.html" data-title="404页面" data-icon="fa fa-hourglass-end">
+                                    <a href="javascript:;" data-iframe-tab="page/model/talents-aud.html" data-title="404页面" data-icon="fa fa-hourglass-end">
                                         <i class="fa fa-hourglass-end"></i>
-                                        <cite>公司管理</cite>
+                                        <cite>人才审核</cite>
                                     </a>
                                 </div>
                                 <div class="layui-col-xs3 layuimini-qiuck-module">
-                                    <a href="javascript:;" data-iframe-tab="page/button.html" data-title="按钮示例" data-icon="fa fa-snowflake-o">
+                                    <a href="javascript:;" data-iframe-tab="page/model/talents.html" data-title="按钮示例" data-icon="fa fa-snowflake-o">
                                         <i class="fa fa-snowflake-o"></i>
                                         <cite>人才管理</cite>
                                     </a>
                                 </div>
                                 <div class="layui-col-xs3 layuimini-qiuck-module">
-                                    <a href="javascript:;" data-iframe-tab="page/layer.html" data-title="弹出层" data-icon="fa fa-shield">
+                                    <a href="javascript:;" data-iframe-tab="page/model/order-aud.html" data-title="弹出层" data-icon="fa fa-shield">
                                         <i class="fa fa-shield"></i>
                                         <cite>交易管理</cite>
                                     </a>
@@ -347,6 +347,7 @@
 <script src="../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script src="../js/config.js?v=1.0.4" charset="utf-8"></script>
+<script src="../js/api.js" charset="utf-8"></script>
 <script src="../js/module/welcome.js?v=1" charset="utf-8"></script>
 <script>
     layui.use(['layer', 'layuimini','echarts'], function () {
@@ -368,20 +369,16 @@
                 '</div>\n';
             parent.layer.open({
                 type: 1,
-                title: '系统公告'+'<span style="float: right;right: 1px;font-size: 12px;color: #b1b3b9;margin-top: 1px">'+noticeTime+'</span>',
+                title: '系统公告',
                 area: '300px;',
                 shade: 0.8,
                 id: 'layuimini-notice',
-                btn: ['查看', '取消'],
+                btn: ['取消'],
                 btnAlign: 'c',
                 moveType: 1,
                 content:html,
                 success: function (layero) {
-                    var btn = layero.find('.layui-layer-btn');
-                    btn.find('.layui-layer-btn0').attr({
-                        href: 'https://gitee.com/zhongshaofa/layuimini',
-                        target: '_blank'
-                    });
+                    close();
                 }
             });
         });

@@ -5,6 +5,7 @@ import com.cetccity.common.base.vo.PageVo;
 import com.example.torder.vo.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +36,7 @@ public interface DataAuditApi {
     @PostMapping(value="/start")
 //    public StartProcessVo start(@RequestParam("processKey") String processKey,
 //                                @RequestBody Map<String, Object> map);
-    public StartProcessVo start(@RequestBody Map<String, Object> map);
+    public StartProcessVo start();
 
     /**
     * @description 接收用户名称、流程实例ID和流程参数，执行流程实例
@@ -46,7 +47,7 @@ public interface DataAuditApi {
     @PostMapping(value="/CompleteTask")
 //    public CompleteTaskVo completeTask(@RequestParam("instanceId") String instanceId,
 //                                       @RequestBody Map<String, Object> map);
-    public CompleteTaskVo completeTask(@RequestBody Map<String, Object> map);
+    public CompleteTaskVo completeTask(@RequestBody Map<String, Object> map) throws IOException;
 
 
     /**

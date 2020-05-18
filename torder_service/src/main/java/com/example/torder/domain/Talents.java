@@ -44,7 +44,7 @@ public class Talents extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    private Integer userId;
+    private String userId;
 
     /**
      * Database Column Remarks:
@@ -319,7 +319,7 @@ public class Talents extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
@@ -331,7 +331,7 @@ public class Talents extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

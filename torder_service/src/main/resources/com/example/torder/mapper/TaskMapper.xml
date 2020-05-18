@@ -17,7 +17,7 @@
     <result column="task_file" jdbcType="VARCHAR" property="taskFile" />
     <result column="task_start" jdbcType="TIMESTAMP" property="taskStart" />
     <result column="task_end" jdbcType="TIMESTAMP" property="taskEnd" />
-    <result column="task_money" jdbcType="VARCHAR" property="taskMoney" />
+    <result column="task_money" jdbcType="FLOAT" property="taskMoney" />
     <result column="opr" jdbcType="VARCHAR" property="opr" />
     <result column="opr_time" jdbcType="TIMESTAMP" property="oprTime" />
     <result column="other" jdbcType="VARCHAR" property="other" />
@@ -38,7 +38,8 @@
      b.key_name as taskTypeName,
      c.key_name as taskStatusName,
      d.talents_name as taskPublisherName,
-     e.talents_name as taskAccepterName
+     e.talents_name as taskAccepterName,
+     f.c_name as taskClassifyName
      from task_info a
      left join dics_info b on a.task_type=b.key_value and b.dics_code='TYPE'
      left join dics_info c on a.task_status=c.key_value and c.dics_code='TASKSTATE'
@@ -58,6 +59,13 @@
     <if test="taskClassify !=null">
       and   a.task_classify=#{taskClassify}
     </if>
+    <if test="taskName!=null">
+      and  ( a.task_name LIKE CONCAT('%',#{taskName},'%') or d.talents_name LIKE CONCAT('%',#{taskName},'%') or e.talents_name LIKE CONCAT('%',#{taskName},'%') or a.task_des LIKE CONCAT('%',#{taskName},'%'))
+    </if>
+    order by a.task_start desc
+  </select>
+  <select id="getCount" resultType="java.lang.Long">
+     select count(*) from task_info
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.TaskVo">
     <!--
@@ -67,13 +75,13 @@
     select a.*,
     b.key_name as taskTypeName,
     c.key_name as taskStatusName,
-    d.user_name as taskPublisherName,
-    e.user_name as taskAccepterName
+    d.talents_name as taskPublisherName,
+    e.talents_name as taskAccepterName
     from task_info a
     left join dics_info b on a.task_type=b.key_value and b.dics_code='TYPE'
     left join dics_info c on a.task_status=c.key_value and c.dics_code='STATE'
-    left join user_info d on a.task_publisher=d.code
-    left join user_info e on a.task_accepter=e.code
+    left join talents_info d on a.task_publisher=d.code
+    left join talents_info e on a.task_accepter=e.code
     where a.task_id = #{taskId,jdbcType=INTEGER}
 
   </select>
@@ -99,7 +107,7 @@
     values (#{taskId,jdbcType=INTEGER}, #{taskName,jdbcType=VARCHAR}, #{taskType,jdbcType=INTEGER},
       #{taskStatus,jdbcType=INTEGER}, #{taskPublisher,jdbcType=VARCHAR}, #{taskClassify,jdbcType=VARCHAR},
       #{taskAccepter,jdbcType=VARCHAR}, #{taskDes,jdbcType=VARCHAR}, #{taskFile,jdbcType=VARCHAR}, 
-      #{taskStart,jdbcType=TIMESTAMP}, #{taskEnd,jdbcType=TIMESTAMP}, #{taskMoney,jdbcType=VARCHAR},
+      #{taskStart,jdbcType=TIMESTAMP}, #{taskEnd,jdbcType=TIMESTAMP}, #{taskMoney,jdbcType=FLOAT},
       #{opr,jdbcType=VARCHAR}, #{oprTime,jdbcType=TIMESTAMP}, #{other,jdbcType=VARCHAR}, 
       #{others,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR})
   </insert>
@@ -197,7 +205,7 @@
         #{taskEnd,jdbcType=TIMESTAMP},
       </if>
       <if test="taskMoney != null">
-        #{taskMoney,jdbcType=VARCHAR},
+        #{taskMoney,jdbcType=FLOAT},
       </if>
       <if test="opr != null">
         #{opr,jdbcType=VARCHAR},
@@ -253,8 +261,8 @@
       <if test="taskEnd != null">
         task_end = #{taskEnd,jdbcType=TIMESTAMP},
       </if>
-      <if test="taskMoney != null">
-        task_money = #{taskMoney,jdbcType=VARCHAR},
+      <if test="taskMoney != 0.0">
+        task_money = #{taskMoney,jdbcType=FLOAT},
       </if>
       <if test="opr != null">
         opr = #{opr,jdbcType=VARCHAR},
@@ -290,7 +298,7 @@
       task_file = #{taskFile,jdbcType=VARCHAR},
       task_start = #{taskStart,jdbcType=TIMESTAMP},
       task_end = #{taskEnd,jdbcType=TIMESTAMP},
-      task_money = #{taskMoney,jdbcType=VARCHAR},
+      task_money = #{taskMoney,jdbcType=FLOAT},
       opr = #{opr,jdbcType=VARCHAR},
       opr_time = #{oprTime,jdbcType=TIMESTAMP},
       other = #{other,jdbcType=VARCHAR},

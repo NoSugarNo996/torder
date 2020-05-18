@@ -55,4 +55,6 @@ public interface TaskMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Task record);
+
+    long getCount();
 }

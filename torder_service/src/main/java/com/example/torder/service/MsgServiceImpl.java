@@ -5,9 +5,11 @@ import com.example.torder.domain.Msg;
 import com.example.torder.mapper.MsgMapper;
 import com.example.torder.util.UUIDUtil;
 import com.example.torder.vo.MsgVo;
+import com.example.torder.websocket.MyWebSocket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -27,12 +29,19 @@ public class MsgServiceImpl implements MsgService{
     }
 
     @Override
-    public int add(MsgVo obj) {
+    public int add(MsgVo obj) throws IOException {
 
         obj.setMsgCode(UUIDUtil.getUUID());
         obj.setMsgTime(new Date());
         obj.setMsgStatus("0");
-        return msgMapper.insertSelective(BeanUtil.copy(obj, Msg.class));
+       String code=obj.getMsgCode();
+       int result=0;
+        if (msgMapper.insertSelective(BeanUtil.copy(obj, Msg.class))==1)
+            result=1;
+        obj= getById(code);
+        MyWebSocket webSocket = new MyWebSocket();
+        webSocket.onMessage(obj);
+        return result;
     }
 
     @Override

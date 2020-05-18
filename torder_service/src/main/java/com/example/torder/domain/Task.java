@@ -129,7 +129,7 @@ public class Task extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    private String taskStart;
+    private Date taskStart;
 
     /**
      * Database Column Remarks:
@@ -140,7 +140,7 @@ public class Task extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    private String taskEnd;
+    private Date taskEnd;
 
     /**
      * Database Column Remarks:
@@ -151,7 +151,7 @@ public class Task extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    private String taskMoney;
+    private float taskMoney;
 
     /**
      * Database Column Remarks:
@@ -425,7 +425,7 @@ public class Task extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public String getTaskStart() {
+    public Date getTaskStart() {
         return taskStart;
     }
 
@@ -437,8 +437,8 @@ public class Task extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setTaskStart(String taskStart) {
-        this.taskStart = taskStart == null ? null : taskStart.trim();
+    public void setTaskStart(Date taskStart) {
+        this.taskStart = taskStart ;
     }
 
     /**
@@ -449,7 +449,7 @@ public class Task extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public String getTaskEnd() {
+    public Date getTaskEnd() {
         return taskEnd;
     }
 
@@ -461,8 +461,8 @@ public class Task extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setTaskEnd(String taskEnd) {
-        this.taskEnd = taskEnd == null ? null : taskEnd.trim();
+    public void setTaskEnd(Date taskEnd) {
+        this.taskEnd = taskEnd ;
     }
 
     /**
@@ -473,7 +473,7 @@ public class Task extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public String getTaskMoney() {
+    public float getTaskMoney() {
         return taskMoney;
     }
 
@@ -485,8 +485,8 @@ public class Task extends BasePo implements Serializable {
      *
      * @mbg.generated
      */
-    public void setTaskMoney(String taskMoney) {
-        this.taskMoney = taskMoney == null ? null : taskMoney.trim();
+    public void setTaskMoney(float taskMoney) {
+        this.taskMoney = taskMoney ;
     }
 
     /**

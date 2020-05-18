@@ -19,7 +19,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             elem: this, //指定元素  表示当前的元素
             type: 'datetime'
             , value: new Date()
-            , format: 'yyyy-MM-dd HH:mm:ss'
+            , format: 'yyyy-MM-dd'
             , theme: '#009688'  //主题  颜色改变
 
         });
@@ -55,9 +55,6 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                         '</td>\n' +
                         '<td>\n' +
                         '<div>' + res.data[index].noticeDes + '</div>\n' +
-                        '</td>\n' +
-                        '<td>\n' +
-                        '<div>' + res.data[index].noticeSendto + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
@@ -184,8 +181,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                     "noticeTitle": res.noticeTitle,
                     "noticeDes": res.noticeDes,
                     "noticeStart": res.noticeStart,
-                    "noticeEnd": res.noticeEnd,
-                    "noticeSendto":res.noticeSendto
+                    "noticeEnd": res.noticeEnd
                 });
             }
         });

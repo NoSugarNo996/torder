@@ -2,6 +2,7 @@ package com.example.torder.service;
 
 import com.example.torder.vo.MsgVo;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public interface MsgService {
      * @param obj
      * @return
      */
-    int add(MsgVo obj);
+    int add(MsgVo obj) throws IOException;
 
     /**
      * 删除

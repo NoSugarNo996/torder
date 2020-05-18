@@ -83,7 +83,7 @@
 			<ignoreColumn column="FRED" />
 			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
 		</table> -->
- 		<table schema="" tableName="msg_info" domainObjectName="Msg"
+ 		<table schema="" tableName="question_info" domainObjectName="QA"
 			enableCountByExample="false" selectByExampleQueryId="false"
 			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false">
 	        <generatedKey column="id" sqlStatement="JDBC" />

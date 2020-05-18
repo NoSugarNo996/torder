@@ -13,9 +13,9 @@
 </head>
 <body style="background-color: #f6ecc4">
 <div class="layui-row" style="padding-left:130px;padding-top:60px;background-color: white;color: #666966;font-size: 16px">
-    <div class="layui-row">会员名称：<span>麻辣</span></div>
+    <div class="layui-row">会员名称：<span id="username">麻辣</span></div>
     <br><br>
-    <div class="layui-row">可用余额：<span style="color:red;">0.00元</span></div>
+    <div class="layui-row">可用余额：<span style="color:red;"<span style="color:red;" id="money">0.00</span>元</span></div>
 </div>
 <div class="layui-row" style="background-color: white;padding-left:130px;padding-right:130px;color: #666966;font-size: 16px">
     <br><br>
@@ -28,20 +28,49 @@
     <div class="layui-row" style="color: black">充值金额：<span style="font-size: 14px;color: #666966">请选择充值金额</span></div>
     <div class="layui-row">
         <br><br>
-        <div class="layui-col-md3" style="padding: 10px;"><button class="btn">10元</button></div>
-        <div class="layui-col-md3" style="padding: 10px;"><button class="btn">20元</button></div>
-        <div class="layui-col-md3" style="padding: 10px;"><button class="btn">50元</button></div>
-        <div class="layui-col-md3" style="padding: 10px;"><button class="btn">100元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(10)">10元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(20)">20元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(50)">50元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(100)">100元</button></div>
     </div>
     <div class="layui-row">
-        <div class="layui-col-md3" style="padding: 10px;"><button class="btn">200元</button></div>
-        <div class="layui-col-md3" style="padding: 10px;"><button class="btn">300元</button></div>
-        <div class="layui-col-md3" style="padding: 10px;"><button class="btn">500元</button></div>
-        <div class="layui-col-md3" style="padding: 10px;"><button class="btn">1000元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(200)">200元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(300)">300元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(500)">500元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(1000)">1000元</button></div>
     </div>
     <br><br>
     <br><br>
 </div>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../../lib/layui-v2.5.4/layui.js"></script>
 <script src="../../js/api.js?"></script>
+<script src="../../js/config.js"></script>
+<script>
+    $('#money').text(layui.sessionData('user').user.money);
+    $('#username').text(layui.sessionData('user').user.userName);
+    function addMoney(money) {
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodOrder + addMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "orderPartyA": 'c56caeed7b204f9db7c935a9d00cefb2',
+                "orderPartyB":layui.sessionData('user').user.code,
+                "orderStatus":0,
+                "orderMoney":money
+            }),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('充值成功,请等待管理员审核');
+                }
+                else
+                    layer.msg("充值失败");
+            }
+        });
+
+    }
+</script>
 </body>
 </html>

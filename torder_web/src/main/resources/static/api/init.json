@@ -8,7 +8,7 @@
     "href": "page/welcome.html?mpi=m-p-i-0"
   },
   "logoInfo": {
-    "title": "菠萝包",
+    "title": "管理员",
     "image": "images/rctj8.jpg",
     "href": ""
   },
@@ -49,32 +49,6 @@
               "href": "page/model/notice.html",
               "icon": "fa fa-search",
               "target": "_self"
-            },
-            {
-              "title": "公告投放",
-              "href": "page/welcome.html",
-              "icon": "fa fa-paper-plane-o",
-              "target": "_self"
-            }
-          ]
-        },
-        {
-          "title": "广告管理",
-          "href": "",
-          "icon": "fa fa-newspaper-o",
-          "target": "_self",
-          "child": [
-            {
-              "title": "广告查看",
-              "href": "page/model/ad.html",
-              "icon": "fa fa-search",
-              "target": "_self"
-            },
-            {
-              "title": "广告审核",
-              "href": "page/model/ad-aud.html",
-              "icon": "fa fa-lightbulb-o",
-              "target": "_self"
             }
           ]
         },
@@ -84,12 +58,7 @@
           "icon": "fa fa-credit-card",
           "target": "_self",
           "child": [
-            {
-              "title": "交易统计",
-              "href": "page/welcome.html",
-              "icon": "fa fa-jpy",
-              "target": "_self"
-            },
+
             {
               "title": "交易审核",
               "href": "page/model/order-aud.html",
@@ -105,43 +74,12 @@
           ]
         },
         {
-          "title": "公司管理",
-          "href": "",
-          "icon": "fa fa-home",
-          "target": "_self",
-          "child": [
-            {
-              "title": "注册公司审核",
-              "href": "page/model/company-aud1.html",
-              "icon": "fa fa-sign-in",
-              "target": "_self"
-            },
-            {
-              "title": "公司注销审核",
-              "href": "page/welcome.html",
-              "icon": "fa fa-sign-out",
-              "target": "_self"
-            },
-            {
-              "title": "公司查看",
-              "href": "page/model/company.html",
-              "icon": "fa fa-search",
-              "target": "_self"
-            }
-          ]
-        },
-        {
           "title": "用户管理",
           "href": "",
           "icon": "fa fa-group",
           "target": "_self",
           "child": [
-            {
-              "title": "用户统计",
-              "href": "page/welcome.html",
-              "icon": "fa fa-line-chart",
-              "target": "_self"
-            },
+
             {
               "title": "用户查看",
               "href": "page/model/user.html",
@@ -151,20 +89,46 @@
           ]
         },
         {
-          "title": "系统管理",
+          "title": "消息管理",
+          "href": "",
+          "icon": "fa fa-newspaper-o",
+          "target": "_self",
+          "child": [
+            {
+              "title": "我收到的消息",
+              "href": "page/mywork/invite.html",
+              "icon": "fa fa-search",
+              "target": "_self"
+            },
+            {
+              "title": "未读消息",
+              "href": "page/mywork/unread.html",
+              "icon": "fa fa-search",
+              "target": "_self"
+            },
+            {
+              "title": "已发送消息",
+              "href": "page/mywork/message.html",
+              "icon": "fa fa-lightbulb-o",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "项目管理",
           "href": "",
           "icon": "fa fa-cogs",
           "target": "_self",
           "child": [
             {
-              "title": "系统版本",
-              "href": "page/welcome.html",
+              "title": "项目查看",
+              "href": "page/model/task.html",
               "icon": "fa fa-exclamation-circle",
               "target": "_self"
             },
             {
-              "title": "系统升级",
-              "href": "page/welcome.html",
+              "title": "项目审核",
+              "href": "page/model/task-aud.html",
               "icon": "fa fa-cloud-download",
               "target": "_self"
             }

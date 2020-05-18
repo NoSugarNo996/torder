@@ -1,3 +1,4 @@
+lan();
 //表单初始化
 layui.use(['form', 'layer','layedit', "laydate",'laydate'], function () {
     var form = layui.form,
@@ -43,14 +44,25 @@ let eventObj1 = {
             success: function (res) {
 
                 $("#taskName").text(res.taskName);
-                $("#taskStatus").text(res.taskStatus);
                 $("#taskPublisher").text(res.taskPublisherName);
                 $("#taskAccepter").text(res.taskAccepterName);
                 $("#taskDes").text(res.taskDes);
-                $("#taskFile").text(res.taskFile);
+
                 $("#taskStart").text(res.taskStart);
                 $("#taskEnd").text(res.taskEnd);
                 $("#taskMoney").text(res.taskMoney);
+                if (res.taskFile!=null){
+                    let fileArray= res.taskFile.split(",");
+                    for (var i = 0; i < fileArray.length; i++) {
+                        var tr =
+                          '<div class="layui-row"><a href="' + queryUrl + fileArray[i] + '" download="' + fileArray[i].split('/')[2] + '" target="_blank">下载</a></div>';
+                        $('#taskFile').append(tr);
+                    }
+                }
+                else  {
+                    $("#taskFile").text("暂无文件");
+                }
+
 
             }
         });
@@ -68,78 +80,25 @@ let eventObj1 = {
 
 //催促管理员审核申请
     $('body').on('click', '.msgaudapply', function () {
-        //加入未读消息
-        // $.ajax({
-        //     type: "get",
-        //     url: queryUrl + queryMethodTask + getInfoMethod,
-        //     dataType: "json",
-        //     contentType: "application/json;charset=UTF-8",
-        //     data: {
-        //         "id": $(this).attr('value')
-        //     },
-        //     success: function (res) {
-        //
-        //         $("#taskName").text(res.taskName);
-        //         $("#taskStatus").text(res.taskStatus);
-        //         $("#taskPublisher").text(res.taskPublisher);
-        //         $("#taskAccepter").text(res.taskAccepter);
-        //         $("#taskDes").text(res.taskDes);
-        //         $("#taskFile").text(res.taskFile);
-        //         $("#taskStart").text(res.taskStart);
-        //         $("#taskEnd").text(res.taskEnd);
-        //         $("#taskMoney").text(res.taskMoney);
-        //
-        //     }
-        // });
-        // layer.open({
-        //     type: 1
-        //     , content: $('#info')
-        //     , btnAlign: 'c' //按钮居中
-        //     ,area: 'auto'
-        //     ,anim: 0
-        //     ,maxWidth:800
-        //     , shade: 0 //不显示遮罩
-        // });
+        let addObj={
+            "msgTitle":"请尽快审核编号为"+$(this).attr('value')+"的任务信息",
+            "msgPublisher":layui.sessionData('user').user.code,
+            "msgAccepter":"c56caeed7b204f9db7c935a9d00cefb2"
+        }
+
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodMsg + addMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify(addObj),
+            success: function (res) {
+                if (res==1){
+                    layer.msg("催促成功，管理员将会加快为您优先办理！");
+                }
+            }
+        });
     });
-
-
-//催促管理员审核交易
-
-    $('body').on('click', '.msgaudorder', function () {
-        //加入未读消息
-        // $.ajax({
-        //     type: "get",
-        //     url: queryUrl + queryMethodTask + getInfoMethod,
-        //     dataType: "json",
-        //     contentType: "application/json;charset=UTF-8",
-        //     data: {
-        //         "id": $(this).attr('value')
-        //     },
-        //     success: function (res) {
-        //
-        //         $("#taskName").text(res.taskName);
-        //         $("#taskStatus").text(res.taskStatus);
-        //         $("#taskPublisher").text(res.taskPublisher);
-        //         $("#taskAccepter").text(res.taskAccepter);
-        //         $("#taskDes").text(res.taskDes);
-        //         $("#taskFile").text(res.taskFile);
-        //         $("#taskStart").text(res.taskStart);
-        //         $("#taskEnd").text(res.taskEnd);
-        //         $("#taskMoney").text(res.taskMoney);
-        //
-        //     }
-        // });
-        // layer.open({
-        //     type: 1
-        //     , content: $('#info')
-        //     , btnAlign: 'c' //按钮居中
-        //     ,area: 'auto'
-        //     ,anim: 0
-        //     ,maxWidth:800
-        //     , shade: 0 //不显示遮罩
-        // });
-    });
-
 
 
 //选取人才
@@ -152,7 +111,7 @@ let eventObj1 = {
             "taskCode": $(this).attr('value')
         }
         update.code=$(this).attr('value');
-
+        update.others=$(this).attr('tag');
         getEventData10();
         function getEventData10(first) {
 
@@ -311,16 +270,16 @@ let eventObj1 = {
                         '<div class="operate">\n' +
                         '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n'
                         if(res.data[index].taskStatus==1){
-                            data+=  '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
+                            data+=  '<button type="button" class="msgaudapply layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
                         }
                         else if (res.data[index].taskStatus==3){
-                            data+=  '<button type="button" class="selecttalents layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">选取人才</button>\n'
+                            data+=  '<button type="button" class="selecttalents layui-btn layui-btn-sm layui-btn-warm" tag="'+res.data[index].others+'"value="' + res.data[index].code + '">选取人才</button>\n'
                         }
                         else if (res.data[index].taskStatus==5){
                             data+=  '<button type="button" class="finishEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">任务完成</button>\n'
                         }
                         else if (res.data[index].taskStatus==6){
-                            data+=  '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
+                            data+=  '<button type="button" class="msgaudapply layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
                         }
 
                     data+='</div>\n' +
@@ -438,7 +397,7 @@ let eventObj1 = {
                         '<td>\n' +
                         '<div class="operate">\n' +
                         '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">催促</button>\n' +
+                        '<button type="button" class="msgaudapply layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -472,7 +431,7 @@ let eventObj1 = {
     }
 
 
-//招标中
+//雇主选标中
 
     var numEvent3 = 1; //当前页
     let tableLength3; // 分页长度
@@ -481,7 +440,7 @@ let eventObj1 = {
         "pageSize": 10,
         "pageNum": numEvent3,
         "taskPublisher":layui.sessionData('user').user.code,
-        "taskStatus":2
+        "taskStatus":3
     }
 
 
@@ -527,7 +486,7 @@ let eventObj1 = {
                         '<td>\n' +
                         '<div class="operate">\n' +
                         '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">办理</button>\n' +
+                        '<button type="button" class="selecttalents layui-btn layui-btn-sm layui-btn-warm" tag="'+res.data[index].others+'"value="' + res.data[index].code + '">选取人才</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -570,7 +529,7 @@ let eventObj1 = {
         "pageSize": 10,
         "pageNum": numEvent4,
         "taskPublisher":layui.sessionData('user').user.code,
-        "taskStatus":4
+        "taskStatus":5
     }
 
 
@@ -616,7 +575,7 @@ let eventObj1 = {
                         '<td>\n' +
                         '<div class="operate">\n' +
                         '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">办理</button>\n' +
+                        '<button type="button" class="finishEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">任务完成</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -705,7 +664,7 @@ let eventObj1 = {
                         '<td>\n' +
                         '<div class="operate">\n' +
                         '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">办理</button>\n' +
+                        '<button type="button" class="msgaudapply layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -745,28 +704,72 @@ let eventObj1 = {
 //确定人才
 let update = {
     "code": '',
+    "others":'',
     "taskAccepter":'',
     "taskStatus":4
 }
-
+let obj=
+    {
+        "btn":"",
+        "nextOpr":"1",
+        "instanceId":"",
+        "talentsCode":"1,2",
+        "alltalents":"1,2,3"
+    }
 function selectTalent(taskAccepter) {
     //修改任务表
     update.taskAccepter=taskAccepter;
+
+    obj.btn('选取成功');
+    obj.instanceId(update.others);
+    obj.nextOpr(update.taskAccepter);
     $.ajax({
+
+        url: queryUrl+ "/DataAudit/completeTask",
+        dataType: "json",
         type: "post",
-        url: queryUrl + queryMethodTask+updateMethod,
-        aynsc:false,
-        contentType: "application/json;charset=UTF-8",
-        data:JSON.stringify(update),
-        success: function (res) {
-            if (res==1){
-                layer.msg("选取成功，请尽快与他联系吧");
-            }
-            else {
-                layer.msg("选取失败");
-            }
+        data:JSON.stringify(obj),
+        async: false,
+        success: function (result) {
+
+            $.ajax({
+                type: "post",
+                url: queryUrl + queryMethodTask+updateMethod,
+                aynsc:false,
+                contentType: "application/json;charset=UTF-8",
+                data:JSON.stringify(update),
+                success: function (res) {
+                    if (res==1){
+                        layer.msg("选取成功，请尽快与他联系吧");
+                    }
+                    else {
+                        layer.msg("选取失败");
+                    }
+                }
+            });
+
+            $.ajax({
+                type: "post",
+                url: queryUrl + queryMethodTaskwaitting+deleteMethod,
+                aynsc:false,
+                contentType: "application/json;charset=UTF-8",
+                data:{"taskCode":update.code},
+                success: function (res) {
+                    if (res==1){
+                        layer.msg("选取成功，请尽快与他联系吧");
+                    }
+                    else {
+                        layer.msg("选取失败");
+                    }
+                }
+            });
+
+        },
+        error: function () {
+            console.log("addFlowError")
         }
     });
+
 
     //清除候选人员
     //发送通知

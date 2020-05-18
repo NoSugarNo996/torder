@@ -54,7 +54,7 @@ public interface UserApi {
      * @return
      */
     @RequestMapping("/getInfo")
-    UserVo getById(@RequestParam("id") Integer id);
+    UserVo getById(@RequestParam("id") String code);
 
     @RequestMapping("/login")
     UserVo login(@RequestBody UserVo vo, HttpServletRequest request);

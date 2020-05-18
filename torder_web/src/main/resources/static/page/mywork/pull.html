@@ -6,17 +6,99 @@
     <link rel="stylesheet" href="../../css/layuimini.css" media="all">
     <title>Title</title>
 </head>
+<style type="text/css">
+    .btn:hover{width: 100%;height: 50px;border-radius: 10px;background-color: #d11b18;color:white }
+    .btn{width: 100%;height: 50px;border-radius: 10px;background-color: #fff3e7
+    }
+</style>
 <body style="background-color: #f6ecc4">
 <div class="layui-row" style="padding-left:130px;padding-top:60px;background-color: white;color: #666966;font-size: 16px">
-    <div class="layui-row">会员名称：<span>麻辣</span></div>
-    <div class="layui-row">可用余额：<span style="color:red;">0.00元</span></div>
+    <div class="layui-row">会员名称：<span id="username">麻辣</span></div>
+    <div class="layui-row">可用余额：<span style="color:red;"><span style="color:red;" id="money">0.00</span> 元</span></div>
 </div>
 <div div class="layui-row" style="background-color: white;padding-left:130px;padding-right:130px;color: #666966;font-size: 16px">
     <br><br>
     <div class="layui-row">申请提现须知：</div>
     <div class="layui-row">余额在50元及以上方可申请办理 </span></div>
     <div class="layui-row" style="color: red;">*货币交易，请注意</div>
+    <div class="layui-row" style="color: black">提现金额：<span style="font-size: 14px;color: #666966">请选择提现金额</span></div>
+    <div class="layui-row">
+        <br><br>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(10)">10元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(20)">20元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(50)">50元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(100)">100元</button></div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(200)">200元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(300)">300元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(500)">500元</button></div>
+        <div class="layui-col-md3" style="padding: 10px;"><button class="btn" onclick="addMoney(1000)">1000元</button></div>
+    </div>
+    <br><br>
+    <br><br>
+
 </div>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../../lib/layui-v2.5.4/layui.js"></script>
 <script src="../../js/api.js?"></script>
+<script src="../../js/config.js"></script>
+<script>
+    $('#money').text(layui.sessionData('user').user.money);
+    $('#username').text(layui.sessionData('user').user.userName);
+    function addMoney(money) {
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodOrder + queryListMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "orderPartyB": 'c56caeed7b204f9db7c935a9d00cefb2',
+                "orderPartyA":layui.sessionData('user').user.code,
+                "orderStatus":0
+            }),
+            success: function (res) {
+                if (res.size==1){
+                    layer.msg('您已经申请过提现了，管理员审核通过后方可进行下一次申请，请耐心等待');
+                }
+                else
+                  {
+                      if(layui.sessionData('user').user.money>50){
+                          if(layui.sessionData('user').user.money>money){
+                              $.ajax({
+                                  type: "post",
+                                  url: queryUrl + queryMethodOrder + addMethod,
+                                  dataType: "json",
+                                  contentType: "application/json;charset=UTF-8",
+                                  data: JSON.stringify({
+                                      "orderPartyB": 'c56caeed7b204f9db7c935a9d00cefb2',
+                                      "orderPartyA":layui.sessionData('user').user.code,
+                                      "orderStatus":0,
+                                      "orderMoney":money
+                                  }),
+                                  success: function (res) {
+                                      if (res==1){
+                                          layer.msg('提现成功,请等待管理员审核');
+                                      }
+                                      else
+                                          layer.msg("提现失败");
+                                  }
+                              });
+                          }
+                          else {
+                              layer.msg("余额不足，提现失败！")
+                          }
+                      }
+                      else {
+                          layer.msg("余额在50元及以上方可申请办理")
+                      }
+                  }
+            }
+        });
+
+
+
+    }
+</script>
 </body>
 </html>

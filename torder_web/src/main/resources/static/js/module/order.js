@@ -7,11 +7,7 @@ let eventObj = {
     "pageSize": 10,
     "pageNum": numEvent
 }
-getSelectOption("select[name='orderNation']", 'NATION');
 getSelectOption("select[name='orderStatus']", 'STATE');
-getSelectOption("select[name='orderEducation']", 'EDUCATION');
-getSelectOption("select[name='orderExperience']", 'EXPERIENCE');
-getSelectOption("select[name='orderPoliticeStatus']", 'POLITICE');
 //表单初始化
 layui.use(['form', 'layedit', "laydate",'laydate'], function () {
     var form = layui.form,
@@ -152,8 +148,8 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             success: function (res) {
                 form.val('update', {
                     "orderId":res.orderId,
-                    "orderPartyA": res.orderPartyA,
-                    "orderPartyB": res.orderPartyB,
+                    "orderPartyAName": res.orderPartyAName,
+                    "orderPartyBName": res.orderPartyBName,
                     "orderStatus": res.orderStatus,
                     "orderMoney": res.orderMoney,
                     "taskId": res.taskId,

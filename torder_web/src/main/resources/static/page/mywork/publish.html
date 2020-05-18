@@ -160,6 +160,17 @@
 
 
                                     </div>
+                                    <div class="layui-row">
+                                        <div class="layui-upload">
+                                            <button type="button" class="layui-btn" id="test1">上传图片</button>
+                                            <div class="layui-upload-list">
+                                                <img class="layui-upload-img" id="demo1">
+                                                <p id="demoText"></p>
+                                                <input type="hidden" name="other"
+                                                                  class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                                 <hr class="layui-bg-gray">
                             </div>
@@ -213,7 +224,50 @@
                                 </form>
                                 <hr class="layui-bg-gray">
                             </div></div>
-                        <div class="contentList" id="contC" style="font-size: 20px;">支付赏金
+                        <div class="contentList" id="contC" style="font-size: 20px;">核对信息
+                            <hr class="layui-bg-gray">
+
+                            <div style="font-size: 20px;padding: 40px;">
+                                <div class="layui-col-md2" >
+                                    <div class="layui-row" style="font-size: 20px;padding: 10px;">任务发布者：</div>
+                                    <div class="layui-row" style="font-size: 20px;padding: 10px;">任务类型：</div>
+                                    <div class="layui-row" style="font-size: 20px;padding: 10px;">任务状态：</div>
+                                    <div class="layui-row" style="font-size: 20px;padding: 10px;">任务赏金：</div>
+                                </div>
+                                <div class="layui-col-md2">
+                                    <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left" id="info-name">麻辣淤泥小龙虾</div>
+                                    <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">独立完成</div>
+                                    <div class="layui-row" style="font-size: 20px;padding: 10px;color: #205099;text-align: left">待提交</div>
+                                    <div class="layui-row" style="font-size: 20px;padding: 10px;color: #d11b18;text-align: left"><span id="info-money" style="font-size: 20px;">1200.00</span><span style="color: #919999">&nbsp;元</span></div>
+                                </div>
+                                <div class="layui-col-md8">
+                                    <div class="layui-row">
+                                        <div class="layui-col-md3" style="font-size: 20px;padding: 10px;">任务标题：</div>
+                                        <div class="layui-col-md5" style="font-size: 20px;padding: 10px;text-align: left" id="info-title">网络直播app的开发</div></div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md3" style="font-size: 20px;padding: 10px;">任务需求：</div>
+                                        <div class="layui-col-md5" style="font-size: 20px;padding: 10px;text-align: left;height: 40px;" id="info-des">1.简洁清晰2.易于上手...</div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md3" style="font-size: 20px;padding: 10px;">任务发布时间：</div>
+                                        <div class="layui-col-md5" style="font-size: 20px;padding: 10px;text-align: left" id="info-start">2020.03.23</div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-md3" style="font-size: 20px;padding: 10px;">任务截止时间：</div>
+                                        <div class="layui-col-md5" style="font-size: 20px;padding: 10px;text-align: left" id="info-end">2020.04.23</div>
+                                    </div>
+
+
+
+
+
+                                </div>
+
+                            </div>
+
+                            <br>
+                        </div>
+                        <div class="contentList" id="contD" style="font-size: 20px;">支付赏金
                             <hr class="layui-bg-gray">
                             <div class="layui-row" style="font-size: 20px">
                                 可用余额&nbsp;&nbsp;<span style="color: #d11b18;font-size: 25px">0.00</span><span style="color: #919999;">&nbsp;元</span>
@@ -222,39 +276,6 @@
                                 <button type="button" class="layui-btn layui-btn-lg layui-btn-danger" >确认支付</button>
                             </div>
 
-                        </div>
-                        <div class="contentList" id="contD" style="font-size: 20px;">核对信息
-                            <hr class="layui-bg-gray">
-                        <div style="font-size: 20px;padding: 40px;">
-                            <div class="layui-col-md2" >
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务编码：</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务发布者：</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务类型：</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务状态：</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务赏金：</div>
-                            </div>
-                            <div class="layui-col-md4">
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">3213487</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">麻辣淤泥小龙虾</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">独立完成</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;color: #205099;text-align: left">审核中</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;color: #d11b18;text-align: left">1200.00<span style="color: #919999">&nbsp;元</span></div>
-                            </div>
-                            <div class="layui-col-md2">
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务标题：</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务需求：</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务任务分类：</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务发布时间：</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;">任务截止时间：</div>
-                            </div>
-                            <div class="layui-col-md4">
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">网络直播app的开发</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">1.简洁清晰2.易于上手...</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">app研发</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">2020.03.23</div>
-                                <div class="layui-row" style="font-size: 20px;padding: 10px;text-align: left">2020.04.23</div>
-                            </div>
-                        </div>
                             <br>
                         </div>
                     </ol>
@@ -271,7 +292,7 @@
 </div>
 
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-<script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<!--<script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>-->
 <script src="../../lib/layui-v2.5.4/layui.js"></script>
 <script src="../../js/api.js?"></script>
 

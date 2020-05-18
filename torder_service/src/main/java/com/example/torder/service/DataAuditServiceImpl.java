@@ -1,6 +1,7 @@
 package com.example.torder.service;
 import com.cetccity.common.base.vo.BaseVo;
 import com.example.torder.vo.*;
+import com.example.torder.websocket.MyWebSocket;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.history.HistoricProcessInstance;
@@ -13,10 +14,8 @@ import org.activiti.spring.SpringProcessEngineConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
 @Service
 public class DataAuditServiceImpl implements DataAuditService {
@@ -31,13 +30,13 @@ public class DataAuditServiceImpl implements DataAuditService {
     @Autowired(required = false)
    // FlowMapper flowMapper;
    // Flow flow = new Flow();
-
+String userCode="1";
     @Override
     public ResultVo deployResource() {
         Deployment deployment = (Deployment) processEngine.getRepositoryService() //与流程定义相关的service
                 .createDeployment() //创建一个部署对象
                 .name("审批")
-                .addClasspathResource("processes/dataAudit.xml")//从chasspath的资源中加载，一次只加载一个文件
+                .addClasspathResource("processes/dataAudit.bpmn")//从chasspath的资源中加载，一次只加载一个文件
                 .addClasspathResource("processes/dataAudit.png")
                 .deploy();//完成部署
         ResultVo resultVo = new ResultVo();
@@ -52,20 +51,17 @@ public class DataAuditServiceImpl implements DataAuditService {
     /**
      * 启动
      *
-     * @param map
+     * @param
      * @return
      */
     @Override
     //需要参数：当日值班人员编号userId  eventId eventTitle eventRemark eventTime
-    public StartProcessVo start(Map<String, Object> map) {
+    public StartProcessVo start() {
         String processDefintionKey = "dataAudit";
+//        41e7abb7-891d-11ea-acce-acde48001122
+//        String processDefintionKey = "fd8c5ea8-251f-11ea-a090-962d54f4cc3d";
         Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("nextOpr", "1,2,3");
-        variables.put("eventId", map.get("eventId"));
-        variables.put("eventTitle", "eventTitle");
-        variables.put("eventRemark", "eventRemark");
-        variables.put("eventTime", "eventTime");
-        variables.put("eventState", 0);
+        variables.put("nextOpr",userCode);
         ProcessInstance processInstance = processEngine.getRuntimeService()
                 .startProcessInstanceByKey(processDefintionKey, variables);
         System.out.println("流程实例ID：" + processInstance.getId());
@@ -91,75 +87,70 @@ public class DataAuditServiceImpl implements DataAuditService {
      * @return
      */
     @Override
-    //需要参数：instanceId flowId  btn nextOpr userId comment
-    public CompleteTaskVo completeTask(Map<String, Object> map) {
+    //需要参数：instanceId   btn nextOpr talentsCode alltalents
+    public CompleteTaskVo completeTask(Map<String, Object> map) throws IOException {
+        MsgVo msgVo = new MsgVo();
+        msgVo.setMsgPublisher("1");
         String btn = map.get("btn").toString();//获取界面操作
         String nextOpr = map.get("nextOpr").toString();//获取指定操作人
         // int flowId = Integer.parseInt(map.get("flowId").toString());
-        String comment = map.get("comment").toString();//获取批示
         CompleteTaskVo completeTaskVo = new CompleteTaskVo();
-
+        msgVo.setMsgAccepter(nextOpr);
         //获取当前任务
         Task task = processEngine.getTaskService()
                 .createTaskQuery()
                 .processInstanceId(map.get("instanceId").toString())
                 .singleResult();
-        claim(task.getId(), map.get("userId").toString());
+
+//        claim(task.getId(), map.get("talentsCode").toString());
 
         //设置流程变量，使用流程变量用来指定完成后走哪个连线
         Map<String, Object> variables = new HashMap<String, Object>();
         switch (task.getName()) {
-            case "值班人员处理":
-                if (btn.equals("上报")) {
+            case "管理员审核发布":
+                if (btn.equals("通过")) {
                     // flow.setFlowId(flowId);
                     //  flow.setFlowState(1);//状态设为"已上报"
                     //  flowMapper.updateByPrimaryKeySelective(flow);
-                    variables.put("toWhere", "处理");
-                    variables.put("Operate", "上报");
+                    variables.put("toWhere", "通过");
                     variables.put("eventState", 1);
                 } else if (btn.equals("批转")) {
                     //   flow.setFlowId(Integer.parseInt(map.get("flowId").toString()));
                     //   flow.setFlowState(2);//状态设为"已批转"
                     //   flowMapper.updateByPrimaryKeySelective(flow);
-                    variables.put("toWhere", "处理");
-                    variables.put("Operate", "批转");
+                    variables.put("toWhere", "未通过");
                     variables.put("eventState", 2);
-                } else if (btn.equals("办结")) {
-                    // flow.setFlowId(Integer.parseInt(map.get("flowId").toString()));
-                    //  flow.setFlowState(4);//状态设为"已批转"
-                    // flowMapper.updateByPrimaryKeySelective(flow);
-                    variables.put("toWhere", "办结");
-                    variables.put("eventState", 4);
                 }
+                variables.put("nextOpr", nextOpr);
+                // processEngine.getTaskService().setVariables(task.getId(),variables);
+                processEngine.getTaskService().complete(task.getId(), variables, true);
+                completeTaskVo.setStatus(true);
+                msgVo.setMsgTitle("您发布的任务管理员已审核,请前往查看");
+                break;
+            case "招标完成":
 
                 variables.put("nextOpr", nextOpr);
                 // processEngine.getTaskService().setVariables(task.getId(),variables);
                 processEngine.getTaskService().complete(task.getId(), variables, true);
                 completeTaskVo.setStatus(true);
+                msgVo.setMsgTitle("您发布的任务招标已结束,请前往选取人才");
                 break;
-            case "业务部处理":
-
-                variables.put("nextOpr", nextOpr);
-                // processEngine.getTaskService().setVariables(task.getId(),variables);
-                processEngine.getTaskService().complete(task.getId(), variables, true);
-                completeTaskVo.setStatus(true);
-                break;
-            case "带班领导审批":
-                if (btn.equals("批示")) {
+            case "选标完成":
+                if (btn.equals("选标成功")) {
                     // flow.setFlowId(Integer.parseInt(map.get("flowId").toString()));
                     // flow.setFlowState(3);//状态设为"已批示"
                     // flowMapper.updateByPrimaryKeySelective(flow);
                     //设置批示
-                    variables.put("eventComment", comment);
-                    variables.put("toWhere", "批示");
+                    variables.put("toWhere", "选标成功");
                     variables.put("eventState", 3);
-                } else if (btn.equals("批转")) {
+                } else if (btn.equals("流标")) {
                     //flow.setFlowId(Integer.parseInt(map.get("flowId").toString()));
                     // flow.setFlowState(2);//状态设为"已批转"
                     //flowMapper.updateByPrimaryKeySelective(flow);
-                    variables.put("toWhere", "未批示");
-                    variables.put("eventState", 2);
+                    variables.put("toWhere", "流标");
+                    variables.put("eventState", 6);
                 }
+                msgVo.setMsgTitle("恭喜您中标成功,快与雇主联系吧");
                 variables.put("nextOpr", nextOpr);
 //               processEngine.getRuntimeService().removeVariable(task.getProcessInstanceId(), "to");
 //               processEngine.getRuntimeService().setVariables(task.getProcessInstanceId(),variables);
@@ -167,20 +158,46 @@ public class DataAuditServiceImpl implements DataAuditService {
                 processEngine.getTaskService().complete(task.getId(), variables, true);
                 completeTaskVo.setStatus(true);
                 break;
-            case "分管领导审批":
+            case "任务完成":
 //                flow.setFlowId(Integer.parseInt(map.get("flowId").toString()));
 //                flow.setFlowState(3);//状态设为"已批示"
 //                flowMapper.updateByPrimaryKeySelective(flow);
-                variables.put("eventComment", comment);
+                if (btn.equals("任务完成")) {
+                    // flow.setFlowId(Integer.parseInt(map.get("flowId").toString()));
+                    // flow.setFlowState(3);//状态设为"已批示"
+                    // flowMapper.updateByPrimaryKeySelective(flow);
+                    //设置批示
+                    variables.put("toWhere", "任务完成");
+                    variables.put("eventState", 3);
+                } else if (btn.equals("未完成")) {
+                    //flow.setFlowId(Integer.parseInt(map.get("flowId").toString()));
+                    // flow.setFlowState(2);//状态设为"已批转"
+                    //flowMapper.updateByPrimaryKeySelective(flow);
+                    variables.put("toWhere", "未完成");
+                    variables.put("eventState", 6);
+                }
                 variables.put("nextOpr", nextOpr);
                 variables.put("eventState", 3);
                 //processEngine.getTaskService().setVariables(task.getId(),variables);
+                msgVo.setMsgTitle("有新任务完成,请审核");
                 processEngine.getTaskService().complete(task.getId(), variables, true);
                 completeTaskVo.setStatus(true);
+                break;
+            case "管理员审核交易":
+//                flow.setFlowId(Integer.parseInt(map.get("flowId").toString()));
+//                flow.setFlowState(3);//状态设为"已批示"
+//                flowMapper.updateByPrimaryKeySelective(flow);
+                variables.put("nextOpr", nextOpr);
+                variables.put("eventState", 6);
+                //processEngine.getTaskService().setVariables(task.getId(),variables);
+                processEngine.getTaskService().complete(task.getId(), variables, true);
+                completeTaskVo.setStatus(true);
+                msgVo.setMsgTitle("交易成功啦！快看看收益！");
                 break;
             default:
                 completeTaskVo.setStatus(false);
         }
+        sendAndSaveText(msgVo);
         return completeTaskVo;
     }
 
@@ -479,5 +496,12 @@ public class DataAuditServiceImpl implements DataAuditService {
         //新增组任务的成员
         processEngine.getTaskService()//
                 .deleteCandidateUser(taskId, userId);
+    }
+
+
+    //发送实时消息
+    public void sendAndSaveText(MsgVo msgVo) throws IOException {
+        MyWebSocket webSocket = new MyWebSocket();
+        webSocket.onMessage(msgVo);
     }
 }

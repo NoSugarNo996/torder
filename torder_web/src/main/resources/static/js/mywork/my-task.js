@@ -1,3 +1,4 @@
+lan();
 //表单初始化
 layui.use(['form', 'layer','layedit', "laydate",'laydate','upload'], function () {
     var form = layui.form,
@@ -108,10 +109,20 @@ let eventObj1 = {
                 $("#taskPublisher").text(res.taskPublisherName);
                 $("#taskAccepter").text(res.taskAccepterName);
                 $("#taskDes").text(res.taskDes);
-                $("#taskFile").text(res.taskFile);
                 $("#taskStart").text(res.taskStart);
                 $("#taskEnd").text(res.taskEnd);
                 $("#taskMoney").text(res.taskMoney);
+                if (res.taskFile!=null){
+                    let fileArray2= res.taskFile.split(",");
+                    for (var i = 0; i < fileArray2.length; i++) {
+                        var tr =
+                            '<div class="layui-row"><a href="' +queryUrl +'/file/'+fileArray2[i] + '" download="' + fileArray2[i].split('/')[2] + '" target="_blank">下载</a></div>';
+                        $('#taskFile').append(tr);
+                    }
+                }
+                else  {
+                    $("#taskFile").text("暂无文件");
+                }
 
             }
         });

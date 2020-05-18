@@ -44,7 +44,8 @@ public class FileController implements FileApi {
         try {
             file.transferTo(new File(path + filename));
             System.out.println(path + filename);
-            result.setData("/file/"+filename);
+          //  result.setData("/file/"+filename);
+            result.setData(filename);
             result.setResult("SUCCESS");
             result.setMsg("上传成功");
             result.setStatus(200);

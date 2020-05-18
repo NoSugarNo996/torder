@@ -1,0 +1,36 @@
+<!DOCTYPE>
+<!--解决idea thymeleaf 表达式模板报红波浪线-->
+<!--suppress ALL -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>聊天页面</title>
+    <!-- jquery在线版本 -->
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <!--引入样式-->
+    <link rel="stylesheet" href="../../css/model/socketChart.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="hz-main">
+    <div id="hz-message">
+        <!-- 头部 -->
+        正在与<span id="toUserName"></span>聊天
+        <hr style="margin: 0px;"/>
+        <!-- 主体 -->
+        <div id="hz-message-body">
+        </div>
+        <!-- 功能条 -->
+        <div id="">
+            <button>表情</button>
+            <button>图片</button>
+            <button id="videoBut">视频</button>
+            <button onclick="send()" style="float: right;">发送</button>
+        </div>
+        <!-- 输入框 -->
+        <div contenteditable="true" id="hz-message-input">
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../js/mywork/socketChart.js"></script>
+</html>

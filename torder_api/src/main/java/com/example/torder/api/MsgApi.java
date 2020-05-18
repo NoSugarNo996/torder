@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
+
 /**
  * @program: torder
  * @description: 任务
@@ -20,7 +22,7 @@ public interface MsgApi {
      * @return
      */
     @RequestMapping("/add")
-    int add(@RequestBody MsgVo obj);
+    int add(@RequestBody MsgVo obj) throws IOException;
 
     /**
      * 或得列表

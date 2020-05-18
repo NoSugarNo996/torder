@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>订单管理</title>
+    <title>交易管理</title>
     <link rel="stylesheet" href="../../lib/layui-v2.5.4/css/layui.css" media="all">
     <link rel="stylesheet" href="../../css/model/order.css">
 </head>
@@ -49,7 +49,7 @@
             <div class="left-form">
                 <fieldset class="layui-elem-field">
                     <legend>
-                        <div class="title">人才信息</div>
+                        <div class="title">交易信息</div>
                     </legend>
                     <div class="layui-field-box">
                         <div class="sendInfo">
@@ -58,14 +58,14 @@
                                 <div class="layui-inline">
                                     <label class="layui-form-label required">交易甲方</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="orderPartyA" lay-verify="required" lay-reqtext="用户名称不能为空"
-                                               class="layui-input">
+                                        <input type="text" name="orderPartyAName" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                               class="layui-input" readonly>
                                     </div>
                                 </div>
                                 <div class="layui-inline">
                                     <label class="layui-form-label">交易乙方</label>
                                     <div class="layui-input-inline">
-                                        <input name="orderPartyB" class="layui-input">
+                                        <input name="orderPartyBName" class="layui-input" readonly>
                                     </div>
                                 </div>
                                 <div class="layui-inline">
@@ -107,7 +107,7 @@
             </div>
         </div>
         <div class="layui-form-item formButton">
-            <div class="layui-input-block">
+            <div class="layui-input-block" style="text-align: center">
                 <button type="submit" class="layui-btn" lay-submit id="updateMsg"
                         lay-filter="verify1">更新</button>
                 <button type="reset" class="layui-btn layui-btn-primary" id="close">重置</button>

@@ -150,7 +150,7 @@
 <script src="../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
 <script src="../js/config.js"></script>
-<script src="../js/user-info.js.js"></script>
+<script src="../js/user-info.js"></script>
 <script>
     var vail=false;
 
@@ -235,9 +235,33 @@
                             key: 'user'
                             , value: res
                         });
-                        layer.msg('登录成功', function () {
-                            window.location.href = '/torder/torder_web/static/page/shop.html';
+
+                        let obj = {
+                            "userId":layui.sessionData('user').user.code
+                        }
+                        $.ajax({
+                            type: "post",
+                            url: queryUrl + queryMethodTalents + getInfoMethod,
+                            dataType: "json",
+                            contentType: "application/json;charset=UTF-8",
+                            data: JSON.stringify(obj),
+                            success: function (res) {
+                                layui.sessionData('talents', {
+                                    key: 'talents'
+                                    , value: res
+                                });
+                                layer.msg('登录成功', function () {
+                                    if (layui.sessionData('user').user.userStatus==1){
+                                        window.location.href = '/torder/torder_web/static/index.html';
+                                    }
+                                    else {
+                                        window.location.href = '/torder/torder_web/static/page/shop.html';
+                                    }
+
+                                });
+                            }
                         });
+
                     }
                     else {
                         layer.msg('登录失败', function () {

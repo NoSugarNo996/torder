@@ -1,6 +1,9 @@
 package com.example.torder.websocket;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.example.torder.util.StringUtils;
+import com.example.torder.vo.MsgVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 
@@ -8,8 +11,7 @@ import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @ServerEndpoint(value = "/websocket/{userId}")
@@ -36,7 +38,7 @@ public class MyWebSocket {
     /**
      * 连接建立成功调用的方法*/
     @OnOpen
-    public void onOpen(Session session,@PathParam("userId") String userId) {
+    public void onOpen(Session session,@PathParam("userId") String userId) throws IOException {
         sessionMap.put(userId,session);
         addOnlineCount();           //在线数加1
         System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());
@@ -58,6 +60,7 @@ public class MyWebSocket {
      * @param message 客户端发送过来的消息*/
     @OnMessage
     public void onMessage(String message, Session session) throws IOException {
+        MsgVo msgVo=new MsgVo();
         System.out.println("来自客户端的消息:" + message);
         HashMap<String, Object> hashMap= JSON.parseObject(message, HashMap.class);
        //类型 1为单个发  2为通知全体
@@ -66,14 +69,20 @@ public class MyWebSocket {
         String tarUser =hashMap.get("tarUser").toString();
         //具体内容
         String text =hashMap.get("text").toString();
+        //自身code
+        String userCode = hashMap.get("userCode").toString();
         String[] tarUsers=tarUser.split(",");
-
+        msgVo.setMsgTime(new Date());
+        msgVo.setMsgPublisher(userCode);
+        msgVo.setMsgTitle(text);
         if ("1".equals(type)) {
             Session tarSession;
             for (String ter : tarUsers) {
                 tarSession = sessionMap.get(ter);
                 if (tarSession != null) {
-                    tarSession.getBasicRemote().sendText(text);
+                    msgVo.setMsgStatus("1");
+                    msgVo.setMsgAccepter(ter);
+                    tarSession.getBasicRemote().sendText(JSONArray.toJSON(msgVo).toString());
                 }
             }
             session.getBasicRemote().sendText("发送个体消息成功");
@@ -81,6 +90,14 @@ public class MyWebSocket {
         if ("2".equals(type)){
             sendInfo(text);
             session.getBasicRemote().sendText("发送群通知成功");
+        }
+        if ("3".equals(type)){
+            msgVo.setMsgStatus("3");
+            String a=sessionMap.keySet().toString();
+            String b= StringUtils.strip(a,"[]");
+            msgVo.setMsgTitle(b);
+            session.getBasicRemote().sendText(JSONArray.toJSON(msgVo).toString());
+
         }
 
     }
@@ -120,18 +137,18 @@ public class MyWebSocket {
     }
 
 
-    public void onMessage(Map<String,String> map) throws IOException {
-        String tarUser =map.get("tarUser");
+    public void onMessage(MsgVo msgVo) throws IOException {
+        msgVo.setMsgStatus("1");
+        String tarUser =msgVo.getMsgAccepter();
         //具体内容
-        String text =map.get("text");
         String[] tarUsers=tarUser.split(",");
         Session tarSession;
         if(tarUsers!=null) {
             for (String ter : tarUsers) {
                 tarSession = sessionMap.get(ter);
                 if (tarSession != null) {
-                    tarSession.getBasicRemote().sendText(text);
-                    System.out.println(text);
+                    tarSession.getBasicRemote().sendText(JSONArray.toJSON(msgVo).toString());
+                    System.out.println(msgVo);
                 }
             }
         }

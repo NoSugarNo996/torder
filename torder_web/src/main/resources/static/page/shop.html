@@ -31,15 +31,15 @@
 <div class="layui-row" >
     <ul class="layui-nav" lay-filter=""  style="display:inline-block;position:absolute;right: 10px;background: none">
 
-           <li class="layui-nav-item"><a href="">首页</a></li>
-           <li class="layui-nav-item layui-this"><a href="">快速发布</a></li>
-           <li class="layui-nav-item"><a href="">财务信息</a></li>
+           <li class="layui-nav-item"><a href="/torder/torder_web/static/page/shop.html">首页</a></li>
+           <li class="layui-nav-item layui-this"><a href="/torder/torder_web/static/page/mywork/publish.html">快速发布</a></li>
+           <li class="layui-nav-item"><a href="/torder/torder_web/static/page/mywork/trade-h.html">财务信息</a></li>
            <li class="layui-nav-item">
-               <a href="mywork/mywork.html">我的工作台</a>
+               <a href="/torder/torder_web/static/page/mywork/mywork.html">我的工作台</a>
                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                   <dd><a href="">我的信息</a></dd>
-                   <dd><a href="">我的项目</a></dd>
-                   <dd><a href="">我的发布</a></dd>
+                   <dd><a href="/torder/torder_web/static/page/mywork/talents.html">我的信息</a></dd>
+                   <dd><a href="/torder/torder_web/static/page/mywork/my-task.html">我的项目</a></dd>
+                   <dd><a href="/torder/torder_web/static/page/mywork/publish-task.html">我的发布</a></dd>
                </dl>
            </li>
            <li class="layui-nav-item"><a href="" class="login-out">退出登入</a></li>
@@ -64,7 +64,7 @@
 <div id="particles-js"  class="layui-row" style="height: 400px">
   </div>
 <div style="margin: 0 auto;text-align: center;position:relative;top: -220px">
-    <h2 style="font-size: 50px;color: rgba(237,242,240,0.9);">Online skills trading platform</h2>
+    <h2 style="font-size: 50px;color: rgba(237,242,240,0.9);">网上技能交易平台</h2>
     <h5 style="font-size: 20px;color: rgba(137,140,139,0.9);">Trade your wisdom for wealth and start a new era of trading!</h5>
 </div>
 
@@ -77,13 +77,13 @@
             <div class="layui-col-md2">
                 <div class="case-item1">
                     <div class="ih-item circle effect1">
-                        <a href="http://www.jq22.com" target="_blank">
+                        <a href="/torder/torder_web/static/page/talentsT.html" target="_blank">
                             <div class="spinner"></div>
                             <div class="img"><img src="../images/1.png" ></div>
                             <div class="info">
                                 <div class="info-back">
 
-                                    <h3>品牌设计</h3>
+                                    <h3>人才市场</h3>
                                 </div>
                             </div>
                         </a>
@@ -92,13 +92,13 @@
             </div>
             <div class="layui-col-md2"><div class="case-item1">
                 <div class="ih-item circle effect1">
-                    <a href="http://www.jq22.com" target="_blank">
+                    <a href="/torder/torder_web/static/page/taskT.html" target="_blank">
                         <div class="spinner"></div>
                         <div class="img"><img src="../images/2.png" ></div>
                         <div class="info">
                             <div class="info-back">
 
-                                <h3>营销推广</h3>
+                                <h3>任务市场</h3>
                             </div>
                         </div>
                     </a>
@@ -526,7 +526,7 @@
                    hi,在这里实现你的梦想!
                 </div>
                 </div>
-            <div class="layui-row">
+            <div class="layui-row" id="loginAndRes">
                 <div class="layui-col-md1">&nbsp;</div>
                 <div class="layui-col-md4"> <button type="button" class="layui-btn layui-btn-radius layui-btn-fluid" style="background-color: #6073f2" onclick="javascrtpt:window.location.href = '/torder/torder_web/static/page/login.html';">登入</button></div>
                 <div class="layui-col-md2">&nbsp;</div>
@@ -586,7 +586,7 @@
                     <p style="font-size: 17px;color: #6073f2;padding:0 30px;"><strong>平台严选</strong></p>
                     <hr>
                 </div>
-                <div class="layui-row" style="height: 330px;">
+                <div class="layui-row" style="height: 330px;" id="pingtai">
                    <div class="layui-row" style="height: 100px;margin:10px;">
                        <div class="layui-col-md6" style="height:100%;padding: 5px;background-color: #4c5dbf">
                            <img src="../images/ptyx1.jpg" style="width: 100%;height: 100%"></div>
@@ -643,7 +643,7 @@
     <div class="layui-col-md6" style="padding: 20px">
         <p style="font-size: 20px;color: #222222;"><strong>热门企业</strong></p>
         <hr class="layui-bg-black">
-<div class="layui-row">
+<div class="layui-row" id="hot">
     <div class="layui-col-md3" style="padding: 5px;height: 200px;">
         <img src="../images/ptyx13.jpg" style="width: 100%;height: 100%">
     </div>
@@ -673,7 +673,7 @@
 <!--    <div class="layui-row"  style="margin: 0 auto; text-align: center;" >-->
 <!--       <div class="layui-inline" >-->
            <div class="container" >
-               <div class="team-members row" >
+               <div class="team-members row" id="talentsT">
                    <div class="single-member effect-5">
                        <div class="member-image">
                            <img src="../images/rctj1.jpg" alt="Member">
@@ -799,60 +799,7 @@
 <!--       </div>-->
     </div>
 </div>
-<div class="layui-row case-content-bg  case-content-info case-box" >
-            <div class="case-wrapper clearfix">
-                <div class="case-item">
-                    <div class="case-item-bg case-item-bg1"></div>
-                    <div class="case-item-title">Heading information 1</div>
-                    <div class="case-item-text">应用BML做商户点击率的预估，提升了模型训练效率，基于海量数据做到了模型的每天更新。上线后转化率比之前有明显提升。</div>
-                    <div class="case-item-doc">
-                        <p>使用产品</p>
-                        <p>
-                            <a href="#">百度BMR</a>
-                            <a href="#">百度深度学习</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="case-item">
-                    <div class="case-item-bg case-item-bg2"></div>
-                    <div class="case-item-title">Heading information 2</div>
-                    <div class="case-item-text">运用BMR整理数据，以及BML做点击率预估，结合百度的用户画像数据训练游戏付费转化模型，业务效果获得大幅提升。</div>
-                    <div class="case-item-doc">
-                        <p>使用产品</p>
-                        <p>
-                            <a href="#">百度BMR</a>
-                            <a href="#">百度深度学习</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="case-item">
-                    <div class="case-item-bg case-item-bg3"></div>
-                    <div class="case-item-title">Heading information 3</div>
-                    <div class="case-item-text">运用BMR进行定时的数据筛选、清理工作，可按需调整集群规模，适应弹性的计算需求，并提供全天候的运维。</div>
-                    <div class="case-item-doc">
-                        <p>使用产品</p>
-                        <p>
-                            <a href="#">百度BMR</a>
-                            <a href="#">百度深度学习</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="case-item">
-                    <div class="case-item-bg case-item-bg4"></div>
-                    <div class="case-item-title">Heading information 4</div>
-                    <div class="case-item-text">专注国内A股短线交易，是国内一线顶尖短线私募高手联合开发，主要为热爱炒短线的股友们提供免费、实时、深度的个股大数据量化分析服务。</div>
-                    <div class="case-item-doc">
-                        <p>使用产品</p>
-                        <p>
-                            <a href="#">百度BMR</a>
-                            <a href="#">百度深度学习</a>
-                        </p>
-                    </div>
-                </div>
 
-            </div>
-
-</div>
 
 <!--底部-->
 <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
@@ -1173,9 +1120,6 @@
         var carousel = layui.carousel
             ,form = layui.form;
 
-
-
-
         //改变下时间间隔、动画类型、高度
         carousel.render({
             elem: '#test2'
@@ -1232,6 +1176,8 @@
 <script src="../lib/dist/mfb.js"></script>
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="../js/divhover.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/api.js"></script>
 <script type="text/javascript">
 
     $(".num2").num({Type:'num2'});
@@ -1247,6 +1193,6 @@
         });
     });
 </script>
-
+<script src="../js/shop.js"></script>
 </body>
 </html>

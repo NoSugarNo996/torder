@@ -44,7 +44,7 @@ public interface UserService {
      * @param id
      * @return
      */
-    UserVo getById(Integer id);
+    UserVo getById(String code);
 
     UserVo login(UserVo obj);
 

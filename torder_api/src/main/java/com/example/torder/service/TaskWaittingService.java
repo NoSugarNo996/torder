@@ -30,7 +30,7 @@ public interface TaskWaittingService {
      * @param id
      * @return
      */
-    int delete(Integer id);
+    int delete(String id);
 
     /**
      * 更新

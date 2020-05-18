@@ -18,7 +18,8 @@ public class MyInterceptors extends WebMvcConfigurationSupport {
         registry.addInterceptor(new LoginInterceptor())
                 .excludePathPatterns("/error")
                 .excludePathPatterns("/file/**")
-                .excludePathPatterns("/user/login")
+                .excludePathPatterns("/user/**")
+                .excludePathPatterns("/talents/**")
                 .addPathPatterns("/**")
         ;
         super.addInterceptors(registry);

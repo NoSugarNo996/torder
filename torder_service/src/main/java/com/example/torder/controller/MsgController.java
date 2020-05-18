@@ -8,6 +8,8 @@ import com.example.torder.vo.MsgVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 /**
  * @program: torder
  * @description: 任务
@@ -19,7 +21,7 @@ public class MsgController extends BaseController implements MsgApi {
     @Autowired
     MsgService taskService;
     @Override
-    public int add(MsgVo obj) {
+    public int add(MsgVo obj) throws IOException {
         return taskService.add(obj);
     }
 

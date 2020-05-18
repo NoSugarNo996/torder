@@ -33,7 +33,7 @@ public class TaskWaittingServiceImpl implements TaskWaittingService{
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(String id) {
         return taskWaittingMapper.deleteByPrimaryKey(id);
     }
 

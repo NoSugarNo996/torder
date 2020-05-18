@@ -2,6 +2,7 @@ package com.example.torder.api;
 
 import com.cetccity.common.base.vo.PageVo;
 import com.example.torder.vo.TaskVo;
+import com.example.torder.vo.UserVo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,5 +54,15 @@ public interface TaskApi {
      */
     @RequestMapping("/getInfo")
     TaskVo getById(@RequestParam("id") Integer id);
+
+/**
+ * @Description:
+ * @Param:
+ * @return:
+ * @Author: huangjiali 黄嘉丽
+ * @Date: 2020/5/12
+ */
+    @RequestMapping("/getCount")
+    long getCount(@RequestBody TaskVo obj);
     
 }

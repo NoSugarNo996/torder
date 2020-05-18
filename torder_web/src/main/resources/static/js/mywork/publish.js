@@ -1,3 +1,4 @@
+lan();
 function getCategoryParentSelectOption(obj) {
     // 获取下拉框
     $.ajax({
@@ -47,8 +48,20 @@ let eventObj = {
     "taskClassify":'',
     "taskMoney":'',
     "taskStart":'',
-    "taskEnd":''
+    "taskEnd":'',
+    "others":'',
+    "other":''
 }
+$("#btnNext").click(function () {
+
+    $("#info-name").text(layui.sessionData('talents').talents.talentsName);
+    $("#info-title").text($("#taskName").val());
+    $("#info-money").text($("#taskMoney").val());
+    $("#info-des").text($("#taskDes").val());
+    $("#info-start").text($("#taskStart").val());
+    $("#info-end").text($("#taskEnd").val());
+
+});
 $("#btnok").click(function () {
     console.log(3333)
     eventObj.taskName=$("#taskName").val();
@@ -58,19 +71,71 @@ $("#btnok").click(function () {
     eventObj.taskStart=$("#taskStart").val();
     eventObj.taskEnd=$("#taskEnd").val();
     $.ajax({
+        url: queryUrl+ "/DataAudit/start",
+        dataType: "json",
         type: "post",
-        url: queryUrl + queryMethodTask+addMethod,
-        aynsc:false,
-        contentType: "application/json;charset=UTF-8",
-        data:JSON.stringify(eventObj),
-        success: function (res) {
-            if (res==1){
-                layer.msg("提交成功，请等待审核")
+        async: false,
+        success: function (result) {
+            // result为保存的事件id
+            eventObj.others=result.instanceId;
+            $.ajax({
+                type: "post",
+                url: queryUrl + queryMethodTask+addMethod,
+                aynsc:false,
+                contentType: "application/json;charset=UTF-8",
+                data:JSON.stringify(eventObj),
+                success: function (res) {
+                    if (res==1){
+                        layer.msg("提交成功，请等待审核")
+                        window.location.href = '/torder/torder_web/static/page/mywork/myhome.html';
+                    }
+                    else {
+                        layer.msg("提交失败")
+                    }
+                }
+            });
+        },
+        error: function () {
+            console.log("addFlowError")
+        }
+    });
+
+});
+
+
+
+
+layui.use('upload', function() {
+    var $ = layui.jquery
+        , upload = layui.upload;
+
+    //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: queryUrl + '/fileload/file' //改成您自己的上传接口
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+        ,done: function(res){
+
+            //上传成功
+            if (res.result == "SUCCESS") { //上传成功
+              eventObj.other=res.data;
             }
             else {
-                layer.msg("提交失败")
+                return layer.msg('上传失败');
             }
+        }
+        ,error: function(){
+            //演示失败状态，并实现重传
+            var demoText = $('#demoText');
+            demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            demoText.find('.demo-reload').on('click', function(){
+                uploadInst.upload();
+            });
         }
     });
 });
-

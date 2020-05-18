@@ -1,6 +1,8 @@
 package com.example.torder.vo;
 
 import com.cetccity.common.base.vo.BaseVo;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +14,16 @@ import java.util.Date;
  * @create: 2019-12-25 14:13
  **/
 public class OrderVo extends BaseVo implements Serializable {
+    public String getMy() {
+        return my;
+    }
+
+    public void setMy(String my) {
+        this.my = my;
+    }
+
+    private  String my;
+
     private Integer aud;
 
     public Integer getAud() {
@@ -100,6 +112,8 @@ public class OrderVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date orderStart;
 
     /**
@@ -111,6 +125,8 @@ public class OrderVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date orderEnd;
 
     /**

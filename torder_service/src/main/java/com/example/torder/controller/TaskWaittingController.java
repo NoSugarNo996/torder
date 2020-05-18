@@ -29,7 +29,7 @@ public class TaskWaittingController extends BaseController implements TaskWaitti
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(String id) {
         return taskWaittingService.delete(id);
     }
 

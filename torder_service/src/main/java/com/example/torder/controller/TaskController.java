@@ -42,4 +42,9 @@ public class TaskController extends BaseController implements TaskApi {
     public TaskVo getById(Integer id) {
         return taskService.getById(id);
     }
+
+    @Override
+    public long getCount(TaskVo obj) {
+        return taskService.getCount(obj);
+    }
 }

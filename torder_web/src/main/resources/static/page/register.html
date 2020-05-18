@@ -156,7 +156,7 @@
 <script src="../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
 <script src="../js/config.js"></script>
-<script src="../js/user-info.js.js"></script>
+<!--<script src="../js/user-info.js"></script>-->
 <script>
     var vail=false;
 
@@ -259,8 +259,8 @@
 
                 },
                 error:function (res) {
-                    layer.msg('登录失败', function () {
-                        window.location.href = '/torder/torder_web/static/page/login.html';
+                    layer.msg('注册失败', function () {
+                        window.location.href = '/torder/torder_web/static/page/register.html';
                     });
                 }
             });

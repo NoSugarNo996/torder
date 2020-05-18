@@ -58,13 +58,13 @@
     g.key_name as talentsExperienceName,
     h.key_name as talentsStatueName
     from talents_info a
-    left join user_info b on a.user_id=b.user_id
+    left join user_info b on a.user_id=b.code
     left join dics_info c on a.talents_sex=c.key_value and c.dics_code='SEX'
     left join dics_info d on a.talents_nation=d.key_value and d.dics_code='NATION'
     left join dics_info e on a.talents_politice_status=e.key_value and e.dics_code='POLITICE'
     left join dics_info f on a.talents_education=f.key_value and f.dics_code='EDUCATION'
     left join dics_info g on a.talents_experience=g.key_value and g.dics_code='EXPERIENCE'
-    left join dics_info h on a.talents_statue=h.key_value and h.dics_code='STATE'
+    left join dics_info h on a.talents_statue=h.key_value and h.dics_code='TAlENTSSTATE'
     where 1=1
       <if test="talentsName !=null">
        and  a.talents_name like concat ('%',#{talentsName},'%')
@@ -75,7 +75,7 @@
       <if test="aud !=null">
         and a.talents_statue!=#{aud}
       </if>
-
+        and a.talents_id!=6
   </select>
   <select id="selectByPrimaryKey" parameterType="com.example.torder.vo.TalentsVo" resultType="com.example.torder.vo.TalentsVo">
     <!--
@@ -91,19 +91,19 @@
     g.key_name as talentsExperienceName,
     h.key_name as talentsStatueName
     from talents_info a
-    left join user_info b on a.user_id=b.user_id
+    left join user_info b on a.user_id=b.code
     left join dics_info c on a.talents_sex=c.key_value and c.dics_code='SEX'
     left join dics_info d on a.talents_nation=d.key_value and d.dics_code='NATION'
     left join dics_info e on a.talents_politice_status=e.key_value and e.dics_code='POLITICE'
     left join dics_info f on a.talents_education=f.key_value and f.dics_code='EDUCATION'
     left join dics_info g on a.talents_experience=g.key_value and g.dics_code='EXPERIENCE'
-    left join dics_info h on a.talents_statue=h.key_value and h.dics_code='STATE'
+    left join dics_info h on a.talents_statue=h.key_value and h.dics_code='TAlENTSSTATE'
     where 1=1
     <if test="talentsId!=null">
       and  a.talents_id = #{talentsId,jdbcType=INTEGER}
     </if>
     <if test="userId!=null">
-      and  a.user_id = #{userId,jdbcType=INTEGER}
+      and  a.user_id = #{userId}
     </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
