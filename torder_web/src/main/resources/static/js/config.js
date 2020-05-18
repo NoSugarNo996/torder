@@ -31,6 +31,8 @@ var queryMethodMsg='/msg';
 var queryMethodTaskwaitting='/taskwaitting';
 /*用户查询*/
 var queryMethodUser='/user';
+//问答查询
+var queryMethodQA='/qa';
 var queryMethodDics='/dics';
 /*通用的增删改查*/
 var queryListMethod = '/queryList';
