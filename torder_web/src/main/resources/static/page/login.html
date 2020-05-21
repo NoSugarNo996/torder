@@ -96,6 +96,7 @@
             margin-top: 5px;
             cursor: pointer;
         }
+        .dao:hover{color: #fff3e7;}
     </style>
 </head>
 <body>
@@ -121,6 +122,10 @@
 
             </div>
             <button class="layui-btn admin-button" lay-submit="" lay-filter="login">开 启</button>
+
+            <br>
+            <br>
+            <div class="layui-row" style="text-align: right;"><a class="dao" href="/torder/torder_web/static/page/register.html">没有账号？前往注册-></a></div>
         </form>
     </div>
 </div>
@@ -146,11 +151,10 @@
         </div>
     </div>
 </div>
-<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
 <script src="../js/config.js"></script>
-<script src="../js/user-info.js"></script>
 <script>
     var vail=false;
 
@@ -251,7 +255,7 @@
                                     , value: res
                                 });
                                 layer.msg('登录成功', function () {
-                                    if (layui.sessionData('user').user.userStatus==1){
+                                    if (layui.sessionData('user').user.userStatus=='1'){
                                         window.location.href = '/torder/torder_web/static/index.html';
                                     }
                                     else {

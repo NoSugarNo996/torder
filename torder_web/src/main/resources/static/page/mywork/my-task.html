@@ -61,7 +61,7 @@
                     <th style="width:225px">创建时间</th>
                     <th style="width:630px">项目名称</th>
                     <th style="width:130px">项目金额</th>
-                    <th style="width:130px">接收人</th>
+                    <th style="width:130px">发布者</th>
                     <th style="width:150px">项目状态</th>
                     <th style="width:330px">操作</th>
 
@@ -80,7 +80,7 @@
                     <th style="width:225px">创建时间</th>
                     <th style="width:630px">项目名称</th>
                     <th style="width:130px">项目金额</th>
-                    <th style="width:130px">接收人</th>
+                    <th style="width:130px">发布者</th>
                     <th style="width:150px">项目状态</th>
                     <th style="width:330px">操作</th>
 
@@ -99,7 +99,7 @@
                     <th style="width:225px">创建时间</th>
                     <th style="width:630px">项目名称</th>
                     <th style="width:130px">项目金额</th>
-                    <th style="width:130px">接收人</th>
+                    <th style="width:130px">发布者</th>
                     <th style="width:150px">项目状态</th>
                     <th style="width:330px">操作</th>
 
@@ -127,33 +127,60 @@
                         <div class="sendInfo">
                             <!-- 部门信息 -->
                             <div class=" layui-form-item" style="font-size: 16px;line-height: 50px">
-                                <div class="layui-row">
-                                    <label class=" required">项目名称:</label>
-                                    <label id="taskName" name="taskName" ></label>
-                                </div>
-                                <div class="layui-row">
-                                    <div class="layui-col-md4">
-                                    <label class="">项目状态：</label>
-                                    <label id="taskStatus"  name="taskStatus" ></label>
-                                    </div>
-                                   <div class="layui-col-md4">
-                                    <label class="">项目发布者：</label>
-                                    <label id="taskPublisher" name="taskPublisher" ></label>
-
-                                     </div>
-
-                                    <div class="layui-col-md4">
-                                    <label >项目接收者:</label>
-                                    <label id="taskAccepter" name="taskAccepter" ></label>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label required">项目名称:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="taskName" id="taskName" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                               class="layui-input" readonly>
                                     </div>
                                 </div>
-                                <div class="layui-row">
-                                    <label >项目简介：</label>
-                                    <label id="taskDes"  name="taskDes" ></label>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label required">项目状态：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="taskStatus" id="taskStatus" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                               class="layui-input" readonly>
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label required">项目发布者：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text"id="taskPublisher" name="taskPublisher" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                               class="layui-input" readonly>
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label required">项目接收者:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="taskAccepter" name="taskAccepter" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                               class="layui-input" readonly>
+                                    </div>
                                 </div>
                                 <div class="layui-row">
-                                    <label >项目文件：</label>
+                                    <label class="layui-form-label required">项目简介:</label>
+
+                                    <textarea style="width: 500px;height: 150px" type="text" id="taskDes" name="taskDes" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                              readonly></textarea>
+
+                                </div>
+                                <div class="layui-row">
+                                    <label class="layui-form-label required">项目文件:</label>
+
                                     <label id="taskFile" name="taskFile" ></label>
+
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label required">项目金额:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="taskMoney" name="taskMoney" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                               class="layui-input" readonly>
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label required">审核意见:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="other1" name="other1"
+                                               class="layui-input" >
+                                    </div>
                                 </div>
                                 <div class="layui-row">
                                     <label >项目开始时间：</label>
@@ -162,12 +189,6 @@
                                 <div class="layui-row">
                                     <label>项目结束时间：</label>
                                     <label id="taskEnd" name="taskEnd" ></label>
-
-                                </div>
-
-                                <div class="layui-row">
-                                    <label >项目金额：</label>
-                                    <label id="taskMoney" name="taskMoney" ></label>
                                 </div>
 
                             </div>
@@ -182,7 +203,7 @@
 <div id="finish" style="display:none;width: 900px" >
 
 </div>
-<!--选取人才-->
+<!--提交方案-->
 <div id="selecttalents" style="display:none;width: 900px" >
     <form class="layui-form" lay-filter="update">
 
@@ -190,7 +211,8 @@
             <div class="left-form">
                 <fieldset class="layui-elem-field">
                     <legend>
-                        <div class="title">选取人才</div>
+                        <br>
+                        <div class="title">提交方案</div>
                     </legend>
                     <div class=" layui-form-item">
 

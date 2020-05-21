@@ -8,9 +8,8 @@
     "href": "../../page/mywork/myhome.html"
   },
   "logoInfo": {
-    "title": "layui.sessionData('user').user.userNickname",
-    "image": "../../images/rctj8.jpg",
-    "href": ""
+    "title": "交易平台",
+    "href": "../../page/shop.html"
   },
   "menuInfo": {
     "currency": {
@@ -125,7 +124,7 @@
           "child": [
             {
               "title": "关注的人",
-              "href": "../../page/mywork/fav-people.html",
+              "href": "../../page/mywork/call-all.html",
               "icon": "fa fa-jpy",
               "target": "_self"
             },
@@ -164,39 +163,39 @@
       "icon": "fa fa-lemon-o",
       "child": [
         {
-          "title": "图标列表",
-          "href": "page/icon.html",
-          "icon": "fa fa-dot-circle-o",
+          "title": "人才信息修改",
+          "href": "../../page/mywork/talents.html",
+          "icon": "fa fa-tachometer",
           "target": "_self"
         },
         {
-          "title": "图标选择",
-          "href": "page/icon-picker.html",
-          "icon": "fa fa-adn",
+          "title": "参与的项目",
+          "href": "../../page/mywork/my-task.html",
+          "icon": "fa fa-child",
           "target": "_self"
         },
         {
-          "title": "颜色选择",
-          "href": "page/color-select.html",
-          "icon": "fa fa-dashboard",
+          "title": "交易记录",
+          "href": "../../page/mywork/trade-h.html",
+          "icon": "fa fa-paper-plane-o",
           "target": "_self"
         },
         {
-          "title": "下拉选择",
-          "href": "page/table-select.html",
-          "icon": "fa fa-angle-double-down",
+          "title": "一键发布",
+          "href": "../../page/mywork/publish.html",
+          "icon": "fa fa-jpy",
           "target": "_self"
         },
         {
-          "title": "文件上传",
-          "href": "page/upload.html",
-          "icon": "fa fa-arrow-up",
+          "title": "发布的项目",
+          "href": "../../page/mywork/publish-task.html",
+          "icon": "fa fa-legal",
           "target": "_self"
         },
         {
-          "title": "富文本编辑器",
-          "href": "page/editor.html",
-          "icon": "fa fa-edit",
+          "title": "我收到的消息",
+          "href": "../../page/mywork/invite.html",
+          "icon": "fa fa-search",
           "target": "_self"
         }
       ]
@@ -216,12 +215,6 @@
               "title": "通讯录",
               "href": "../../page/mywork/call-all.html",
               "icon": "fa fa-calendar",
-              "target": "_self"
-            },
-            {
-              "title": "我的关注",
-              "href": "../../page/mywork/my-fav-people-all.html",
-              "icon": "fa fa-snowflake-o",
               "target": "_self"
             },
             {

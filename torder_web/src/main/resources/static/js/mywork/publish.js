@@ -63,6 +63,7 @@ $("#btnNext").click(function () {
 
 });
 $("#btnok").click(function () {
+
     console.log(3333)
     eventObj.taskName=$("#taskName").val();
     eventObj.taskClassify=$("#children").val();

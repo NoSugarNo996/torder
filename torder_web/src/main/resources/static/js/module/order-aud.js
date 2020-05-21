@@ -119,6 +119,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             data: JSON.stringify({
                 "orderId":eventObj.orderId,
                 "orderStatus":1
+                "other1":$("#other1").text()
             }),
             success: function (res) {
                 if (res==1){
@@ -187,7 +188,8 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
                     "orderMoney": res.orderMoney,
                     "taskId": res.taskId,
                     "orderStart": res.orderStart,
-                    "orderEnd": res.orderEnd
+                    "orderEnd": res.orderEnd,
+                    "other1":res.other1
 
                 });
             }
@@ -213,7 +215,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             data: JSON.stringify({
                 "orderId": $(this).attr('value'),
                 "orderStatus":2,
-                "other1":$("#audDes").text()
+                "other1":$("#other1").text()
             }),
             success: function (res) {
                 if (res==1){
@@ -240,6 +242,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
             success: function (res) {
                 if (res==1){
                     layer.msg('审核成功');
+                    "other1":$("#other1").text()
                     getEventData();
                 }
                 else

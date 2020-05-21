@@ -22,6 +22,8 @@
     from question_info
     <if test="questionName!=null">
       where question_name like concat('%', #{questionName}, '%')
+      ORDER BY REPLACE(question_name,#{questionName},'')
+
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.QAVo">

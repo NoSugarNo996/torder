@@ -9,11 +9,13 @@ function getUrlParam(name) {
 let eventObj = {
     // "taskStatus":2,
     "taskClassify":'',
+    "taskClassifyName":'',
     "taskPublisherName":''
 }
 let favor={
     "userCode":layui.sessionData('user').user.code,
     "taskCode":'',
+    "favType":0
 }
 let favper={
     "userCode":layui.sessionData('user').user.code,
@@ -34,6 +36,7 @@ function getEventData() {
                $("#taskName").text(res.taskName);
                $("#taskDes").text(res.taskDes);
                eventObj.taskClassify=res.taskClassify;
+               eventObj.taskClassifyName=res.taskClassifyName;
                // eventObj.taskCode=res.code;
                favor.taskCode=res.code;
                favper.targetCode=res.taskPublisher;
@@ -42,7 +45,7 @@ function getEventData() {
                $("#mainshop").append(data);
 
                let  a={
-                   "taskCode":eventObj.taskCode
+                   "taskCode":res.code
                }
                //竞标数量
                $.ajax({
@@ -51,20 +54,20 @@ function getEventData() {
                    aynsc: false,
                    data:JSON.stringify(a),
                    contentType: "application/json;charset=UTF-8",
-                   success: function (res) {
-                       $("#count").text(res.data.length)
-                       if(res.data.length>0){
+                   success: function (res3) {
+                       $("#count").text(res3.data.length)
+                       if(res3.data.length>0){
                            var  data='';
                            //所有方案
-                           for(var index=0;index<res.data.length;index++){
+                           for(var index=0;index<res3.data.length;index++){
                                data+='  <div class="layui-row">\n' +
                                    '\n' +
                                    '                            <div class="layui-row">\n' +
                                    '                                <div class="layui-col-md1">\n' +
-                                   '                                    <img src="'+queryUrl+'/file/'+res.data[index].talentsImg+'" style="width: 100%;height: 100%">\n' +
+                                   '                                    <img src="'+queryUrl+'/file/'+res3.data[index].talentsImg+'" style="width: 100%;height: 100%">\n' +
                                    '                                </div>\n' +
                                    '                                <div class="layui-col-md3" style="margin-left: 20px">\n' +
-                                   '                                    <div class="layui-row" style="font-size: 18px;">'+res.data[index].talentsName+'</div><br>\n' +
+                                   '                                    <div class="layui-row" style="font-size: 18px;">'+res3.data[index].talentsName+'</div><br>\n' +
                                    '                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>\n' +
                                    '                                </div>\n' +
                                    '                            </div>\n' +
@@ -85,10 +88,10 @@ function getEventData() {
                                '\n' +
                                '                            <div class="layui-row">\n' +
                                '                                <div class="layui-col-md1">\n' +
-                               '                                    <img src="'+queryUrl+'/file/'+res.data[0].talentsImg+'" style="width: 100%;height: 100%">\n' +
+                               '                                    <img src="'+queryUrl+'/file/'+res3.data[0].talentsImg+'" style="width: 100%;height: 100%">\n' +
                                '                                </div>\n' +
                                '                                <div class="layui-col-md3" style="margin-left: 20px">\n' +
-                               '                                    <div class="layui-row" style="font-size: 18px;">'+res.data[0].talentsName+'</div><br>\n' +
+                               '                                    <div class="layui-row" style="font-size: 18px;">'+res3.data[0].talentsName+'</div><br>\n' +
                                '                                    <div class="layui-row" style="color: #d11b18;font-size: 14px;">方案:</div>\n' +
                                '                                </div>\n' +
                                '                            </div>\n' +
@@ -160,6 +163,35 @@ function getEventData() {
 
                    }
                });
+
+               //相关疑问
+               let qa={
+                   "questionName":eventObj.taskClassifyName,
+                    "pageSize":10
+               }
+               $.ajax({
+                   type: "post",
+                   url: queryUrl + queryMethodQA+queryListMethod,
+                   aynsc:false,
+                   contentType: "application/json;charset=UTF-8",
+                   data:JSON.stringify(qa),
+                   success: function (result) {
+                       var data='';
+                       //单个
+                       for (let index = 0; index < result.data.length; index++) {
+                           if (index<result.size){
+                              data+=' <div class="layui-row" style="padding-left: 30px;padding-right: 30px;">\n' +
+                                  '                    <div class="layui-row" style="color: #666966"><a href="http://localhost:63342/torder/torder_web/static/page/question.html?questionName='+result.data[index].questionName+'">'+result.data[index].questionName+'"</a></div>\n' +
+                                  '                    <hr class="layui-bg-gray">\n' +
+                                  '                </div>';
+                           }
+
+                       }
+                       $("#qa").append(data);
+
+                   }
+               });
+
            }
 
 
@@ -316,6 +348,8 @@ function urlHtml(id){
 }
 
 
+
+
 function add() {
     $.ajax({
         type: "post",
@@ -339,5 +373,3 @@ function del(favId) {
         }
     });
 }
-
-

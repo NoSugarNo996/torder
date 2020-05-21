@@ -32,8 +32,22 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public int add(OrderVo obj) {
+//        int result=0;
         obj.setCode(UUIDUtil.getUUID());
-        return orderMapper.insertSelective(BeanUtil.copy(obj, Order.class));
+
+        if (obj.getOrderStatus()==1)
+        {
+//            OrderVo order=getById(obj.getOrderId());
+            //甲方-
+            UserVo userVo=userMapper.selectByPrimaryKey(obj.getOrderPartyA());
+            userVo.setMoney(userVo.getMoney()-obj.getOrderMoney());
+            userMapper.updateByPrimaryKeySelective(BeanUtil.copy(userVo, User.class));
+            //乙方+
+            UserVo userVo2=userMapper.selectByPrimaryKey(obj.getOrderPartyB());
+            userVo2.setMoney(userVo2.getMoney()+obj.getOrderMoney());
+             userMapper.updateByPrimaryKeySelective(BeanUtil.copy(userVo2, User.class));
+        }
+        return  orderMapper.insertSelective(BeanUtil.copy(obj, Order.class));
     }
 
     @Override

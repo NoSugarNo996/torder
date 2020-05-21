@@ -48,7 +48,7 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public int update(TaskVo obj) {
-        if (obj.getTaskStatus().equals("7")){
+        if ("7".equals(obj.getTaskStatus())){
             taskMapper.updateByPrimaryKeySelective(BeanUtil.copy(obj,Task.class));
             TaskVo task=getById(obj.getTaskId());
             Order order=new Order();

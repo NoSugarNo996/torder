@@ -29,6 +29,9 @@
   </sql>
   <select id="findList" parameterType="com.example.torder.vo.NoticeVo" resultType="com.example.torder.vo.NoticeVo">
     select * from notice_info
+    <if test="noticeStart!=null">
+      <![CDATA[ where notice_start < #{noticeStart} and notice_end > #{noticeStart}]]>
+    </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.NoticeVo">
     <!--

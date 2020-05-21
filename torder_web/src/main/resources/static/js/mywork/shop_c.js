@@ -11,7 +11,7 @@ let eventObj = {
     "taskType":1,
     "taskStatus":2,
     "taskClassifyName":getUrlParam('cateName'),
-    "pageSize": 10,
+    "pageSize": 12,
     "pageNum": numEvent,
     "taskName":''
 }

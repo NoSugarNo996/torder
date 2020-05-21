@@ -43,24 +43,24 @@ let eventObj1 = {
             },
             success: function (res) {
 
-                $("#taskName").text(res.taskName);
-                $("#taskPublisher").text(res.taskPublisherName);
-                $("#taskAccepter").text(res.taskAccepterName);
+                $("#taskName").val(res.taskName);
+                $("#taskPublisher").val(res.taskPublisherName);
+                $("#taskAccepter").val(res.taskAccepterName);
                 $("#taskDes").text(res.taskDes);
-
+                $("#other1").val(res.other1);
                 $("#taskStart").text(res.taskStart);
                 $("#taskEnd").text(res.taskEnd);
-                $("#taskMoney").text(res.taskMoney);
+                $("#taskMoney").val(res.taskMoney);
                 if (res.taskFile!=null){
                     let fileArray= res.taskFile.split(",");
                     for (var i = 0; i < fileArray.length; i++) {
                         var tr =
-                          '<div class="layui-row"><a href="' + queryUrl + fileArray[i] + '" download="' + fileArray[i].split('/')[2] + '" target="_blank">下载</a></div>';
-                        $('#taskFile').append(tr);
+                          '<div class="layui-row"><a href="' + queryUrl + '/file/'+fileArray[i] + '" download="' + fileArray[i].split('/')[2] + '" target="_blank">下载</a></div>';
+                        $('#taskFile').empty().append(tr);
                     }
                 }
                 else  {
-                    $("#taskFile").text("暂无文件");
+                    $("#taskFile").empty().text("暂无文件");
                 }
 
 
@@ -132,19 +132,22 @@ let eventObj1 = {
                    for (let i = 0; i < (res.data.length/2); i++){
                         data += '  <div class="layui-row">';
                        for (let j = 0; j < 2; j++){
-                           data +='   <div class="layui-col-md6 selectTalents" style="padding: 5px;" onclick="selectTalent('+'\''+res.data[i*2+j].talentsCode+'\'' +')">';
-                           data += '   <div style="border: 1px solid #c0c6c0;height: 200px;" >\n';
-                           data += '   <div class="layui-row" style="padding: 10px;">\n';
-                           data += '    <div class="layui-col-md4" style="height: 100px;"><img src="../../images/case-logo004.png" style="width: 100%;height: 100%"></div>\n';
-                           data += '    <div class="layui-col-md7" style="padding: 15px;">\n';
-                           data += '    <div class="layui-row" style="font-size: 18px;margin-bottom: 10px;">'+res.data[i*2+j].talentsName+'</div>\n';
-                           data +='    <div class="layui-row"><div style="font-size:15px;color:#818581;border: 0px solid #818581;border-radius: 20%;width: 100px;height: 30px;"><i class="layui-icon layui-icon-ok" style="font-size: 20px; color: #818581;"></i>  已关注</div></div>\n';
-                           data += '    </div>\n';
-                           data += '    <div class="layui-col-md1" style="text-align: right"><i class="layui-icon layui-icon-close-fill" style="font-size: 20px; color: #af1714;"></i></div>\n';
-                           data += '    </div>\n';
-                           data += '    <div class="layui-row" style="padding: 5px;height: 60px;">简略方案：<span>'+res.data[i*2+j].waittingShortSolution+'</span></div>\n';
-                           data += '    </div>\n';
-                           data += '    </div>\n';
+                           if ((i*2+j)<res.data.length){
+                               data +='   <div class="layui-col-md6 selectTalents" style="padding: 5px;" onclick="selectTalent('+'\''+res.data[i*2+j].talentsCode +'\''+')">';
+                               data += '   <div style="border: 1px solid #c0c6c0;height: 270px;" >\n';
+                               data += '   <div class="layui-row" style="padding: 10px;">\n';
+                               data += '    <div class="layui-col-md4" style="height: 100px;"><img src="'+queryUrl+'/file/'+res.data[i*2+j].talentsImg+'" style="width: 100%;height: 100%"></div>\n';
+                               data += '    <div class="layui-col-md7" style="padding: 15px;">\n';
+                               data += '    <div class="layui-row" style="font-size: 18px;margin-bottom: 10px;">'+res.data[i*2+j].talentsName+'</div>\n';
+                               data +='    <div class="layui-row"><div style="font-size:15px;color:#818581;border: 0px solid #818581;border-radius: 20%;width: 100px;height: 30px;"><i class="layui-icon layui-icon-ok" style="font-size: 20px; color: #818581;"></i>  已关注</div></div>\n';
+                               data += '    </div>\n';
+                               data += '    <div class="layui-col-md1" style="text-align: right"><i class="layui-icon layui-icon-close-fill" style="font-size: 20px; color: #af1714;"></i></div>\n';
+                               data += '    </div>\n';
+                               data += '    <div class="layui-row" style="padding: 5px;height: 60px;">简略方案： <textarea  placeholder="请输入内容" class="layui-textarea" readonly>'+res.data[i*2+j].waittingShortSolution+'</textarea></div>\n';
+                               data += '    </div>\n';
+                               data += '    </div>\n';
+                           }
+
                        }
                        data += '  </div>';
                    }
@@ -272,6 +275,9 @@ let eventObj1 = {
                         if(res.data[index].taskStatus==1){
                             data+=  '<button type="button" class="msgaudapply layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
                         }
+                        else if (res.data[index].taskStatus==2){
+                            data+=  '<button type="button" class="selecttalents layui-btn layui-btn-sm layui-btn-warm" tag="'+res.data[index].others+'"value="' + res.data[index].code + '">选取人才</button>\n'
+                        }
                         else if (res.data[index].taskStatus==3){
                             data+=  '<button type="button" class="selecttalents layui-btn layui-btn-sm layui-btn-warm" tag="'+res.data[index].others+'"value="' + res.data[index].code + '">选取人才</button>\n'
                         }
@@ -319,8 +325,7 @@ let eventObj1 = {
 
 //完成任务
     $('body').on('click', '.finishEvent', function () {
-        update.taskAccepter='';
-        update.taskStatus=5;
+        update.taskStatus=6;
         update.code=$(this).attr('value');
         $.ajax({
             type: "post",
@@ -529,7 +534,7 @@ let eventObj1 = {
         "pageSize": 10,
         "pageNum": numEvent4,
         "taskPublisher":layui.sessionData('user').user.code,
-        "taskStatus":5
+        "taskStatus":4
     }
 
 
@@ -716,18 +721,20 @@ let obj=
         "talentsCode":"1,2",
         "alltalents":"1,2,3"
     }
+
 function selectTalent(taskAccepter) {
     //修改任务表
     update.taskAccepter=taskAccepter;
 
-    obj.btn('选取成功');
-    obj.instanceId(update.others);
-    obj.nextOpr(update.taskAccepter);
+    obj.btn='选取成功';
+    obj.instanceId=update.others;
+    obj.nextOpr=update.taskAccepter;
     $.ajax({
 
         url: queryUrl+ "/DataAudit/completeTask",
         dataType: "json",
         type: "post",
+        contentType: "application/json;charset=UTF-8",
         data:JSON.stringify(obj),
         async: false,
         success: function (result) {
@@ -752,11 +759,10 @@ function selectTalent(taskAccepter) {
                 type: "post",
                 url: queryUrl + queryMethodTaskwaitting+deleteMethod,
                 aynsc:false,
-                contentType: "application/json;charset=UTF-8",
                 data:{"taskCode":update.code},
                 success: function (res) {
                     if (res==1){
-                        layer.msg("选取成功，请尽快与他联系吧");
+                        layer.msg("");
                     }
                     else {
                         layer.msg("选取失败");

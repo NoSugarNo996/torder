@@ -38,6 +38,7 @@
      b.key_name as taskTypeName,
      c.key_name as taskStatusName,
      d.talents_name as taskPublisherName,
+     d.others as taskPublisherImg,
      e.talents_name as taskAccepterName,
      f.c_name as taskClassifyName
      from task_info a
@@ -62,6 +63,12 @@
     <if test="taskName!=null">
       and  ( a.task_name LIKE CONCAT('%',#{taskName},'%') or d.talents_name LIKE CONCAT('%',#{taskName},'%') or e.talents_name LIKE CONCAT('%',#{taskName},'%') or a.task_des LIKE CONCAT('%',#{taskName},'%'))
     </if>
+    <if test="taskAccepter!=null">
+      and a.task_accepter=#{taskAccepter}
+    </if>
+    <if test="taskPublisher!=null">
+      and a.task_publisher=#{taskPublisher}
+    </if>
     order by a.task_start desc
   </select>
   <select id="getCount" resultType="java.lang.Long">
@@ -76,12 +83,14 @@
     b.key_name as taskTypeName,
     c.key_name as taskStatusName,
     d.talents_name as taskPublisherName,
-    e.talents_name as taskAccepterName
+    e.talents_name as taskAccepterName,
+    f.c_name as taskClassifyName
     from task_info a
     left join dics_info b on a.task_type=b.key_value and b.dics_code='TYPE'
-    left join dics_info c on a.task_status=c.key_value and c.dics_code='STATE'
+    left join dics_info c on a.task_status=c.key_value and c.dics_code='TASKSTATE'
     left join talents_info d on a.task_publisher=d.code
     left join talents_info e on a.task_accepter=e.code
+    left join category_info f on a.task_classify=f.c_code
     where a.task_id = #{taskId,jdbcType=INTEGER}
 
   </select>

@@ -37,7 +37,7 @@
                                     <div class="layui-inline">
                                         <label class="layui-form-label">绑定用户ID</label>
                                         <div class="layui-input-inline">
-                                            <input name="userId" class="layui-input">
+                                            <input name="userId" class="layui-input" readonly>
                                         </div>
                                     </div>
                                     <div class="layui-inline">
@@ -52,7 +52,7 @@
                                     <div class="layui-inline">
                                         <label class="layui-form-label">联系方式</label>
                                         <div class="layui-input-inline">
-                                            <input type="text" name="talentsPhone" class="layui-input">
+                                            <input type="text" name="talentsPhone" class="layui-input" lay-verify="required|phone">
                                         </div>
                                     </div>
                                     <div class="layui-inline">
@@ -108,7 +108,7 @@
                                     <div class="layui-inline">
                                         <label class="layui-form-label">邮箱</label>
                                         <div class="layui-input-inline">
-                                            <input name="talentsEmail" class="layui-input">
+                                            <input name="talentsEmail" class="layui-input" lay-verify="required|email">
                                         </div>
                                     </div>
                                     <div class="layui-inline">
@@ -129,7 +129,7 @@
                                     <div class="layui-inline">
                                         <label class="layui-form-label">身份证号码</label>
                                         <div class="layui-input-inline">
-                                            <input name="talentsIdentity" class="layui-input">
+                                            <input name="talentsIdentity" class="layui-input" lay-verify="required|identity">
                                         </div>
                                     </div>
                                     <div class="layui-inline">
@@ -141,16 +141,17 @@
                                     <div class=" layui-form-item">
 
 
-
-                                        <label class="layui-form-label">个人头像</label>
-                                        <div  id="head"></div>
-                                        <div class="layui-upload">
-                                            <button type="button" class="layui-btn" id="test1">上传图片</button>
+                                        <div class="layui-col-md4">    <label class="layui-form-label">个人头像</label>  <div  id="head"></div></div>
+                                        <div class="layui-col-md2">
+                                            <div class="layui-upload" style="padding-top: 260px">
+                                            <button type="button" class="layui-btn" id="test1" >上传图片</button>
                                             <div class="layui-upload-list">
                                                 <img class="layui-upload-img" id="demo1">
                                                 <p id="demoText"></p>
                                             </div>
-                                        </div>
+                                        </div></div>
+
+
                                     </div>
                                     <div class=" layui-form-item">
 
@@ -194,6 +195,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">审核意见</label>
+                                        <div class="layui-input-inline" >
+                                            <input name="audDes" class="layui-input" readonly>
+                                        </div>
+                                    </div>
                                     <div>
                                         <input type="text" name="talentsId" class="layui-input" style="display: none">
                                     </div>
@@ -214,7 +221,7 @@
     </div>
 </div>
 
-<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<!--<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>-->
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="../../lib/layui-v2.5.4/layui.js"></script>
 <script src="../../js/api.js"></script>

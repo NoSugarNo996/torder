@@ -25,10 +25,13 @@
   <select id="findList" parameterType="com.example.torder.vo.FavoritesVo" resultType="com.example.torder.vo.FavoritesVo">
     select a.*,
     b.talents_name as targetName,
-    b.aud_des as audDes,
+    b.talents_resume as talentsResume,
+    b.others as talentsImg,
     c.talents_name as userName,
     d.task_name as taskName,
     d.task_des as taskDes,
+    d.other as taskImg,
+    d.task_id as taskId,
     f.key_name as taskStatusName,
     g.talents_name as taskPublisherName
      from favorites_info a

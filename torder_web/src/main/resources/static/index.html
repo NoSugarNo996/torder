@@ -108,24 +108,35 @@
 <!--<script src="../../lib/layui-v2.5.4/layui.js?v=1.0.4" charset="utf-8"></script>-->
 <script src="js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
-    layui.use(['element', 'layer', 'layuimini'], function () {
-        var $ = layui.jquery,
-            element = layui.element,
-            layer = layui.layer;
 
-        layuimini.init('/torder/torder_web/static/api/init.json');
-        $('#name').text(layui.sessionData('user').user.userNickname);
-        console.log(layui.sessionData('user').user.userNickname);
-        $('.login-out').on("click", function () {
-            layer.msg('退出登录成功', function () {
-                layui.sessionData('user', null);
-                window.location.href = '/torder/torder_web/static/page/login.html';
-            });
+        layui.use(['element', 'layer', 'layuimini'], function () {
+            var $ = layui.jquery,
+                element = layui.element,
+                layer = layui.layer;
+            if (layui.sessionData('user').user.userStatus==1){
+                layuimini.init('/torder/torder_web/static/api/init.json');
+                $('#name').text(layui.sessionData('user').user.userNickname);
+                console.log(layui.sessionData('user').user.userNickname);
+                $('.login-out').on("click", function () {
+                    layer.msg('退出登录成功', function () {
+                        layui.sessionData('user', null);
+                        window.location.href = '/torder/torder_web/static/page/login.html';
+                    });
+                });
+
+        function showall(allUsers){
+
+        }
+            }
+        else {
+                layer.msg('非法访问，将为您跳转到主页面', function () {
+                    window.location.href = '/torder/torder_web/static/page/shop.html';
+                });
+            }
+
         });
-    });
-    function showall(allUsers){
 
-    }
+
 </script>
 
 <script src="js/api.js?"></script>

@@ -46,6 +46,7 @@
 <script>
     $('#money').text(layui.sessionData('user').user.money);
     $('#username').text(layui.sessionData('user').user.userName);
+    var myDate = new Date();
     function addMoney(money) {
         $.ajax({
             type: "post",
@@ -56,6 +57,7 @@
                 "orderPartyB": 'c56caeed7b204f9db7c935a9d00cefb2',
                 "orderPartyA":layui.sessionData('user').user.code,
                 "orderStatus":0
+
             }),
             success: function (res) {
                 if (res.size==1){
@@ -74,7 +76,9 @@
                                       "orderPartyB": 'c56caeed7b204f9db7c935a9d00cefb2',
                                       "orderPartyA":layui.sessionData('user').user.code,
                                       "orderStatus":0,
-                                      "orderMoney":money
+                                      "orderMoney":money,
+                                      "orderStart":myDate,
+                                      "orderEnd":myDate
                                   }),
                                   success: function (res) {
                                       if (res==1){

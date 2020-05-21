@@ -33,7 +33,7 @@ public interface DataAuditApi {
     * @time 2019/5/10 16:09
     * @version 1.0
     */
-    @PostMapping(value="/start")
+    @RequestMapping(value="/start")
 //    public StartProcessVo start(@RequestParam("processKey") String processKey,
 //                                @RequestBody Map<String, Object> map);
     public StartProcessVo start();
@@ -44,7 +44,7 @@ public interface DataAuditApi {
     * @time 2019/5/10 16:09
     * @version 1.0
     */
-    @PostMapping(value="/CompleteTask")
+    @RequestMapping("/completeTask")
 //    public CompleteTaskVo completeTask(@RequestParam("instanceId") String instanceId,
 //                                       @RequestBody Map<String, Object> map);
     public CompleteTaskVo completeTask(@RequestBody Map<String, Object> map) throws IOException;

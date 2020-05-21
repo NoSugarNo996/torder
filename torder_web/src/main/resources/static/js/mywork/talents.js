@@ -167,11 +167,12 @@ layui.use(['form', 'layedit', "laydate",'laydate','upload'], function () {
                 "talentsStatue": res.talentsStatue,
                 "talentsIdentity": res.talentsIdentity,
                 "talentsAlipay": res.talentsAlipay,
+                "audDes":res.audDes
 
             });
             if (res.others!=null){
                 // var a='<img src="/Users/huangjiali/IdeaProjects/torder/file/'+res.others+'">';
-                var a='<img src="'+queryUrl+'/file/'+res.others+'">';
+                var a='<img style="width: 200px;height: 300px;" src="'+queryUrl+'/file/'+res.others+'">';
                 $('#head').empty().append(a);
                 eventObj.others=res.others;
                 console.log(a);
@@ -192,6 +193,7 @@ layui.use(['form', 'layedit', "laydate",'laydate','upload'], function () {
          eventObj = data.field;
          eventObj.talentsStatue=1;
          eventObj.others=others;
+         eventObj.audDes='';
         $.ajax({
             type: "post",
             url: queryUrl + queryMethodTalents + updateMethod,

@@ -101,24 +101,25 @@ layui.use(['form', 'layedit', "laydate",'upload'], function () {
             },
             success: function (res) {
 
-                $("#taskName").text(res.taskName);
-                $("#taskStatus").text(res.taskStatus);
-                $("#taskPublisher").text(res.taskPublisherName);
-                $("#taskAccepter").text(res.taskAccepterName);
+                $("#taskName").val(res.taskName);
+                $("#taskStatus").val(res.taskStatusName);
+                $("#taskPublisher").val(res.taskPublisherName);
+                $("#taskAccepter").val(res.taskAccepterName);
                 $("#taskDes").text(res.taskDes);
                 $("#taskStart").text(res.taskStart);
                 $("#taskEnd").text(res.taskEnd);
-                $("#taskMoney").text(res.taskMoney);
+                $("#taskMoney").val(res.taskMoney);
+                $("#other1").val(res.other1);
                 if (res.taskFile!=null){
                     let fileArray2= res.taskFile.split(",");
                     for (var i = 0; i < fileArray2.length; i++) {
                         var tr =
-                            '<div class="layui-row"><a href="' +queryUrl +'/file/'+fileArray2[i] + '" download="' + fileArray2[i].split('/')[2] + '" target="_blank">下载</a></div>';
-                        $('#taskFile').append(tr);
+                            '<div class="layui-row"><a href="' +queryUrl +'/file/'+fileArray2[i] + '" download="' + fileArray2[i].split('/')[2] + '" target="_blank">'+fileArray2[i]+'&nbsp;&nbsp;下载</a></div>';
+                        $('#taskFile').empty().append(tr);
                     }
                 }
                 else  {
-                    $("#taskFile").text("暂无文件");
+                    $("#taskFile").empty().text("暂无文件");
                 }
 
             }

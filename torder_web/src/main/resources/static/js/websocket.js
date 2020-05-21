@@ -120,6 +120,7 @@ websocket.onmessage = function (event) {
     if ("3"==data.msgStatus){
 
         allUsers=data["msgTitle"].split(","); //字符分割
+        // allUsers=data["msgTitle"] //字符分割
     }
 
     // getNotice();

@@ -126,8 +126,8 @@
                                         <div class="layui-col-md8">
                                             <div class="layui-form-item">
                                             <div class="layui-input-block">
-                                                <input type="text" id="taskName" name="taskName" lay-verify="required" lay-reqtext="需求标题不能为空"
-                                                       class="layui-input">
+                                                <input type="text" id="taskName" name="taskName" lay-verify="required" placeholder="标题不超过20个汉字" lay-reqtext="需求标题不能为空"
+                                                       class="layui-input" maxlength="20">
                                             </div>
                                         </div>
                                         </div>
@@ -139,7 +139,7 @@
                                         <div class="layui-col-md8">
                                             <div class="layui-form-item">
                                             <div class="layui-input-block">
-                                                <textarea id="taskDes" name="taskDes" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                                <textarea id="taskDes" name="taskDes" placeholder="请输入内容" class="layui-textarea" ></textarea>
                                             </div>
                                         </div></div>
 
@@ -152,7 +152,7 @@
                                         <div class="layui-col-md8">
                                             <div class="layui-form-item">
                                                 <div class="layui-input-block">
-                                                    <input type="text" name="talentsName" lay-verify="required" lay-reqtext="联系方式不能为空"
+                                                    <input type="text" name="talentsName" lay-verify="required|phone" lay-reqtext="联系方式不能为空"
                                                            class="layui-input">
                                                 </div>
                                             </div>
@@ -162,13 +162,15 @@
                                     </div>
                                     <div class="layui-row">
                                         <div class="layui-upload">
-                                            <button type="button" class="layui-btn" id="test1">上传图片</button>
-                                            <div class="layui-upload-list">
-                                                <img class="layui-upload-img" id="demo1">
+                                            <div class="layui-col-m6"> <button type="button" class="layui-btn" id="test1">上传任务封面</button></div>
+                                            <div class="layui-col-md6">  <div class="layui-upload-list">
+                                                <img class="layui-upload-img" id="demo1" style="width: 200px;height: 200px;">
                                                 <p id="demoText"></p>
                                                 <input type="hidden" name="other"
-                                                                  class="layui-input">
-                                            </div>
+                                                       class="layui-input">
+                                            </div></div>
+
+
                                         </div>
                                     </div>
                                 </form>
@@ -185,7 +187,7 @@
                                         <div class="layui-col-md6">
                                             <div class="layui-form-item">
                                                 <div class="layui-input-block">
-                                                    <input type="text" id="taskMoney" name="taskMoney" lay-verify="required" lay-reqtext="价格不能为空"
+                                                    <input type="text" id="taskMoney" name="taskMoney" lay-verify="required｜number" lay-reqtext="价格不能为空"
                                                            class="layui-input">
                                                 </div>
                                             </div>
@@ -246,7 +248,7 @@
                                         <div class="layui-col-md5" style="font-size: 20px;padding: 10px;text-align: left" id="info-title">网络直播app的开发</div></div>
                                     <div class="layui-row">
                                         <div class="layui-col-md3" style="font-size: 20px;padding: 10px;">任务需求：</div>
-                                        <div class="layui-col-md5" style="font-size: 20px;padding: 10px;text-align: left;height: 40px;" id="info-des">1.简洁清晰2.易于上手...</div>
+                                        <div class="layui-col-md5" style="font-size: 20px;padding: 10px;text-align: left;height: 40px;overflow:hidden;text-overflow:ellipsis" id="info-des" >1.简洁清晰2.易于上手...</div>
                                     </div>
                                     <div class="layui-row">
                                         <div class="layui-col-md3" style="font-size: 20px;padding: 10px;">任务发布时间：</div>

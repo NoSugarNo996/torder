@@ -22,8 +22,8 @@ spring:
       write-dates-as-timestamps: false
       #servlet:
       #multipart:
-      #max-file-size: 50MB
-      #max-request-size: 50MB
+      #max-file-size: 250MB
+      #max-request-size: 250MB
       #devtools:
       #restart:
       #additional-paths: src\\main\\java\\com\\cetccity\\common\\system\\mgr\\mapper

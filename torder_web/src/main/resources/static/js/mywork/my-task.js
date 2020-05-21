@@ -17,6 +17,10 @@ layui.use(['form', 'layer','layedit', "laydate",'laydate','upload'], function ()
         });
         console.log("dateAddOk");
     });
+    let update = {
+        "code": '',
+     "taskFile":''
+    }
     var fileArray = [];
 //多文件列表上传
     var demoListView = $('#demoList')
@@ -214,10 +218,9 @@ let eventObj1 = {
 
 
 
-//提交详细方案
+//查看详情
     $('body').on('click', '.selecttalents', function () {
 
-       // update.code=$(this).attr('value');
         $.ajax({
             type: "get",
             url: queryUrl + queryMethodTask + getInfoMethod,
@@ -235,7 +238,7 @@ let eventObj1 = {
                     for (var i = 0; i < fileArray.length; i++) {
                         var tr = '<tr>'
                             + '<td>' + fileArray[i] + '</td>'
-                            + '<td><a href="' + queryUrl + fileArray[i] + '" download="' + fileArray[i].split('/')[2] + '" target="_blank">下载</a></td>'
+                            + '<td><a href="' + queryUrl +'/file/'+ fileArray[i] + '" download="' + fileArray[i].split('/')[2] + '" target="_blank">下载</a></td>'
                             + '</tr>';
                         $('#uploadedList').append(tr);
                     }
@@ -246,7 +249,7 @@ let eventObj1 = {
             }
         });
 
-
+//提交
         layer.open({
             type: 1
             , content: $('#selecttalents')
@@ -354,7 +357,7 @@ let eventObj1 = {
                         '<div>' + res.data[index].taskMoney + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskAccepterName + '</div>\n' +
+                        '<div>' + res.data[index].taskPublisherName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div>' + res.data[index].taskStatusName + '</div>\n' +
@@ -366,7 +369,7 @@ let eventObj1 = {
                             data+=  '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
                         }
                         else if (res.data[index].taskStatus==4){
-                            data+=  '<button type="button" class="selecttalents layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">提交详细方案</button>\n'
+                            data+=  '<button type="button" class="selecttalents layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">提交详细方案</button>\n'
                         }
                         else if (res.data[index].taskStatus==6){
                             data+=  '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
@@ -432,7 +435,7 @@ let eventObj1 = {
     });
 
 
-//提交待审核
+//已投标
 
     var numEvent2 = 1; //当前页
     let tableLength2; // 分页长度
@@ -440,8 +443,8 @@ let eventObj1 = {
         "taskName":'',
         "pageSize": 10,
         "pageNum": numEvent2,
-        "taskPublisher":layui.sessionData('user').user.code,
-        "taskStatus":1
+        "taskAccepter":layui.sessionData('user').user.code,
+        "taskStatus":4
     }
 
 
@@ -479,7 +482,7 @@ let eventObj1 = {
                         '<div>' + res.data[index].taskMoney + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskAccepterName + '</div>\n' +
+                        '<div>' + res.data[index].taskPublisherName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div>' + res.data[index].taskStatusName + '</div>\n' +
@@ -568,7 +571,7 @@ let eventObj1 = {
                         '<div>' + res.data[index].taskMoney + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskAccepterName + '</div>\n' +
+                        '<div>' + res.data[index].taskPublisherName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div>' + res.data[index].taskStatusName + '</div>\n' +
@@ -618,7 +621,7 @@ let eventObj1 = {
         "taskName":'',
         "pageSize": 10,
         "pageNum": numEvent4,
-        "taskPublisher":layui.sessionData('user').user.code,
+        "taskAccepter":layui.sessionData('user').user.code,
         "taskStatus":4
     }
 
@@ -657,7 +660,7 @@ let eventObj1 = {
                         '<div>' + res.data[index].taskMoney + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskAccepterName + '</div>\n' +
+                        '<div>' + res.data[index].taskPublisherName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div>' + res.data[index].taskStatusName + '</div>\n' +
@@ -707,7 +710,7 @@ let eventObj1 = {
         "taskName":'',
         "pageSize": 10,
         "pageNum": numEvent5,
-        "taskPublisher":layui.sessionData('user').user.code,
+        "taskAccepter":layui.sessionData('user').user.code,
         "taskStatus":6
     }
 
@@ -746,7 +749,7 @@ let eventObj1 = {
                         '<div>' + res.data[index].taskMoney + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
-                        '<div>' + res.data[index].taskAccepterName + '</div>\n' +
+                        '<div>' + res.data[index].taskPublisherName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div>' + res.data[index].taskStatusName + '</div>\n' +
@@ -791,32 +794,5 @@ let eventObj1 = {
 
 });
 
-//确定人才
-let update = {
-    "code": '',
-    "taskFile":'',
-}
 
-function selectTalent(taskAccepter) {
-    //修改任务表
-    update.taskAccepter=taskAccepter;
-    $.ajax({
-        type: "post",
-        url: queryUrl + queryMethodTask+updateMethod,
-        aynsc:false,
-        contentType: "application/json;charset=UTF-8",
-        data:JSON.stringify(update),
-        success: function (res) {
-            if (res==1){
-                layer.msg("选取成功，请尽快与他联系吧");
-            }
-            else {
-                layer.msg("选取失败");
-            }
-        }
-    });
 
-    //清除候选人员
-    //发送通知
-
-}

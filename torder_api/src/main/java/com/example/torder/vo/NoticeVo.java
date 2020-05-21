@@ -58,8 +58,8 @@ public class NoticeVo extends BaseVo implements Serializable {
      *
      * @mbg.generated
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date noticeEnd;
 
     /**

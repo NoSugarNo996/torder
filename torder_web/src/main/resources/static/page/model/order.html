@@ -34,7 +34,7 @@
         </table>
         <script type="text/html" id="currentTableBar">
             <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+<!--            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>-->
         </script>
         <div id="pagetion"></div>
     </div>
@@ -80,7 +80,7 @@
                                 <div class="layui-inline">
                                     <label class="layui-form-label">交易金额</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="orderMoney" class="layui-input">
+                                        <input type="text" name="orderMoney" class="layui-input" readonly>
                                     </div>
                                 </div>
 
@@ -88,14 +88,14 @@
                                     <label class="layui-form-label">交易开始时间</label>
                                     <div class="layui-input-inline">
                                         <input type="text" name="orderStart" class="layui-input input-date"
-                                               placeholder="yyyy-MM-dd HH:mm:ss">
+                                               placeholder="yyyy-MM-dd HH:mm:ss" readonly>
                                     </div>
                                 </div>
                                 <div class="layui-inline">
                                     <label class="layui-form-label">交易结束时间</label>
                                     <div class="layui-input-inline">
                                         <input type="text" name="orderEnd" class="layui-input input-date"
-                                               placeholder="yyyy-MM-dd HH:mm:ss">
+                                               placeholder="yyyy-MM-dd HH:mm:ss" readonly>
                                     </div>
                                 </div>
                                 <div>

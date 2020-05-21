@@ -1,6 +1,7 @@
 
 var allUsers= new Array(); //定义一数组
 
+// var allUsers='' //定义一数组
 
 // 拦截非login页面
 function  lan() {

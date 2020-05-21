@@ -24,6 +24,7 @@ layui.use('flow', function(){
                     data: JSON.stringify(eventObj3),
                     success: function (res) {
                         var lis = [];
+                        var index=-1;
                         for (var a=0;a<4;a++){
                             lis.push('  <div class="layui-row" style="padding: 10px;">');
                             for (var b=0;b<4;b++){
@@ -31,20 +32,22 @@ layui.use('flow', function(){
                                     lis.push('<div class="layui-col-md3" style="padding: 5px;">\n' +
                                         '                <div style="border: 1px solid #c0c6c0;height: 170px;">\n' +
                                         '                    <div class="layui-row" style="padding: 10px;">\n' +
-                                        '                        <div class="layui-col-md4" style="height: 100px;"><img src="../../images/case-logo004.png" style="width: 100%;height: 100%"></div>\n' +
+                                        '                        <div class="layui-col-md4" style="height: 100px;"><img src="'+queryUrl+'/file/'+res.data[(a*4+b)].talentsImg+'" style="width: 100%;height: 100%" ></div>\n' +
                                         '                        <div class="layui-col-md7" style="padding: 15px;">\n' +
                                         '                            <div class="layui-row" style="font-size: 18px;margin-bottom: 10px;">'+res.data[(a*4+b)].targetName+'</div>\n' );
-                                    if(allUsers.indexOf (res.data[(a*4+b)].targetCode)){
+                                   index=allUsers.indexOf(res.data[(a*4+b)].targetCode)
+                                    console.log(index)
+                                    if(index>-1){
                                         lis.push( '                            <div class="layui-row check"  data-method="notice" style="color: #2e6636" tag="'+res.data[(a*4+b)].targetCode+'"><div   style="font-size:15px;border: 0px solid #818581;border-radius: 20%;width: 100px;height: 30px;" ><i class="layui-icon layui-icon-dialogue" style="font-size: 20px; "></i>  立即联系</div></div>\n' );
-
                                     }
                                     else {
-                                        lis.push( '                            <div class="layui-row"><div style="font-size:15px;color:#6f726f;border: 0px solid #818581;border-radius: 20%;width: 100px;height: 30px;"><i class="layui-icon layui-icon-dialogue" style="font-size: 20px; color: #6f726f;"></i>  未上线</div></div>\n' );
+                                        lis.push( '                            <div class="layui-row " ><div style="font-size:15px;color:#6f726f;border: 0px solid #818581;border-radius: 20%;width: 100px;height: 30px;"><i class="layui-icon layui-icon-dialogue" style="font-size: 20px; color: #6f726f;"></i>  未上线</div></div>\n' );
                                     }
                                     lis.push(  '                        </div>\n' +
-                                        '                        <div class="layui-col-md1" style="text-align: right"><i class="layui-icon layui-icon-close-fill" style="font-size: 20px; color: #af1714;"></i></div>\n' +
+                                        '                        <div class="layui-col-md1" style="text-align: right"><i class="layui-icon layui-icon-close-fill" style="font-size: 20px; color: #af1714;" onclick="del('+res.data[(a*4+b)].favId+')"></i></div>\n' +
                                         '                    </div>\n' +
-                                        '                    <div class="layui-row" style="padding: 5px;height: 30px;">简介：'+res.data[(a*4+b)].audDes+'</div>\n' +
+                                      //  '                    <div class="layui-row" style="padding: 5px;"><label style="height: 30px;width:10px;overflow:hidden;text-overflow:ellipsis;">简介：'+res.data[(a*4+b)].audDes+'</label></div>\n' +
+                                     //  '                    <div class="layui-row" style="padding: 5px;"><label style="height: 30px;width:10px;overflow:hidden;text-overflow:ellipsis;">简介：'+res.data[(a*4+b)].talentsResume+'</label></div>\n' +
                                         '                </div>\n' +
                                         '\n' +
                                         '            </div>');
@@ -68,7 +71,21 @@ layui.use('flow', function(){
             }
         });
 });
-
+function del(id){
+    $.ajax({
+        type: "post",
+        url: queryUrl + queryMethodFavorites + deleteMethod,
+        dataType: "json",
+        data: {
+            "id": id
+        },
+        success: function (res) {
+            if (res==1){
+                layer.msg("解除成功！");
+            }
+        }
+    });
+}
 let addObj={
     "msgTitle":'',
     "msgPublisher":layui.sessionData('user').user.code,

@@ -12,8 +12,43 @@ import java.util.Date;
  * @create: 2019-12-25 14:09
  **/
 public class FavoritesVo extends BaseVo implements Serializable {
+    public String getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(String taskId) {
+        this.taskId = taskId;
+    }
+
+    private  String taskId;
+    public String getTaskImg() {
+        return taskImg;
+    }
+
+    public void setTaskImg(String taskImg) {
+        this.taskImg = taskImg;
+    }
+
+    private  String taskImg;
+    public String getTalentsImg() {
+        return talentsImg;
+    }
+
+    public void setTalentsImg(String talentsImg) {
+        this.talentsImg = talentsImg;
+    }
+
+    public String getTalentsResume() {
+        return talentsResume;
+    }
+
+    public void setTalentsResume(String talentsResume) {
+        this.talentsResume = talentsResume;
+    }
+
+    private  String talentsImg;
     private String targetName;
-    private String  audDes;
+    private String  talentsResume;
     private String  userName;
     private String  taskName;
     private String  taskDes;
@@ -26,13 +61,6 @@ public class FavoritesVo extends BaseVo implements Serializable {
         this.targetName = targetName;
     }
 
-    public String getAudDes() {
-        return audDes;
-    }
-
-    public void setAudDes(String audDes) {
-        this.audDes = audDes;
-    }
 
     public String getUserName() {
         return userName;

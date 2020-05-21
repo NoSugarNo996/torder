@@ -18,7 +18,7 @@ layui.use(['form', 'layedit', "laydate",'laydate'], function () {
         laydate.render({
             elem: this, //指定元素  表示当前的元素
             type: 'datetime'
-            , value: new Date()
+            // , value: new Date()
             , format: 'yyyy-MM-dd'
             , theme: '#009688'  //主题  颜色改变
 

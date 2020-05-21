@@ -98,6 +98,7 @@
             margin-top: 5px;
             cursor: pointer;
         }
+        .dao:hover{color: #fff3e7;}
     </style>
 </head>
 <body>
@@ -109,7 +110,7 @@
         <form class="layui-form" action="">
             <div>
                 <i class="layui-icon layui-icon-username admin-icon"></i>
-                <input type="text" name="userNickname" placeholder="请输入昵称" autocomplete="off" class="layui-input admin-input admin-input-username" value="">
+                <input type="text" name="userNickname" placeholder="请输入昵称" autocomplete="off" class="layui-input admin-input admin-input-username" value="" lay-verify="required|nlength">
             </div>
             <div>
                 <i class="layui-icon layui-icon-password admin-icon"></i>
@@ -117,7 +118,7 @@
             </div>
             <div>
                 <i class="layui-icon layui-icon-cellphone admin-icon"></i>
-                <input type="text" name="userPhone" placeholder="请输入手机号（默认为用户名）" autocomplete="off" class="layui-input admin-input" value="">
+                <input type="text" name="userPhone" placeholder="请输入手机号（默认为用户名）" autocomplete="off" class="layui-input admin-input" value="" lay-verify="required|phone">
             </div>
             <div>
                 <i class="layui-icon layui-icon-face-cry admin-icon" ></i>
@@ -127,6 +128,9 @@
 
             </div>
             <button class="layui-btn admin-button" lay-submit="" lay-filter="login">注册</button>
+            <br>
+            <br>
+            <div class="layui-row" style="text-align: right;"><a class="dao" href="/torder/torder_web/static/page/login.html">已有账号？前往登入-></a></div>
         </form>
     </div>
 </div>
@@ -152,7 +156,7 @@
         </div>
     </div>
 </div>
-<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="../lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script src="../lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
 <script src="../js/config.js"></script>
@@ -226,8 +230,6 @@
                 return false;
             }
 
-
-
             if (vail==false) {
                 layer.msg('验证码错误');
                 return false;
@@ -259,7 +261,7 @@
 
                 },
                 error:function (res) {
-                    layer.msg('注册失败', function () {
+                    layer.msg('该手机号已被注册，请前往登入', function () {
                         window.location.href = '/torder/torder_web/static/page/register.html';
                     });
                 }

@@ -49,6 +49,7 @@
 <script>
     $('#money').text(layui.sessionData('user').user.money);
     $('#username').text(layui.sessionData('user').user.userName);
+    var myDate = new Date();
     function addMoney(money) {
         $.ajax({
             type: "post",
@@ -58,12 +59,35 @@
             data: JSON.stringify({
                 "orderPartyA": 'c56caeed7b204f9db7c935a9d00cefb2',
                 "orderPartyB":layui.sessionData('user').user.code,
-                "orderStatus":0,
-                "orderMoney":money
+                "orderStatus":1,
+                "orderMoney":money,
+                "orderStart":myDate,
+                "orderEnd":myDate
             }),
             success: function (res) {
                 if (res==1){
-                    layer.msg('充值成功,请等待管理员审核');
+                    layer.msg('充值成功');
+                    let eventObj = {
+                        "userName":layui.sessionData('user').user.userName,
+                        "userPwd":layui.sessionData('user').user.userName
+                    }
+                    $.ajax({
+                        type: "post",
+                        url: queryUrl + queryMethodUser + loginUrl,
+                        dataType: "json",
+                        contentType: "application/json;charset=UTF-8",
+                        data: JSON.stringify(eventObj),
+                        success: function (res) {
+                            console.log(res);
+                            if (res != null) {
+                                layui.sessionData('user', {
+                                    key: 'user'
+                                    , value: res
+                                });
+                            }
+                        }
+                    });
+
                 }
                 else
                     layer.msg("充值失败");
