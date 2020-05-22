@@ -57,12 +57,12 @@ let eventObj1 = {
                     let fileArray= res.taskFile.split(",");
                     for (var i = 0; i < fileArray.length; i++) {
                         var tr =
-                          '<div class="layui-row"><a href="' + queryUrl + '/file/'+fileArray[i] + '" download="' + fileArray[i].split('/')[2] + '" target="_blank">下载</a></div>';
-                        $('#taskFile').empty().append(tr);
+                          '<div class="layui-row"><a href="' + queryUrl + '/file/'+fileArray[i] + '" download="' + fileArray[i].split('/')[2] + '" target="_blank">'+ fileArray[i] +'下载</a></div>';
+                        $('#taskFile').append(tr);
                     }
                 }
                 else  {
-                    $("#taskFile").empty().text("暂无文件");
+                    $("#taskFile").text("暂无文件");
                 }
                 if (res.taskstatus==7){
                     $("#update").attr('disabled',true);
@@ -805,6 +805,7 @@ function selectTalent(taskAccepter) {
                 data:JSON.stringify(update),
                 success: function (res) {
                     if (res==1){
+
                         layer.msg("选取成功，请尽快与他联系吧");
                     }
                     else {
@@ -820,7 +821,7 @@ function selectTalent(taskAccepter) {
                 data:{"taskCode":update.code},
                 success: function (res) {
                     if (res==1){
-                        layer.msg("");
+                        layer.closeAll();
                     }
                     else {
                         layer.msg("选取失败");

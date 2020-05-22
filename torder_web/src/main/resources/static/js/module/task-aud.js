@@ -129,8 +129,8 @@ layui.use(['form', 'layedit', "laydate",'upload'], function () {
                     let fileArray2= res.taskFile.split(",");
                     for (var i = 0; i < fileArray2.length; i++) {
                         var tr =
-                            '<div class="layui-row"><a href="' +queryUrl +'/file/'+fileArray2[i] + '" download="' + fileArray2[i].split('/')[2] + '" target="_blank">下载</a></div>';
-                        $('#taskFile').empty().append(tr);
+                            '<div class="layui-row"><a href="' +queryUrl +'/file/'+fileArray2[i] + '" download="' + fileArray2[i].split('/')[2] + '" target="_blank">'+fileArray2[i]+'下载</a></div>';
+                        $('#taskFile').append(tr);
                     }
                 }
                 else  {

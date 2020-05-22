@@ -121,8 +121,8 @@ let eventObj1 = {
                     let fileArray2= res.taskFile.split(",");
                     for (var i = 0; i < fileArray2.length; i++) {
                         var tr =
-                            '<div class="layui-row"><a href="' +queryUrl +'/file/'+fileArray2[i] + '" download="' + fileArray2[i].split('/')[2] + '" target="_blank">下载</a></div>';
-                        $('#taskFile').empty().append(tr);
+                            '<div class="layui-row"><a href="' +queryUrl +'/file/'+fileArray2[i] + '" download="' + fileArray2[i].split('/')[2] + '" target="_blank">' + fileArray2[i]+'下载</a></div>';
+                        $('#taskFile').append(tr);
                     }
                 }
                 else  {
@@ -240,7 +240,7 @@ let eventObj1 = {
                     for (var i = 0; i < fileArray.length; i++) {
                         var tr = '<tr>'
                             + '<td>' + fileArray[i] + '</td>'
-                            + '<td><a href="' + queryUrl +'/file/'+ fileArray[i] + '" download="' + fileArray[i].split('/')[2] + '" target="_blank">下载</a></td>'
+                            + '<td><a href="' + queryUrl +'/file/'+ fileArray[i] + '" download="' + fileArray[i].split('/')[2] + '" target="_blank">'+fileArray[i]+'下载</a></td>'
                             + '</tr>';
                         $('#uploadedList').append(tr);
                     }
