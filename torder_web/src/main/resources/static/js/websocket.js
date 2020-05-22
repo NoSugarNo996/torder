@@ -118,8 +118,12 @@ websocket.onmessage = function (event) {
     // }
     //获取在线用户
     if ("3"==data.msgStatus){
-
-        allUsers=data["msgTitle"].split(","); //字符分割
+        // var allUsers= new Array(); //定义一数组
+        // allUsers=data["msgTitle"].split(","); //字符分割
+        layui.sessionData('allUsers', {
+            key: 'allUsers'
+            , value: data["msgTitle"]
+        });
         // allUsers=data["msgTitle"] //字符分割
     }
 

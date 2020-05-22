@@ -108,24 +108,25 @@ let eventObj1 = {
             },
             success: function (res) {
 
-                $("#taskName").text(res.taskName);
-                $("#taskStatus").text(res.taskStatus);
-                $("#taskPublisher").text(res.taskPublisherName);
-                $("#taskAccepter").text(res.taskAccepterName);
+                $("#taskName").val(res.taskName);
+                $("#taskStatus").val(res.taskStatusName);
+                $("#taskPublisher").val(res.taskPublisherName);
+                $("#taskAccepter").val(res.taskAccepterName);
                 $("#taskDes").text(res.taskDes);
                 $("#taskStart").text(res.taskStart);
                 $("#taskEnd").text(res.taskEnd);
-                $("#taskMoney").text(res.taskMoney);
+                $("#taskMoney").val(res.taskMoney);
+                $("#other1").val(res.other1);
                 if (res.taskFile!=null){
                     let fileArray2= res.taskFile.split(",");
                     for (var i = 0; i < fileArray2.length; i++) {
                         var tr =
                             '<div class="layui-row"><a href="' +queryUrl +'/file/'+fileArray2[i] + '" download="' + fileArray2[i].split('/')[2] + '" target="_blank">下载</a></div>';
-                        $('#taskFile').append(tr);
+                        $('#taskFile').empty().append(tr);
                     }
                 }
                 else  {
-                    $("#taskFile").text("暂无文件");
+                    $("#taskFile").empty().text("暂无文件");
                 }
 
             }
@@ -144,6 +145,7 @@ let eventObj1 = {
 
 //催促管理员审核申请
     $('body').on('click', '.msgaudapply', function () {
+
         //加入未读消息
         // $.ajax({
         //     type: "get",
@@ -289,40 +291,40 @@ let eventObj1 = {
 
 
 //任务完成
-    $('body').on('click', '.finishtask', function () {
-        $.ajax({
-            type: "get",
-            url: queryUrl + queryMethodTask + getInfoMethod,
-            dataType: "json",
-            contentType: "application/json;charset=UTF-8",
-            data: {
-                "id": $(this).attr('value')
-            },
-            success: function (res) {
-
-                $("#taskName").text(res.taskName);
-                $("#taskStatus").text(res.taskStatus);
-                $("#taskPublisher").text(res.taskPublisherName);
-                $("#taskAccepter").text(res.taskAccepterName);
-                $("#taskDes").text(res.taskDes);
-                $("#taskFile").text(res.taskFile);
-                $("#taskStart").text(res.taskStart);
-                $("#taskEnd").text(res.taskEnd);
-                $("#taskMoney").text(res.taskMoney);
-
-            }
-        });
-        layer.open({
-            type: 1
-            , content: $('#info')
-            , btnAlign: 'c' //按钮居中
-            ,area: 'auto'
-            ,anim: 0
-
-            ,maxWidth:800
-            , shade: 0 //不显示遮罩
-        });
-    });
+//     $('body').on('click', '.finishtask', function () {
+//         $.ajax({
+//             type: "get",
+//             url: queryUrl + queryMethodTask + getInfoMethod,
+//             dataType: "json",
+//             contentType: "application/json;charset=UTF-8",
+//             data: {
+//                 "id": $(this).attr('value')
+//             },
+//             success: function (res) {
+//
+//                 $("#taskName").text(res.taskName);
+//                 $("#taskStatus").text(res.taskStatus);
+//                 $("#taskPublisher").text(res.taskPublisherName);
+//                 $("#taskAccepter").text(res.taskAccepterName);
+//                 $("#taskDes").text(res.taskDes);
+//                 $("#taskFile").text(res.taskFile);
+//                 $("#taskStart").text(res.taskStart);
+//                 $("#taskEnd").text(res.taskEnd);
+//                 $("#taskMoney").text(res.taskMoney);
+//
+//             }
+//         });
+//         layer.open({
+//             type: 1
+//             , content: $('#info')
+//             , btnAlign: 'c' //按钮居中
+//             ,area: 'auto'
+//             ,anim: 0
+//
+//             ,maxWidth:800
+//             , shade: 0 //不显示遮罩
+//         });
+//     });
 
 // 进入页面获取表格 全部记录
     getEventData1();
@@ -365,15 +367,15 @@ let eventObj1 = {
                         '<td>\n' +
                         '<div class="operate">\n' +
                         '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n'
-                        if(res.data[index].taskStatus==1){
-                            data+=  '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
-                        }
-                        else if (res.data[index].taskStatus==4){
+                        // if(res.data[index].taskStatus==1){
+                        //     data+=  '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
+                        // }
+                         if (res.data[index].taskStatus==4){
                             data+=  '<button type="button" class="selecttalents layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">提交详细方案</button>\n'
                         }
-                        else if (res.data[index].taskStatus==6){
-                            data+=  '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
-                        }
+                        // else if (res.data[index].taskStatus==6){
+                        //     data+=  '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
+                        // }
 
                     data+='</div>\n' +
                         '</td>\n' +
@@ -411,28 +413,28 @@ let eventObj1 = {
 
 
 //完成任务
-    $('body').on('click', '.finishEvent', function () {
-        update.taskAccepter='';
-        update.taskStatus=5;
-        update.code=$(this).attr('value');
-        $.ajax({
-            type: "post",
-            url: queryUrl + queryMethodTask+updateMethod,
-            aynsc:false,
-            contentType: "application/json;charset=UTF-8",
-            data:JSON.stringify(update),
-            success: function (res) {
-                if (res==1){
-                    layer.msg("任务完成成功，请等待审核");
-                    getEventData1();
-                }
-                else {
-                    layer.msg("提交失败");
-                }
-            }
-        });
-
-    });
+//     $('body').on('click', '.finishEvent', function () {
+//         update.taskAccepter='';
+//         update.taskStatus=5;
+//         update.code=$(this).attr('value');
+//         $.ajax({
+//             type: "post",
+//             url: queryUrl + queryMethodTask+updateMethod,
+//             aynsc:false,
+//             contentType: "application/json;charset=UTF-8",
+//             data:JSON.stringify(update),
+//             success: function (res) {
+//                 if (res==1){
+//                     layer.msg("任务完成成功，请等待审核");
+//                     getEventData1();
+//                 }
+//                 else {
+//                     layer.msg("提交失败");
+//                 }
+//             }
+//         });
+//
+//     });
 
 
 //已投标
@@ -490,7 +492,7 @@ let eventObj1 = {
                         '<td>\n' +
                         '<div class="operate">\n' +
                         '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">催促</button>\n' +
+                        // '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">催促</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -524,94 +526,94 @@ let eventObj1 = {
     }
 
 
-//招标中
-
-    var numEvent3 = 1; //当前页
-    let tableLength3; // 分页长度
-    let eventObj3 = {
-        "taskName":'',
-        "pageSize": 10,
-        "pageNum": numEvent3,
-        "taskPublisher":layui.sessionData('user').user.code,
-        "taskStatus":2
-    }
-
-
-
-// 进入页面获取表格
-    getEventData3();
-
-// 获取列表
-    function getEventData3(first) {
-
-        $.ajax({
-            type: "post",
-            url: queryUrl + queryMethodTask + queryListMethod,
-            dataType: "json",
-            contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify(eventObj3),
-            success: function (res) {
-                tableLength3 = res.count;
-                if (!first) {
-                    changePage3($('#pagetion3'));
-                }
-                var data = '';
-                for (let index = 0; index < res.data.length; index++) {
-                    data += '<tr>\n' +
-                        '<td>\n' +
-                        '<div>' + ((index + 1) + (eventObj3.pageNum - 1) * 10) + '</div>\n' +
-                        '</td>\n' +
-                        '<td>\n' +
-                        '<div>' + res.data[index].taskStart + '</div>\n' +
-                        '</td>\n' +
-                        '<td>\n' +
-                        '<div>' + res.data[index].taskName + '</div>\n' +
-                        '</td>\n' +
-                        '<td>\n' +
-                        '<div>' + res.data[index].taskMoney + '</div>\n' +
-                        '</td>\n' +
-                        '<td>\n' +
-                        '<div>' + res.data[index].taskPublisherName + '</div>\n' +
-                        '</td>\n' +
-                        '<td>\n' +
-                        '<div>' + res.data[index].taskStatusName + '</div>\n' +
-                        '</td>\n' +
-                        '<td>\n' +
-                        '<div class="operate">\n' +
-                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">办理</button>\n' +
-                        '</div>\n' +
-                        '</td>\n' +
-                        '</tr>\n'
-                }
-                $('#eventTable3').empty().append(data);
-            }
-        });
-    }
-
-// 改变分页函数
-    function changePage3(el) {
-        layui.use(['laypage', 'layer'], function () {
-            var laypage = layui.laypage,
-                layer = layui.layer;
-            laypage.render({
-                elem: el,
-                count: tableLength3,
-                limit: eventObj3.pageSize,
-                first: '首页',
-                last: '尾页',
-                prev: '<em>←</em>',
-                next: '<em>→</em>',
-                jump: function (obj, first) {
-                    eventObj3.pageNum = obj.curr;
-                    if (!first) {
-                        getEventData3(1);
-                    }
-                }
-            })
-        });
-    }
-
+// //招标中
+//
+//     var numEvent3 = 1; //当前页
+//     let tableLength3; // 分页长度
+//     let eventObj3 = {
+//         "taskName":'',
+//         "pageSize": 10,
+//         "pageNum": numEvent3,
+//         "taskPublisher":layui.sessionData('user').user.code,
+//         "taskStatus":2
+//     }
+//
+//
+//
+// // 进入页面获取表格
+//     getEventData3();
+//
+// // 获取列表
+//     function getEventData3(first) {
+//
+//         $.ajax({
+//             type: "post",
+//             url: queryUrl + queryMethodTask + queryListMethod,
+//             dataType: "json",
+//             contentType: "application/json;charset=UTF-8",
+//             data: JSON.stringify(eventObj3),
+//             success: function (res) {
+//                 tableLength3 = res.count;
+//                 if (!first) {
+//                     changePage3($('#pagetion3'));
+//                 }
+//                 var data = '';
+//                 for (let index = 0; index < res.data.length; index++) {
+//                     data += '<tr>\n' +
+//                         '<td>\n' +
+//                         '<div>' + ((index + 1) + (eventObj3.pageNum - 1) * 10) + '</div>\n' +
+//                         '</td>\n' +
+//                         '<td>\n' +
+//                         '<div>' + res.data[index].taskStart + '</div>\n' +
+//                         '</td>\n' +
+//                         '<td>\n' +
+//                         '<div>' + res.data[index].taskName + '</div>\n' +
+//                         '</td>\n' +
+//                         '<td>\n' +
+//                         '<div>' + res.data[index].taskMoney + '</div>\n' +
+//                         '</td>\n' +
+//                         '<td>\n' +
+//                         '<div>' + res.data[index].taskPublisherName + '</div>\n' +
+//                         '</td>\n' +
+//                         '<td>\n' +
+//                         '<div>' + res.data[index].taskStatusName + '</div>\n' +
+//                         '</td>\n' +
+//                         '<td>\n' +
+//                         '<div class="operate">\n' +
+//                         '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n' +
+//                         '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">办理</button>\n' +
+//                         '</div>\n' +
+//                         '</td>\n' +
+//                         '</tr>\n'
+//                 }
+//                 $('#eventTable3').empty().append(data);
+//             }
+//         });
+//     }
+//
+// // 改变分页函数
+//     function changePage3(el) {
+//         layui.use(['laypage', 'layer'], function () {
+//             var laypage = layui.laypage,
+//                 layer = layui.layer;
+//             laypage.render({
+//                 elem: el,
+//                 count: tableLength3,
+//                 limit: eventObj3.pageSize,
+//                 first: '首页',
+//                 last: '尾页',
+//                 prev: '<em>←</em>',
+//                 next: '<em>→</em>',
+//                 jump: function (obj, first) {
+//                     eventObj3.pageNum = obj.curr;
+//                     if (!first) {
+//                         getEventData3(1);
+//                     }
+//                 }
+//             })
+//         });
+//     }
+//
 
 //项目交付中
 
@@ -757,7 +759,7 @@ let eventObj1 = {
                         '<td>\n' +
                         '<div class="operate">\n' +
                         '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n' +
-                        '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">办理</button>\n' +
+                        // '<button type="button" class="endorseEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].taskId + '">办理</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'

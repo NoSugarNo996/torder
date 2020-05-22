@@ -135,7 +135,7 @@
 
 
 <!--查看详情-->
-<div id="info" style="display:none;width: 700px" >
+<div id="info" style="display:none;width: 770px" >
     <form class="layui-form" lay-filter="update">
         <div class="formBody">
             <div class="left-form">
@@ -150,36 +150,36 @@
                                 <div class="layui-inline">
                                     <label class="layui-form-label required">项目名称:</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="taskName" id="taskName" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                        <input type="text" name="taskName" id="taskName"
                                                class="layui-input" readonly>
                                     </div>
                                 </div>
                                 <div class="layui-inline">
                                     <label class="layui-form-label required">项目状态：</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="taskStatus" id="taskStatus" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                        <input type="text" name="taskStatusName" id="taskStatusName"
                                                class="layui-input" readonly>
                                     </div>
                                 </div>
                                 <div class="layui-inline">
                                     <label class="layui-form-label required">项目发布者：</label>
                                     <div class="layui-input-inline">
-                                        <input type="text"id="taskPublisher" name="taskPublisher" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                        <input type="text"id="taskPublisher" name="taskPublisher"
                                                class="layui-input" readonly>
                                     </div>
                                 </div>
                                 <div class="layui-inline">
                                     <label class="layui-form-label required">项目接收者:</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" id="taskAccepter" name="taskAccepter" lay-verify="required" lay-reqtext="用户名称不能为空"
+                                        <input type="text" id="taskAccepter" name="taskAccepter"
                                                class="layui-input" readonly>
                                     </div>
                                 </div>
                                 <div class="layui-row">
                                     <label class="layui-form-label required">项目简介:</label>
 
-                                    <textarea style="width: 500px;height: 150px" type="text" id="taskDes" name="taskDes" lay-verify="required" lay-reqtext="用户名称不能为空"
-                                              readonly></textarea>
+                                    <textarea style="width: 500px;height: 150px" type="text" id="taskDes" name="taskDes" lay-verify="required" lay-reqtext="简介不能为空"
+                                              ></textarea>
 
                                 </div>
                                 <div class="layui-row">
@@ -191,14 +191,14 @@
                                 <div class="layui-inline">
                                     <label class="layui-form-label required">项目金额:</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" id="taskMoney" name="taskMoney" lay-verify="required" lay-reqtext="用户名称不能为空"
-                                               class="layui-input" readonly>
+                                        <input type="text" id="taskMoney" name="taskMoney" lay-verify="required" lay-reqtext="项目金额不能为空"
+                                               class="layui-input" >
                                     </div>
                                 </div>
                                 <div class="layui-inline">
                                     <label class="layui-form-label required">审核意见:</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" id="other1" name="other1"
+                                        <input type="text" id="opr" name="opr"
                                                class="layui-input" readonly>
                                     </div>
                                 </div>
@@ -217,10 +217,17 @@
 
                                 </div>
 
+                                <div>
+                                    <input type="text" name="code" id="code" class="layui-input" style="display: none">
+                                </div>
+
                             </div>
                         </div>
+                        <div class="layui-row" style="margin: 0 auto;text-align: center"> <button type="submit" class="layui-btn" lay-submit id="update"
+                                                                               lay-filter="verify1">更新</button></div>
                 </fieldset>
             </div>
+
         </div>
 
     </form>

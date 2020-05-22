@@ -1,5 +1,5 @@
 
-var allUsers= new Array(); //定义一数组
+
 
 // var allUsers='' //定义一数组
 

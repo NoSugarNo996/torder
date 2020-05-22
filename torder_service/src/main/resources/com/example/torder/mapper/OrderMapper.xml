@@ -63,6 +63,7 @@
     <if test="orderPartyB !=null">
       and  a.order_partyB=#{orderPartyB}
     </if>
+    order by a.order_start desc
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.OrderVo">
     <!--

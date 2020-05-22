@@ -28,7 +28,6 @@
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin: 30px;background-color: white">
     <ul class="layui-tab-title">
         <li class="layui-this">项目记录</li>
-        <li>已投标</li>
         <li>项目交付中</li>
         <li>交易待审核</li>
     </ul>
@@ -53,25 +52,7 @@
 
             <div id="pagetion1" class="pagetion"></div>
         </div>
-        <div class="layui-tab-item ">
-            <table class="layui-table">
-                <thead>
-                <tr>
-                    <th style="width:50px">序号</th>
-                    <th style="width:225px">创建时间</th>
-                    <th style="width:630px">项目名称</th>
-                    <th style="width:130px">项目金额</th>
-                    <th style="width:130px">发布者</th>
-                    <th style="width:150px">项目状态</th>
-                    <th style="width:330px">操作</th>
 
-                </tr>
-                </thead>
-                <tbody id="eventTable2" >
-                </tbody>
-            </table>
-            <div id="pagetion2" class="pagetion"></div>
-        </div>
         <div class="layui-tab-item ">
             <table class="layui-table">
                 <thead>
@@ -165,7 +146,7 @@
                                 <div class="layui-row">
                                     <label class="layui-form-label required">项目文件:</label>
 
-                                    <label id="taskFile" name="taskFile" ></label>
+                                    <label id="taskFile" name="taskFile" readonly></label>
 
                                 </div>
                                 <div class="layui-inline">
@@ -179,16 +160,16 @@
                                     <label class="layui-form-label required">审核意见:</label>
                                     <div class="layui-input-inline">
                                         <input type="text" id="other1" name="other1"
-                                               class="layui-input" >
+                                               class="layui-input" readonly>
                                     </div>
                                 </div>
                                 <div class="layui-row">
                                     <label >项目开始时间：</label>
-                                    <label id="taskStart" name="taskStart" ></label>
+                                    <label id="taskStart" name="taskStart" readonly></label>
                                 </div>
                                 <div class="layui-row">
                                     <label>项目结束时间：</label>
-                                    <label id="taskEnd" name="taskEnd" ></label>
+                                    <label id="taskEnd" name="taskEnd" readonly></label>
                                 </div>
 
                             </div>

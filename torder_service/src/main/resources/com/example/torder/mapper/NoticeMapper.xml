@@ -32,6 +32,7 @@
     <if test="noticeStart!=null">
       <![CDATA[ where notice_start < #{noticeStart} and notice_end > #{noticeStart}]]>
     </if>
+    order by notice_start asc
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.example.torder.vo.NoticeVo">
     <!--

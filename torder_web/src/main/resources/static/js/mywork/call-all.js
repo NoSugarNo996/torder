@@ -16,6 +16,7 @@ layui.use('flow', function(){
                     // "taskPublisher":layui.sessionData('user').user.code,
                     // "taskStatus":2
                 }
+
                 $.ajax({
                     type: "post",
                     url: queryUrl + queryMethodFavorites + queryListMethod,
@@ -35,7 +36,10 @@ layui.use('flow', function(){
                                         '                        <div class="layui-col-md4" style="height: 100px;"><img src="'+queryUrl+'/file/'+res.data[(a*4+b)].talentsImg+'" style="width: 100%;height: 100%" ></div>\n' +
                                         '                        <div class="layui-col-md7" style="padding: 15px;">\n' +
                                         '                            <div class="layui-row" style="font-size: 18px;margin-bottom: 10px;">'+res.data[(a*4+b)].targetName+'</div>\n' );
-                                   index=allUsers.indexOf(res.data[(a*4+b)].targetCode)
+                                    let allUsers=layui.sessionData('allUsers').allUsers;
+                                    index=allUsers.indexOf(res.data[(a*4+b)].targetCode)
+                                    console.log(allUsers)
+                                    console.log(res.data[(a*4+b)].targetCode)
                                     console.log(index)
                                     if(index>-1){
                                         lis.push( '                            <div class="layui-row check"  data-method="notice" style="color: #2e6636" tag="'+res.data[(a*4+b)].targetCode+'"><div   style="font-size:15px;border: 0px solid #818581;border-radius: 20%;width: 100px;height: 30px;" ><i class="layui-icon layui-icon-dialogue" style="font-size: 20px; "></i>  立即联系</div></div>\n' );

@@ -115,24 +115,26 @@ layui.use(['form', 'layedit', "laydate",'upload'], function () {
             },
             success: function (res) {
 
-                $("#taskName").text(res.taskName);
-                $("#taskStatus").text(res.taskStatus);
-                $("#taskPublisher").text(res.taskPublisherName);
-                $("#taskAccepter").text(res.taskAccepterName);
+                $("#taskName").val(res.taskName);
+                $("#taskStatusName").val(res.taskStatusName);
+                $("#taskPublisherName").val(res.taskPublisherName);
+                $("#taskAccepterName").val(res.taskAccepterName);
                 $("#taskDes").text(res.taskDes);
                 $("#taskStart").text(res.taskStart);
                 $("#taskEnd").text(res.taskEnd);
-                $("#taskMoney").text(res.taskMoney);
+                $("#taskMoney").val(res.taskMoney);
+                $("#opr").val(res.opr);
+                $("#code").val(res.code);
                 if (res.taskFile!=null){
                     let fileArray2= res.taskFile.split(",");
                     for (var i = 0; i < fileArray2.length; i++) {
                         var tr =
                             '<div class="layui-row"><a href="' +queryUrl +'/file/'+fileArray2[i] + '" download="' + fileArray2[i].split('/')[2] + '" target="_blank">下载</a></div>';
-                        $('#taskFile').append(tr);
+                        $('#taskFile').empty().append(tr);
                     }
                 }
                 else  {
-                    $("#taskFile").text("暂无文件");
+                    $("#taskFile").empty().text("暂无文件");
                 }
 
             }
@@ -264,7 +266,7 @@ layui.use(['form', 'layedit', "laydate",'upload'], function () {
                         '<div class="operate">\n' +
                         '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n' +
                         '<button type="button" class="audFEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '"  tag="' + res.data[index].taskId + '">审核通过</button>\n' +
-                        '<button type="button" class="unAudEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">审核未通过</button>\n' +
+                        '<button type="button" class="unFEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">审核未通过</button>\n' +
                         '</div>\n' +
                         '</td>\n' +
                         '</tr>\n'
@@ -304,7 +306,7 @@ layui.use(['form', 'layedit', "laydate",'upload'], function () {
         getEventData();
     });
 
-    //审核未通过
+    //审核未通过 发布
     $('body').on('click', '.unAudEvent', function () {
         $.ajax({
             type: "post",
@@ -314,6 +316,33 @@ layui.use(['form', 'layedit', "laydate",'upload'], function () {
             data: JSON.stringify({
                 "code": $(this).attr('value'),
                 "taskStatus":0
+
+            }),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('审核成功');
+                    getEventData1();
+                    getEventData2();
+                }
+                else
+                    layer.msg("审核失败");
+                getEventData1();
+                getEventData2();
+
+            }
+        });
+    });
+    //审核未通过 完结
+    $('body').on('click', '.unFEvent', function () {
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodTask + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "code": $(this).attr('value'),
+                "taskStatus":5
+
             }),
             success: function (res) {
                 if (res==1){
@@ -383,50 +412,69 @@ layui.use(['form', 'layedit', "laydate",'upload'], function () {
 
     });
 
-
-    $('body').on('click', '.checkDetail', function () {
+    //监听更新
+    form.on('submit(verify1)', function (data) {
+       let eventObj = data.field;
         $.ajax({
-            type: "get",
-            url: queryUrl + queryMethodTask + getInfoMethod,
+            type: "post",
+            url: queryUrl + queryMethodTask + updateMethod,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
-            data: {
-                "id": $(this).attr('value')
-            },
+            data: JSON.stringify(eventObj),
             success: function (res) {
-
-                $("#taskName").text(res.taskName);
-                $("#taskStatus").text(res.taskStatus);
-                $("#taskPublisher").text(res.taskPublisherName);
-                $("#taskAccepter").text(res.taskAccepterName);
-                $("#taskDes").text(res.taskDes);
-                $("#taskStart").text(res.taskStart);
-                $("#taskEnd").text(res.taskEnd);
-                $("#taskMoney").text(res.taskMoney);
-                if (res.taskFile!=null){
-                    let fileArray2= res.taskFile.split(",");
-                    for (var i = 0; i < fileArray2.length; i++) {
-                        var tr =
-                            '<div class="layui-row"><a href="' +queryUrl +'/file/'+fileArray2[i] + '" download="' + fileArray2[i].split('/')[2] + '" target="_blank">下载</a></div>';
-                        $('#taskFile').append(tr);
-                    }
+                if (res==1){
+                    layer.msg('更新成功');
                 }
-                else  {
-                    $("#taskFile").text("暂无文件");
-                }
-
+                else
+                    layer.msg("更新失败");
             }
         });
-        layer.open({
-            type: 1
-            , content: $('#info')
-            , btnAlign: 'c' //按钮居中
-            ,area: 'auto'
-            ,anim: 0
-            ,maxWidth:800
-            , shade: 0 //不显示遮罩
-        });
     });
+
+
+    // $('body').on('click', '.checkDetail', function () {
+    //     $.ajax({
+    //         type: "get",
+    //         url: queryUrl + queryMethodTask + getInfoMethod,
+    //         dataType: "json",
+    //         contentType: "application/json;charset=UTF-8",
+    //         data: {
+    //             "id": $(this).attr('value')
+    //         },
+    //         success: function (res) {
+    //
+    //             $("#taskName").text(res.taskName);
+    //             $("#taskStatus").text(res.taskStatus);
+    //             $("#taskPublisher").text(res.taskPublisherName);
+    //             $("#taskAccepter").text(res.taskAccepterName);
+    //             $("#taskDes").text(res.taskDes);
+    //             $("#taskStart").text(res.taskStart);
+    //             $("#taskEnd").text(res.taskEnd);
+    //             $("#taskMoney").text(res.taskMoney);
+    //             if (res.taskFile!=null){
+    //                 let fileArray2= res.taskFile.split(",");
+    //                 for (var i = 0; i < fileArray2.length; i++) {
+    //                     var tr =
+    //                         '<div class="layui-row"><a href="' +queryUrl +'/file/'+fileArray2[i] + '" download="' + fileArray2[i].split('/')[2] + '" target="_blank">下载</a></div>';
+    //                     $('#taskFile').append(tr);
+    //                 }
+    //             }
+    //             else  {
+    //                 $("#taskFile").text("暂无文件");
+    //             }
+    //
+    //         }
+    //     });
+    //     layer.open({
+    //         type: 1
+    //         , content: $('#info')
+    //         , btnAlign: 'c' //按钮居中
+    //         ,area: 'auto'
+    //         ,anim: 0
+    //         ,maxWidth:800
+    //         , shade: 0 //不显示遮罩
+    //     });
+    // });
 });
 
 

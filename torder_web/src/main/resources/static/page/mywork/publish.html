@@ -272,10 +272,10 @@
                         <div class="contentList" id="contD" style="font-size: 20px;">支付赏金
                             <hr class="layui-bg-gray">
                             <div class="layui-row" style="font-size: 20px">
-                                可用余额&nbsp;&nbsp;<span style="color: #d11b18;font-size: 25px">0.00</span><span style="color: #919999;">&nbsp;元</span>
+                                可用余额&nbsp;&nbsp;<span style="color: #d11b18;font-size: 25px;" id="yuer">0.00</span><span style="color: #919999;">&nbsp;元</span>
                             </div>
-                            <div class="layui-row" style="margin-top: 40px;">
-                                <button type="button" class="layui-btn layui-btn-lg layui-btn-danger" >确认支付</button>
+                            <div class="layui-row" style="margin-top: 40px;text-align: center;color:#6f726f;">
+                               请确保余额充足，项目顺利进行
                             </div>
 
                             <br>
@@ -334,6 +334,7 @@
             layer.msg(JSON.stringify(data.field));
             return false;
         });
+        $('#yuer').text(layui.sessionData('user').user.money)
 
         form.on('select(college)', function (data) {
 

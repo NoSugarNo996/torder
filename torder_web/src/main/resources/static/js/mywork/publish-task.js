@@ -47,10 +47,12 @@ let eventObj1 = {
                 $("#taskPublisher").val(res.taskPublisherName);
                 $("#taskAccepter").val(res.taskAccepterName);
                 $("#taskDes").text(res.taskDes);
-                $("#other1").val(res.other1);
+                $("#opr").val(res.opr);
                 $("#taskStart").text(res.taskStart);
                 $("#taskEnd").text(res.taskEnd);
                 $("#taskMoney").val(res.taskMoney);
+                $("#code").val(res.code);
+                $("#taskStatusName").val(res.taskStatusName);
                 if (res.taskFile!=null){
                     let fileArray= res.taskFile.split(",");
                     for (var i = 0; i < fileArray.length; i++) {
@@ -61,6 +63,9 @@ let eventObj1 = {
                 }
                 else  {
                     $("#taskFile").empty().text("暂无文件");
+                }
+                if (res.taskstatus==7){
+                    $("#update").attr('disabled',true);
                 }
 
 
@@ -208,18 +213,36 @@ let eventObj1 = {
             },
             success: function (res) {
 
-                $("#taskName").text(res.taskName);
-                $("#taskStatus").text(res.taskStatus);
-                $("#taskPublisher").text(res.taskPublisherName);
-                $("#taskAccepter").text(res.taskAccepterName);
+                $("#taskName").val(res.taskName);
+                $("#taskPublisher").val(res.taskPublisherName);
+                $("#taskAccepter").val(res.taskAccepterName);
                 $("#taskDes").text(res.taskDes);
-                $("#taskFile").text(res.taskFile);
+                $("#opr").val(res.opr);
                 $("#taskStart").text(res.taskStart);
                 $("#taskEnd").text(res.taskEnd);
-                $("#taskMoney").text(res.taskMoney);
+                $("#taskMoney").val(res.taskMoney);
+                $("#code").val(res.code);
+
+
+                obj.btn='任务完成';
+                obj.instanceId=res.others;
+                obj.nextOpr=res.taskAccepter;
+                $.ajax({
+
+                    url: queryUrl + "/DataAudit/completeTask",
+                    dataType: "json",
+                    type: "post",
+                    contentType: "application/json;charset=UTF-8",
+                    data: JSON.stringify(obj),
+                    async: false,
+                    success: function (result) {
+                    }
+                });
 
             }
         });
+
+
         layer.open({
             type: 1
             , content: $('#info')
@@ -262,16 +285,24 @@ let eventObj1 = {
                         '</td>\n' +
                         '<td>\n' +
                         '<div>' + res.data[index].taskMoney + '</div>\n' +
-                        '</td>\n' +
-                        '<td>\n' +
-                        '<div>' + res.data[index].taskAccepterName + '</div>\n' +
-                        '</td>\n' +
-                        '<td>\n' +
+                        '</td>\n';
+
+                        if(res.data[index].taskAccepterName!=null){
+                           data+= '<td>\n' +
+                            '<div>' + res.data[index].taskAccepterName + '</div>\n' +
+                            '</td>\n';
+                        }
+                      else {
+                            data+= '<td>\n' +
+                                '<div>暂无接单者</div>\n' +
+                                '</td>\n';
+                        }
+                       data+='<td>\n' +
                         '<div>' + res.data[index].taskStatusName + '</div>\n' +
                         '</td>\n' +
                         '<td>\n' +
                         '<div class="operate">\n' +
-                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">查看详情</button>\n'
+                        '<button type="button" class="checkDetail layui-btn layui-btn-sm layui-btn-primary" value="' + res.data[index].taskId + '">编辑</button>\n'
                         if(res.data[index].taskStatus==1){
                             data+=  '<button type="button" class="msgaudapply layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">催促</button>\n'
                         }
@@ -281,7 +312,7 @@ let eventObj1 = {
                         else if (res.data[index].taskStatus==3){
                             data+=  '<button type="button" class="selecttalents layui-btn layui-btn-sm layui-btn-warm" tag="'+res.data[index].others+'"value="' + res.data[index].code + '">选取人才</button>\n'
                         }
-                        else if (res.data[index].taskStatus==5){
+                        else if (res.data[index].taskStatus==4){
                             data+=  '<button type="button" class="finishEvent layui-btn layui-btn-sm layui-btn-warm" value="' + res.data[index].code + '">任务完成</button>\n'
                         }
                         else if (res.data[index].taskStatus==6){
@@ -321,7 +352,35 @@ let eventObj1 = {
     }
 
 
-
+    //监听更新
+    form.on('submit(verify1)', function (data) {
+        let eventObj={
+            'taskStatusName':'',
+            'taskMoney':'',
+            'taskDes':'',
+            'code':''
+        }
+            eventObj.taskMoney = $('#taskMoney').val();
+        eventObj.taskDes = $('#taskDes').val();
+        eventObj.code = $('#code').val();
+        eventObj.taskStatusName = $('#taskStatusName').val();
+        if (eventObj.taskStatusName=='审核未通过')
+            eventObj.taskStatus=1;
+        $.ajax({
+            type: "post",
+            url: queryUrl + queryMethodTask + updateMethod,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify(eventObj),
+            success: function (res) {
+                if (res==1){
+                    layer.msg('更新成功');
+                }
+                else
+                    layer.msg("更新失败");
+            }
+        });
+    });
 
 //完成任务
     $('body').on('click', '.finishEvent', function () {
@@ -710,7 +769,6 @@ let eventObj1 = {
 let update = {
     "code": '',
     "others":'',
-    "taskAccepter":'',
     "taskStatus":4
 }
 let obj=
